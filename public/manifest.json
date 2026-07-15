@@ -1,0 +1,8 @@
+{
+  "name": "Antony Addy - Formation IA Générative",
+  "short_name": "Antony Addy IA",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }],
+  "theme_color": "#5B3DF5",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

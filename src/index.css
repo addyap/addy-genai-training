@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 12%;
+    --primary: 255 78% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 250 40% 96%;
+    --secondary-foreground: 240 10% 12%;
+    --muted: 250 40% 96%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 250 40% 96%;
+    --accent-foreground: 240 10% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 250 20% 90%;
+    --input: 250 20% 90%;
+    --ring: 255 78% 60%;
+    --radius: 0.75rem;
+
+    /* Brand colors */
+    --ia-violet: 255 78% 60%;
+    --ia-navy: 240 45% 12%;
+    --ia-light-grey: 250 40% 97%;
+  }
+
+  .dark {
+    --background: 240 45% 6%;
+    --foreground: 210 40% 98%;
+    --card: 240 45% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 45% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 255 78% 66%;
+    --primary-foreground: 240 45% 8%;
+    --secondary: 240 30% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 240 30% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 240 30% 16%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 30% 16%;
+    --input: 240 30% 16%;
+    --ring: 255 78% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .ia-violet {
+    @apply text-primary;
+  }
+
+  .bg-ia-violet {
+    @apply bg-primary;
+  }
+
+  .bg-ia-navy {
+    @apply bg-[hsl(var(--ia-navy))];
+  }
+
+  .bg-ia-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--ia-navy)) 100%);
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px hsl(0 0% 0% / 0.5);
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 hover:translate-y-[-2px];
+  }
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}

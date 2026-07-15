@@ -26,7 +26,7 @@ const NotFound = () => {
         jsonLd={notFoundJsonLd}
       />
 
-      <section className="py-20 min-h-screen flex items-center justify-center bg-gray-50">
+      <section className="py-14 sm:py-20 min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="animate-fade-in-up">
             <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>

@@ -60,9 +60,9 @@ const Home = () => {
       <HeroSection />
 
       {/* Pillars */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-14 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Quatre compétences clés, quatre usages concrets
             </h2>
@@ -71,11 +71,11 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className="bg-white rounded-xl p-8 shadow-lg hover-lift animate-fade-in-up"
+                className="bg-white rounded-xl p-6 sm:p-8 shadow-lg hover-lift animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
@@ -88,7 +88,7 @@ const Home = () => {
           </div>
 
           {/* Cross-cutting: responsible use, ethics, RGPD */}
-          <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 animate-fade-in-up animate-delay-300">
+          <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 animate-fade-in-up animate-delay-300">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
               <ShieldCheck className="h-6 w-6" />
             </div>
@@ -102,7 +102,7 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Link to="/formations" onClick={handleNavClick}>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg whitespace-normal text-center h-auto">
                 Découvrir le détail des formations
               </Button>
             </Link>
@@ -111,9 +111,9 @@ const Home = () => {
       </section>
 
       {/* Audience split */}
-      <section className="py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Pour qui ?
             </h2>
@@ -122,8 +122,8 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="rounded-2xl border border-gray-200 p-8 hover-lift animate-fade-in-up">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div className="rounded-2xl border border-gray-200 p-6 sm:p-8 hover-lift animate-fade-in-up">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
                 <Building2 className="h-6 w-6" />
               </div>
@@ -134,7 +134,7 @@ const Home = () => {
               <p className="text-sm text-gray-500">Formations en intra, sur site ou à distance.</p>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 p-8 hover-lift animate-fade-in-up animate-delay-100">
+            <div className="rounded-2xl border border-gray-200 p-6 sm:p-8 hover-lift animate-fade-in-up animate-delay-100">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
                 <User className="h-6 w-6" />
               </div>
@@ -149,7 +149,7 @@ const Home = () => {
       </section>
 
       {/* Approach teaser */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-14 sm:py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
             Une nouvelle offre, portée par une pratique quotidienne de l'IA
@@ -158,7 +158,7 @@ const Home = () => {
             J'utilise l'intelligence artificielle générative au quotidien dans mon activité de formateur — préparation de supports, automatisation de tâches administratives, création de contenus pédagogiques. Je lance aujourd'hui une offre de formation dédiée pour transmettre ces usages concrets, avec la même exigence pédagogique que j'applique depuis 2017 comme Formateur Professionnel d'Adultes certifié d'État, d'abord en anglais professionnel puis en SAP.
           </p>
           <Link to="/a-propos" onClick={handleNavClick}>
-            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground mt-4">
+            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground mt-4 whitespace-normal text-center h-auto py-3">
               En savoir plus sur mon parcours
             </Button>
           </Link>
@@ -166,7 +166,7 @@ const Home = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-ia-gradient text-white">
+      <section className="py-14 sm:py-20 bg-ia-gradient text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Prêt à passer à l'action avec l'IA générative ?

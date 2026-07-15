@@ -18,7 +18,7 @@ const MentionsLegales = () => {
         jsonLd={legalJsonLd}
       />
 
-      <section className="py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-8">Mentions Légales</h1>
 

@@ -79,7 +79,7 @@ ${formData.message}`;
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-primary/5">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-primary/10 to-primary/5">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 animate-fade-in-up">
             Démarrons votre projet de formation IA
@@ -108,7 +108,7 @@ ${formData.message}`;
       </section>
 
       {/* Contact Content */}
-      <section className="py-20 bg-background">
+      <section className="py-14 sm:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}

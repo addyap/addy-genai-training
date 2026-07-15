@@ -47,7 +47,7 @@ const APropos = () => {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-[hsl(var(--ia-navy))]/10">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-primary/10 to-[hsl(var(--ia-navy))]/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
@@ -72,14 +72,14 @@ const APropos = () => {
       </section>
 
       {/* Expertise Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Domaines Pratiqués</h2>
             <p className="text-xl text-gray-600">Des usages testés et utilisés dans mon activité, avant d'être enseignés</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {expertise.map((item, index) => (
               <div key={item.title} className="bg-gray-50 rounded-xl p-6 text-center animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary mx-auto mb-4">
@@ -94,14 +94,14 @@ const APropos = () => {
       </section>
 
       {/* Qualifications */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-14 sm:py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Qualifications Professionnelles</h2>
           </div>
 
-          <div className="bg-white rounded-xl p-8 shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Formation & Expérience</h3>
                 <ul className="space-y-3">
@@ -128,7 +128,7 @@ const APropos = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-ia-gradient text-white">
+      <section className="py-14 sm:py-20 bg-ia-gradient text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Envie d'échanger sur votre projet ?</h2>
           <p className="text-xl mb-8 text-white/85">

@@ -110,7 +110,7 @@ const Formations = () => {
       />
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-[hsl(var(--ia-navy))]/10">
+      <section className="py-14 sm:py-20 bg-gradient-to-br from-primary/10 to-[hsl(var(--ia-navy))]/10">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up">
             Des formations IA générative pour un usage concret, immédiat
@@ -123,7 +123,7 @@ const Formations = () => {
           </p>
           <div className="animate-fade-in-up animate-delay-200">
             <Link to="/contact" onClick={handleNavClick}>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg whitespace-normal text-center h-auto">
                 Construire mon programme de formation
               </Button>
             </Link>
@@ -132,13 +132,13 @@ const Formations = () => {
       </section>
 
       {/* Services detail */}
-      <section className="py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="bg-gray-50 rounded-xl p-8 shadow-lg hover-lift animate-fade-in-up"
+                className="bg-gray-50 rounded-xl p-6 sm:p-8 shadow-lg hover-lift animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
@@ -160,7 +160,7 @@ const Formations = () => {
           </div>
 
           {/* Cross-cutting: responsible use, ethics, RGPD */}
-          <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-8">
+          <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-6 sm:p-8">
             <div className="flex items-start gap-5">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <responsibleUse.icon className="h-6 w-6" />
@@ -184,18 +184,18 @@ const Formations = () => {
       </section>
 
       {/* Training Formats */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-14 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Formats de Formation</h2>
             <p className="text-xl text-gray-600">Choisissez le format qui convient le mieux à vos besoins</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {trainingFormats.map((format, index) => (
               <div
                 key={format.title}
-                className="bg-white rounded-xl p-8 shadow-lg text-center animate-fade-in-up"
+                className="bg-white rounded-xl p-6 sm:p-8 shadow-lg text-center animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="text-4xl mb-4">{format.icon}</div>
@@ -208,7 +208,7 @@ const Formations = () => {
       </section>
 
       {/* Institutional / funded-training format */}
-      <section className="py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -219,7 +219,7 @@ const Formations = () => {
             </p>
           </div>
 
-          <div className="bg-gray-50 rounded-xl p-8 shadow-lg">
+          <div className="bg-gray-50 rounded-xl p-6 sm:p-8 shadow-lg">
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               <li className="flex items-start text-gray-600">
                 <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
@@ -251,12 +251,12 @@ const Formations = () => {
       </section>
 
       {/* Methodology */}
-      <section className="py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Une pédagogie pragmatique</h2>
           </div>
-          <div className="bg-gray-50 rounded-xl p-8 shadow-lg space-y-4 text-gray-600">
+          <div className="bg-gray-50 rounded-xl p-6 sm:p-8 shadow-lg space-y-4 text-gray-600">
             <p>
               Chaque formation part de vos cas d'usage réels — pas d'exemples génériques. On travaille sur vos documents, vos processus et vos outils, pour que les compétences soient utilisables dès le lendemain.
             </p>
@@ -268,7 +268,7 @@ const Formations = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-ia-gradient text-white">
+      <section className="py-14 sm:py-20 bg-ia-gradient text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Un besoin spécifique ?</h2>
           <p className="text-xl mb-8 text-white/85">

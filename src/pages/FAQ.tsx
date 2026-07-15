@@ -13,7 +13,7 @@ const categories = [
       },
       {
         q: "Le programme est-il finançable par un OPCO ou via le CPF ?",
-        a: "Pas pour l'instant. Depuis 2022, le financement mutualisé (OPCO, CPF, Pôle emploi, Régions) est conditionné à la certification Qualiopi, que cette activité ne possède pas encore. Je reste déclaré comme organisme de formation (NDA 93830738883, DREETS PACA) et je structure déjà mes programmes selon les formats attendus par les financeurs, en vue d'une future certification.",
+        a: "Non. Depuis 2022, le financement mutualisé (OPCO, CPF, Pôle emploi, Régions) est conditionné à la certification Qualiopi, que cette activité ne possède pas. Je reste déclaré comme organisme de formation (NDA 93830738883, DREETS PACA) et je structure mes programmes selon les formats attendus par les financeurs, mais le financement direct (devis réglé par l'entreprise ou l'indépendant) est aujourd'hui la seule solution disponible.",
       },
       {
         q: "Une facture ou une attestation de formation est-elle fournie ?",

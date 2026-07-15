@@ -11,6 +11,7 @@ const { render } = await import('./dist/server/entry-server.js');
 const routesToPrerender = [
   '/',
   '/formations',
+  '/faq',
   '/a-propos',
   '/contact',
   '/mentions-legales',

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ia.antonyaddy.com/sitemap.xml

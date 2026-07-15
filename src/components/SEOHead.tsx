@@ -18,7 +18,7 @@ const SEOHead = ({
   description = "Formations en intelligence artificielle générative pour entreprises et indépendants, par un formateur professionnel d'adultes certifié d'État.",
   keywords = ["formation IA générative", "formateur intelligence artificielle", "ChatGPT entreprise", "formation ChatGPT", "prompt engineering", "IA France"],
   canonicalUrl,
-  ogImage = "/social-preview.jpg",
+  ogImage = "/social-preview.png",
   jsonLd,
   robots = "index, follow"
 }: SEOHeadProps) => {

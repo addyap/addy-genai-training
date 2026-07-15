@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Formations from "./pages/Formations";
+import FAQ from "./pages/FAQ";
 import APropos from "./pages/APropos";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -47,6 +48,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/formations" element={<Formations />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/a-propos" element={<APropos />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, Building2, User } from 'lucide-react';
+import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, Building2, User, ShieldCheck } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import HeroSection from '../components/home/HeroSection';
 import { Button } from '../components/ui/button';
@@ -53,7 +53,7 @@ const Home = () => {
       <SEOHead
         title="Formation IA Générative pour Entreprises et Indépendants | Antony Addy"
         description="Formations pratiques en intelligence artificielle générative (ChatGPT, Claude, Copilot, automatisation) par un formateur professionnel d'adultes certifié d'État. Entreprises et indépendants, en France."
-        keywords={["formation IA générative", "formation ChatGPT entreprise", "formateur intelligence artificielle", "prompt engineering formation", "Copilot formation", "formation IA Fréjus"]}
+        keywords={["formation IA générative", "formation ChatGPT entreprise", "formateur intelligence artificielle", "prompt engineering formation", "Copilot formation", "formation IA responsable", "formation IA RGPD", "formation IA OPCO", "formation IA Fréjus"]}
         jsonLd={homeJsonLd}
       />
 
@@ -85,6 +85,19 @@ const Home = () => {
                 <p className="text-gray-600 text-sm leading-relaxed">{pillar.description}</p>
               </div>
             ))}
+          </div>
+
+          {/* Cross-cutting: responsible use, ethics, RGPD */}
+          <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 animate-fade-in-up animate-delay-300">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <ShieldCheck className="h-6 w-6" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Un cadre responsable, à chaque formation</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Risques éthiques et juridiques, protection des données personnelles (RGPD), fiabilité des réponses générées : chaque module intègre un temps dédié pour développer un regard critique et un usage sécurisé de l'IA, pas seulement sa prise en main technique.
+              </p>
+            </div>
           </div>
 
           <div className="text-center mt-12">

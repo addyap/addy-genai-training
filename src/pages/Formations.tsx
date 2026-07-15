@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet } from 'lucide-react';
+import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, ShieldCheck } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { Button } from '../components/ui/button';
 
@@ -9,10 +9,10 @@ const services = [
     title: "IA conversationnelle & prompt engineering",
     description: "Utiliser ChatGPT, Claude ou Gemini comme de vrais outils de travail, pas comme des gadgets.",
     features: [
-      "Formuler des consignes (prompts) claires et efficaces",
+      "Comprendre les fondamentaux de l'IA générative",
+      "Rédiger, tester et améliorer des prompts efficaces",
       "Choisir le bon outil selon le besoin",
       "Vérifier et fiabiliser les réponses de l'IA",
-      "Intégrer l'IA dans la rédaction, la recherche et l'aide à la décision",
     ],
   },
   {
@@ -50,6 +50,18 @@ const services = [
   },
 ];
 
+const responsibleUse = {
+  icon: ShieldCheck,
+  title: "Cadre responsable : éthique, risques & RGPD",
+  description: "Un module transversal, intégré à chaque formation, pas une case cochée en fin de programme.",
+  features: [
+    "Identifier les principaux risques éthiques et juridiques liés à l'IA générative",
+    "Exploiter les données à caractère personnel dans le respect du RGPD",
+    "Développer un regard critique sur les résultats produits par l'IA",
+    "Mettre en place un usage responsable et sécurisé au sein de son organisation",
+  ],
+};
+
 const trainingFormats = [
   {
     title: "Formation en Entreprise",
@@ -72,7 +84,7 @@ const servicesJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Formations en IA Générative",
-  "description": "Formations pratiques en intelligence artificielle générative : prompt engineering, création visuelle, automatisation, bureautique augmentée",
+  "description": "Formations pratiques en intelligence artificielle générative : prompt engineering, création visuelle, automatisation, bureautique augmentée, cadre éthique et RGPD",
   "provider": {
     "@type": "Person",
     "name": "Antony Addy",
@@ -93,7 +105,7 @@ const Formations = () => {
       <SEOHead
         title="Formations IA Générative : Prompt Engineering, Automatisation, Bureautique | Antony Addy"
         description="Détail des formations en intelligence artificielle générative : IA conversationnelle, création visuelle, automatisation et agents IA, IA intégrée à la bureautique. Pour entreprises et indépendants."
-        keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise"]}
+        keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise", "formation IA éthique", "formation IA RGPD", "formation IA OPCO", "cahier des charges formation IA"]}
         jsonLd={servicesJsonLd}
       />
 
@@ -134,6 +146,7 @@ const Formations = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-6">{service.description}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">Être capable de :</p>
                 <ul className="space-y-2">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-start text-sm text-gray-600">
@@ -144,6 +157,28 @@ const Formations = () => {
                 </ul>
               </div>
             ))}
+          </div>
+
+          {/* Cross-cutting: responsible use, ethics, RGPD */}
+          <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-8">
+            <div className="flex items-start gap-5">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <responsibleUse.icon className="h-6 w-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{responsibleUse.title}</h3>
+                <p className="text-gray-600 mb-6">{responsibleUse.description}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">Être capable de :</p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                  {responsibleUse.features.map((feature) => (
+                    <li key={feature} className="flex items-start text-sm text-gray-600">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -168,6 +203,49 @@ const Formations = () => {
                 <p className="text-gray-600">{format.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional / funded-training format */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Un format compatible avec les exigences des organismes financeurs
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              OPCO, employeurs publics, associations : chaque programme peut être structuré selon le cadre attendu par les financeurs de la formation professionnelle
+            </p>
+          </div>
+
+          <div className="bg-gray-50 rounded-xl p-8 shadow-lg">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+              <li className="flex items-start text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Objectifs pédagogiques formulés en compétences (« être capable de… »)</span>
+              </li>
+              <li className="flex items-start text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Formats multi-journées avec intersession, pour mettre en pratique entre les sessions</span>
+              </li>
+              <li className="flex items-start text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Groupes de 8 à 14 participants, en présentiel ou à distance</span>
+              </li>
+              <li className="flex items-start text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Mises en situation, jeux de rôle et travail sur des cas vécus par les participants</span>
+              </li>
+              <li className="flex items-start text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Évaluation à chaud (orale et écrite) et suivi à distance après la formation</span>
+              </li>
+              <li className="flex items-start text-gray-600">
+                <span className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Programme adaptable au cahier des charges d'un appel d'offres ou d'un marché</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>

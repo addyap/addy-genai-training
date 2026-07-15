@@ -32,6 +32,16 @@ const MentionsLegales = () => {
             </section>
 
             <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Organisme de Formation</h2>
+              <p className="mb-2">Numéro de Déclaration d'Activité (NDA) : 93830738883</p>
+              <p className="mb-2">Autorité d'enregistrement : DREETS Provence-Alpes-Côte d'Azur</p>
+              <p className="mb-2">Code NAF/APE : 8559B — Autres enseignements</p>
+              <p className="text-sm">
+                Cet enregistrement ne vaut pas agrément de l'État (article L.6352-12 du Code du travail).
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Hébergement</h2>
               <p>Ce site web est hébergé par Vercel Inc.</p>
               <p>Site web : vercel.com</p>

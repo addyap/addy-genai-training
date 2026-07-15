@@ -14,6 +14,7 @@ const qualifications = [
   "Formateur Professionnel d'Adultes (FPA), certifié d'État depuis 2017",
   "Pratique quotidienne des outils d'IA générative dans son activité de formateur",
   "Expérience de formation professionnelle en anglais des affaires et en SAP Gestion des Matériaux",
+  "Organisme de formation déclaré — NDA 93830738883 (DREETS Provence-Alpes-Côte d'Azur)",
   "SIRET : 483 178 893 00028",
 ];
 

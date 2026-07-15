@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles, MessageCircle } from 'lucide-react';
 import { Button } from './ui/button';
 
 const navigation = [
@@ -73,6 +73,12 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer">
+              <Button size="sm" variant="outline" className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </Button>
+            </a>
             <Link to="/contact" onClick={handleNavClick}>
               <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 Demander un devis
@@ -112,11 +118,19 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link to="/contact" onClick={handleNavClick} className="block px-3 pt-2">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Demander un devis
-                </Button>
-              </Link>
+              <div className="px-3 pt-2 space-y-2">
+                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" onClick={handleNavClick} className="block">
+                  <Button variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp
+                  </Button>
+                </a>
+                <Link to="/contact" onClick={handleNavClick} className="block">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Demander un devis
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         )}

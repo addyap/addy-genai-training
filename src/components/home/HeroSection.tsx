@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { MessageCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const HeroSection = () => {
@@ -31,7 +32,7 @@ const HeroSection = () => {
             Formateur Professionnel d'Adultes (FPA) certifié d'État · Basé à Fréjus · Présentiel & à distance
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center">
             <Link to="/contact" onClick={handleNavClick}>
               <Button
                 size="lg"
@@ -40,6 +41,15 @@ const HeroSection = () => {
                 Demander un devis
               </Button>
             </Link>
+            <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                <MessageCircle className="h-5 w-5" />
+                WhatsApp
+              </Button>
+            </a>
             <Link to="/formations" onClick={handleNavClick}>
               <Button
                 variant="outline"

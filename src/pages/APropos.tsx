@@ -114,7 +114,7 @@ const APropos = () => {
                 <ul className="space-y-3.5">
                   {qualifications.map((qualification) => (
                     <li key={qualification} className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-5 w-5 text-warm mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-muted-foreground">{qualification}</span>
                     </li>
                   ))}

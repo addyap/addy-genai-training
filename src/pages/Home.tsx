@@ -94,10 +94,10 @@ const Home = () => {
           </div>
 
           {/* Cross-cutting: responsible use, ethics, RGPD */}
-          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8 animate-fade-in-up animate-delay-300">
+          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-warm/25 bg-warm/5 p-6 sm:p-8 animate-fade-in-up animate-delay-300">
             <div className="absolute inset-0 bg-dot-grid opacity-60" />
             <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-glow">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-warm text-warm-foreground shadow-glow-warm">
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <div>
@@ -185,7 +185,7 @@ const Home = () => {
                 <div className="font-display text-5xl font-bold text-gradient mb-2">2017</div>
                 <p className="text-sm text-muted-foreground">Formateur Professionnel d'Adultes certifié d'État</p>
                 <div className="h-px bg-border my-6" />
-                <div className="font-display text-5xl font-bold text-gradient mb-2">2026</div>
+                <div className="font-display text-5xl font-bold text-gradient-warm mb-2">2026</div>
                 <p className="text-sm text-muted-foreground">Lancement de l'offre IA générative</p>
               </div>
             </div>

@@ -31,6 +31,8 @@
     --ia-navy: 245 48% 10%;
     --ia-navy-soft: 245 38% 16%;
     --ia-light-grey: 250 45% 97%;
+    --ia-amber: 38 92% 50%;
+    --ia-amber-deep: 32 90% 44%;
   }
 
   .dark {
@@ -106,6 +108,13 @@
 
   .text-gradient-light {
     background: linear-gradient(115deg, #ffffff 30%, #c9baff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(115deg, hsl(var(--ia-navy)) 15%, hsl(var(--ia-amber)) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

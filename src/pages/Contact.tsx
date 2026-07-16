@@ -218,7 +218,7 @@ ${formData.message}`;
                 <ul className="space-y-3.5">
                   {trainingOptions.map((option) => (
                     <li key={option} className="flex items-center gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                      <CheckCircle2 className="h-5 w-5 text-warm shrink-0" />
                       <span className="text-muted-foreground">{option}</span>
                     </li>
                   ))}

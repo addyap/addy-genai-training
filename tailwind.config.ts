@@ -27,6 +27,7 @@ export default {
 				'card-hover': '0 4px 12px rgba(20, 11, 46, 0.06), 0 12px 32px -8px rgba(124, 92, 240, 0.18)',
 				glow: '0 8px 24px -8px hsl(var(--primary) / 0.55)',
 				'glow-lg': '0 12px 32px -6px hsl(var(--primary) / 0.65)',
+				'glow-warm': '0 8px 24px -8px hsl(var(--ia-amber) / 0.55)',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -41,6 +42,11 @@ export default {
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				warm: {
+					DEFAULT: 'hsl(var(--ia-amber))',
+					deep: 'hsl(var(--ia-amber-deep))',
+					foreground: 'hsl(var(--ia-navy))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

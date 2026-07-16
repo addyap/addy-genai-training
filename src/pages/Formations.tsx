@@ -175,7 +175,7 @@ const Formations = () => {
                 <ul className="relative space-y-2.5">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary mr-2.5 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-warm mr-2.5 mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -185,10 +185,10 @@ const Formations = () => {
           </div>
 
           {/* Cross-cutting: responsible use, ethics, RGPD */}
-          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8">
+          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-warm/25 bg-warm/5 p-6 sm:p-8">
             <div className="absolute inset-0 bg-dot-grid opacity-60" />
             <div className="relative flex items-start gap-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-glow">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-warm text-warm-foreground shadow-glow-warm">
                 <responsibleUse.icon className="h-6 w-6" />
               </div>
               <div>
@@ -198,7 +198,7 @@ const Formations = () => {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
                   {responsibleUse.features.map((feature) => (
                     <li key={feature} className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary mr-2.5 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-warm mr-2.5 mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -245,11 +245,11 @@ const Formations = () => {
             description="OPCO, employeurs publics, associations : chaque programme peut être structuré selon le cadre attendu par les financeurs de la formation professionnelle"
           />
 
-          <div className="rounded-2xl border border-border bg-secondary/30 p-6 sm:p-10">
+          <div className="rounded-2xl border border-warm/20 bg-warm/5 p-6 sm:p-10">
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
               {fundingChecklist.map((item) => (
                 <li key={item} className="flex items-start text-foreground/80">
-                  <CheckCircle2 className="h-5 w-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 text-warm mr-3 mt-0.5 flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

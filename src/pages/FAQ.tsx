@@ -9,6 +9,7 @@ const categories = [
   {
     title: "Financement",
     icon: Wallet,
+    tone: "bg-warm/10 text-warm",
     items: [
       {
         q: "Comment financer une formation avec vous ?",
@@ -31,6 +32,7 @@ const categories = [
   {
     title: "Organisation & format",
     icon: CalendarClock,
+    tone: "bg-primary/10 text-primary",
     items: [
       {
         q: "Combien de temps dure une formation ?",
@@ -53,6 +55,7 @@ const categories = [
   {
     title: "Contenu",
     icon: Layers,
+    tone: "bg-indigo-500/10 text-indigo-600",
     items: [
       {
         q: "Quels outils d'IA sont abordés ?",
@@ -67,6 +70,7 @@ const categories = [
   {
     title: "À propos de l'offre",
     icon: Info,
+    tone: "bg-fuchsia-500/10 text-fuchsia-600",
     items: [
       {
         q: "Est-ce une offre récente ?",
@@ -129,7 +133,7 @@ const FAQ = () => {
           {categories.map((cat, catIndex) => (
             <div key={cat.title} className="card-surface p-6 sm:p-8 animate-fade-in-up" style={{ animationDelay: `${catIndex * 0.08}s` }}>
               <div className="flex items-center gap-4 mb-2">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${cat.tone}`}>
                   <cat.icon className="h-5 w-5" />
                 </div>
                 <h2 className="font-display text-xl font-semibold text-foreground">{cat.title}</h2>

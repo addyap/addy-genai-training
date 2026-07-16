@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
+import { Wallet, CalendarClock, Layers, Info } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 
 const categories = [
   {
     title: "Financement",
+    icon: Wallet,
     items: [
       {
         q: "Comment financer une formation avec vous ?",
@@ -23,6 +26,7 @@ const categories = [
   },
   {
     title: "Organisation & format",
+    icon: CalendarClock,
     items: [
       {
         q: "Combien de temps dure une formation ?",
@@ -44,6 +48,7 @@ const categories = [
   },
   {
     title: "Contenu",
+    icon: Layers,
     items: [
       {
         q: "Quels outils d'IA sont abordés ?",
@@ -57,6 +62,7 @@ const categories = [
   },
   {
     title: "À propos de l'offre",
+    icon: Info,
     items: [
       {
         q: "Est-ce une offre récente ?",
@@ -97,28 +103,40 @@ const FAQ = () => {
       />
 
       {/* Hero */}
-      <section className="py-14 sm:py-20 bg-gradient-to-br from-primary/10 to-[hsl(var(--ia-navy))]/10">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up">
+      <section className="relative py-14 sm:py-20 bg-secondary/40 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid" />
+        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <div className="inline-flex items-center gap-2 mb-5 rounded-full bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary animate-fade-in-up">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            FAQ
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 animate-fade-in-up animate-delay-100">
             Questions fréquentes
           </h1>
-          <p className="text-xl text-gray-600 animate-fade-in-up animate-delay-100">
+          <p className="text-xl text-muted-foreground animate-fade-in-up animate-delay-200">
             Financement, format, contenu : les réponses aux questions les plus courantes
           </p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-14 sm:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          {categories.map((cat) => (
-            <div key={cat.title}>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">{cat.title}</h2>
+      <section className="py-14 sm:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          {categories.map((cat, catIndex) => (
+            <div key={cat.title} className="card-surface p-6 sm:p-8 animate-fade-in-up" style={{ animationDelay: `${catIndex * 0.08}s` }}>
+              <div className="flex items-center gap-4 mb-2">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <cat.icon className="h-5 w-5" />
+                </div>
+                <h2 className="font-display text-xl font-semibold text-foreground">{cat.title}</h2>
+              </div>
               <Accordion type="single" collapsible className="w-full">
                 {cat.items.map((item) => (
-                  <AccordionItem key={item.q} value={item.q}>
-                    <AccordionTrigger className="text-left text-base">{item.q}</AccordionTrigger>
-                    <AccordionContent className="text-gray-600 text-base leading-relaxed">
+                  <AccordionItem key={item.q} value={item.q} className="border-border">
+                    <AccordionTrigger className="text-left font-display text-base font-semibold text-foreground hover:no-underline hover:text-primary">
+                      {item.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-base leading-relaxed">
                       {item.a}
                     </AccordionContent>
                   </AccordionItem>
@@ -130,20 +148,21 @@ const FAQ = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-14 sm:py-20 bg-ia-gradient text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <section className="relative py-14 sm:py-24 bg-ia-gradient text-white overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid-dark" />
+        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Une autre question ?</h2>
           <p className="text-xl mb-8 text-white/85">
             Contactez-moi directement, je réponds sous 24 heures
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" onClick={handleNavClick}>
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-none">
                 Demander un devis
               </Button>
             </Link>
             <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="inline-block">
-              <Button variant="outline" size="lg" className="border-white text-white bg-white/10 hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold backdrop-blur-sm">
+              <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 WhatsApp
               </Button>
             </a>

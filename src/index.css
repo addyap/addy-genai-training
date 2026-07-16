@@ -5,51 +5,53 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 12%;
+    --foreground: 245 35% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 12%;
+    --card-foreground: 245 35% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 12%;
+    --popover-foreground: 245 35% 10%;
     --primary: 255 78% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 250 40% 96%;
-    --secondary-foreground: 240 10% 12%;
-    --muted: 250 40% 96%;
-    --muted-foreground: 240 5% 45%;
-    --accent: 250 40% 96%;
-    --accent-foreground: 240 10% 12%;
+    --secondary: 250 45% 96%;
+    --secondary-foreground: 245 35% 10%;
+    --muted: 250 45% 96%;
+    --muted-foreground: 245 12% 42%;
+    --accent: 250 45% 96%;
+    --accent-foreground: 245 35% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 250 20% 90%;
-    --input: 250 20% 90%;
+    --border: 250 25% 90%;
+    --input: 250 25% 90%;
     --ring: 255 78% 60%;
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     /* Brand colors */
     --ia-violet: 255 78% 60%;
-    --ia-navy: 240 45% 12%;
-    --ia-light-grey: 250 40% 97%;
+    --ia-violet-deep: 262 68% 46%;
+    --ia-navy: 245 48% 10%;
+    --ia-navy-soft: 245 38% 16%;
+    --ia-light-grey: 250 45% 97%;
   }
 
   .dark {
-    --background: 240 45% 6%;
+    --background: 245 48% 7%;
     --foreground: 210 40% 98%;
-    --card: 240 45% 8%;
+    --card: 245 45% 9%;
     --card-foreground: 210 40% 98%;
-    --popover: 240 45% 8%;
+    --popover: 245 45% 9%;
     --popover-foreground: 210 40% 98%;
     --primary: 255 78% 66%;
-    --primary-foreground: 240 45% 8%;
-    --secondary: 240 30% 16%;
+    --primary-foreground: 245 48% 8%;
+    --secondary: 245 30% 16%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 240 30% 16%;
+    --muted: 245 30% 16%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 240 30% 16%;
+    --accent: 245 30% 16%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 240 30% 16%;
-    --input: 240 30% 16%;
+    --border: 245 30% 16%;
+    --input: 245 30% 16%;
     --ring: 255 78% 66%;
   }
 }
@@ -59,9 +61,18 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -78,8 +89,26 @@
     @apply bg-[hsl(var(--ia-navy))];
   }
 
+  .bg-ia-navy-soft {
+    @apply bg-[hsl(var(--ia-navy-soft))];
+  }
+
   .bg-ia-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--ia-navy)) 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--ia-violet-deep)) 55%, hsl(var(--ia-navy)) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(115deg, hsl(var(--ia-navy)) 20%, hsl(var(--primary)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-light {
+    background: linear-gradient(115deg, #ffffff 30%, #c9baff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-shadow {
@@ -87,7 +116,31 @@
   }
 
   .hover-lift {
-    @apply transition-transform duration-300 hover:translate-y-[-2px];
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+  }
+
+  /* Faint dot-grid texture for light sections */
+  .bg-dot-grid {
+    background-image: radial-gradient(hsl(var(--primary) / 0.16) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Faint dot-grid texture for dark sections */
+  .bg-dot-grid-dark {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .card-surface {
+    @apply relative rounded-2xl border border-border bg-card shadow-card transition-all duration-300;
+  }
+
+  .card-surface:hover {
+    @apply -translate-y-1 border-primary/25 shadow-card-hover;
+  }
+
+  .index-numeral {
+    @apply font-display text-5xl font-semibold text-primary/10;
   }
 }
 
@@ -113,11 +166,11 @@
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.6s ease-out both;
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.4s ease-out both;
 }
 
 .animate-delay-100 {

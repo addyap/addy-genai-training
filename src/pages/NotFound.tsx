@@ -26,16 +26,18 @@ const NotFound = () => {
         jsonLd={notFoundJsonLd}
       />
 
-      <section className="py-14 sm:py-20 min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="max-w-md mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <section className="relative min-h-screen flex items-center justify-center bg-ia-navy text-white overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid-dark" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
+        <div className="relative max-w-md mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="animate-fade-in-up">
-            <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">Page non trouvée</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h1 className="text-gradient-light text-8xl font-bold mb-4">404</h1>
+            <h2 className="text-2xl font-semibold text-white mb-4">Page non trouvée</h2>
+            <p className="text-lg text-white/70 mb-8">
               La page que vous recherchez n'existe pas ou a été déplacée.
             </p>
             <Link to="/">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4">
+              <Button size="lg">
                 Retour à l'accueil
               </Button>
             </Link>

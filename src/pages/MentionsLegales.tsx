@@ -28,7 +28,7 @@ const MentionsLegales = () => {
               <p className="mb-2"><strong className="text-foreground">Antony Addy</strong></p>
               <p className="mb-2">Statut : Entrepreneur Individuel</p>
               <p className="mb-2">SIRET : 483 178 893 00028</p>
-              <p className="mb-2">Adresse e-mail : ia@antonyaddy.com</p>
+              <p className="mb-2">Adresse e-mail : formations@antonyaddy.com</p>
             </section>
 
             <section>
@@ -56,7 +56,7 @@ const MentionsLegales = () => {
                 Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.
               </p>
               <p>
-                Pour exercer ces droits ou pour toute question concernant le traitement de vos données, veuillez nous contacter à : ia@antonyaddy.com
+                Pour exercer ces droits ou pour toute question concernant le traitement de vos données, veuillez nous contacter à : formations@antonyaddy.com
               </p>
             </section>
 

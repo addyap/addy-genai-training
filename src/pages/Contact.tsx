@@ -40,7 +40,7 @@ Entreprise: ${formData.company}
 Demande de formation IA générative:
 ${formData.message}`;
 
-    const mailtoLink = `mailto:ia@antonyaddy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:formations@antonyaddy.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
 
     toast({
@@ -61,7 +61,7 @@ ${formData.message}`;
       "name": "Antony Addy",
       "jobTitle": "Formateur en IA Générative",
       "telephone": "+33649829826",
-      "email": "ia@antonyaddy.com",
+      "email": "formations@antonyaddy.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Fréjus",
@@ -192,7 +192,7 @@ ${formData.message}`;
                     </div>
                     <div>
                       <h3 className="font-display font-semibold text-foreground">Email</h3>
-                      <a href="mailto:ia@antonyaddy.com" className="text-primary hover:underline">ia@antonyaddy.com</a>
+                      <a href="mailto:formations@antonyaddy.com" className="text-primary hover:underline">formations@antonyaddy.com</a>
                       <p className="text-sm text-muted-foreground mt-1">Réponse sous 24 heures</p>
                     </div>
                   </div>
@@ -233,7 +233,7 @@ ${formData.message}`;
                     Consultation WhatsApp
                   </Button>
                 </a>
-                <a href="mailto:ia@antonyaddy.com" className="block flex-1">
+                <a href="mailto:formations@antonyaddy.com" className="block flex-1">
                   <Button variant="outline" size="lg" className="w-full">
                     <Mail className="h-4 w-4" />
                     Envoyer un email

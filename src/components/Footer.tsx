@@ -57,7 +57,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/70">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:ia@antonyaddy.com" className="hover:text-primary transition-colors">ia@antonyaddy.com</a>
+                <a href="mailto:formations@antonyaddy.com" className="hover:text-primary transition-colors">formations@antonyaddy.com</a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MessageCircle className="h-4 w-4 text-primary shrink-0" />

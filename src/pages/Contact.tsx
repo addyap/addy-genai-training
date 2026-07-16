@@ -11,6 +11,7 @@ const trainingOptions = [
   "Formation en présentiel (entreprises)",
   "Formation à distance",
   "Accompagnement individuel (indépendants)",
+  "Sous-traitance pour centres de formation certifiés Qualiopi",
   "Programme sur-mesure selon vos outils",
 ];
 

@@ -12,11 +12,15 @@ const categories = [
     items: [
       {
         q: "Comment financer une formation avec vous ?",
-        a: "Aujourd'hui, le financement se fait par devis direct : réglé par l'entreprise sur ses fonds propres, ou par vous-même si vous êtes indépendant. C'est le mode de financement disponible dès maintenant.",
+        a: "Deux voies possibles : le devis direct, réglé par l'entreprise sur ses fonds propres ou par vous-même si vous êtes indépendant ; ou une mission en sous-traitance pour un centre de formation certifié Qualiopi, qui porte alors le financement OPCO/CPF de son côté (voir la question suivante).",
       },
       {
         q: "Le programme est-il finançable par un OPCO ou via le CPF ?",
-        a: "Non. Depuis 2022, le financement mutualisé (OPCO, CPF, Pôle emploi, Régions) est conditionné à la certification Qualiopi, que cette activité ne possède pas. Je reste déclaré comme organisme de formation (NDA 93830738883, DREETS PACA) et je structure mes programmes selon les formats attendus par les financeurs, mais le financement direct (devis réglé par l'entreprise ou l'indépendant) est aujourd'hui la seule solution disponible.",
+        a: "Pas directement. Depuis 2022, le financement mutualisé (OPCO, CPF, Pôle emploi, Régions) est conditionné à la certification Qualiopi, que cette activité ne possède pas. Je reste déclaré comme organisme de formation (NDA 93830738883, DREETS PACA) et je structure mes programmes selon les formats attendus par les financeurs. En direct, seul le devis (financement propre) est disponible — mais un financement OPCO/CPF reste possible indirectement en passant par un centre de formation certifié Qualiopi qui me missionne en sous-traitance.",
+      },
+      {
+        q: "Travaillez-vous avec des centres de formation ?",
+        a: "Oui. Je peux intervenir en sous-traitance pour des centres de formation certifiés Qualiopi : ils portent la certification et la relation avec le financeur, j'assure la conception et l'animation du contenu IA générative. C'est la voie à privilégier si votre financement doit obligatoirement passer par un organisme certifié.",
       },
       {
         q: "Une facture ou une attestation de formation est-elle fournie ?",

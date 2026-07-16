@@ -92,6 +92,7 @@ const fundingChecklist = [
   "Mises en situation, jeux de rôle et travail sur des cas vécus par les participants",
   "Évaluation à chaud (orale et écrite) et suivi à distance après la formation",
   "Programme adaptable au cahier des charges d'un appel d'offres ou d'un marché",
+  "Intervention possible en sous-traitance pour un centre de formation certifié Qualiopi",
 ];
 
 const servicesJsonLd = {

@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { callAnthropicTool, AnthropicConfigError, AnthropicRequestError } from './_lib/anthropic';
+import { callAnthropicTool, AnthropicConfigError, AnthropicRequestError } from './_lib/anthropic.js';
 
 const MIN_LENGTH = 15;
 const MAX_LENGTH = 3000;

@@ -10,6 +10,7 @@ const services = [
     title: "IA conversationnelle & prompt engineering",
     description: "Utiliser ChatGPT, Claude ou Gemini comme de vrais outils de travail, pas comme des gadgets.",
     tone: "bg-primary/10 text-primary",
+    link: undefined as { to: string; label: string } | undefined,
     features: [
       "Comprendre les fondamentaux de l'IA générative",
       "Rédiger, tester et améliorer des prompts efficaces",
@@ -22,6 +23,7 @@ const services = [
     title: "Création visuelle par IA",
     description: "Produire des visuels et des vidéos sans compétences graphiques préalables.",
     tone: "bg-fuchsia-500/10 text-fuchsia-600",
+    link: { to: "/ressources#prompt-visuel", label: "Guide : bien prompter le visuel" },
     features: [
       "Générer des images à partir d'une simple description",
       "Créer des vidéos courtes pour les réseaux sociaux et la communication",
@@ -34,6 +36,7 @@ const services = [
     title: "Automatisation & agents IA",
     description: "Faire gagner du temps aux équipes sur les tâches répétitives.",
     tone: "bg-indigo-500/10 text-indigo-600",
+    link: { to: "/ressources#automatisation", label: "Guide : identifier une tâche à automatiser" },
     features: [
       "Identifier les tâches à automatiser en priorité",
       "Connecter des outils IA à vos processus existants",
@@ -46,6 +49,7 @@ const services = [
     title: "IA intégrée à la bureautique",
     description: "Exploiter l'IA déjà présente dans vos outils Microsoft 365 ou Google Workspace.",
     tone: "bg-sky-500/10 text-sky-600",
+    link: { to: "/ressources#bureautique", label: "Bibliothèque de prompts" },
     features: [
       "Utiliser Copilot dans Word, Excel, Outlook et PowerPoint",
       "Utiliser Gemini dans Docs, Sheets et Gmail",
@@ -180,6 +184,12 @@ const Formations = () => {
                     </li>
                   ))}
                 </ul>
+                {service.link && (
+                  <Link to={service.link.to} className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
+                    {service.link.label}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -195,7 +205,7 @@ const Formations = () => {
                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">{responsibleUse.title}</h3>
                 <p className="text-muted-foreground mb-6">{responsibleUse.description}</p>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground/70 mb-3">Être capable de :</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5 mb-5">
                   {responsibleUse.features.map((feature) => (
                     <li key={feature} className="flex items-start text-sm text-muted-foreground">
                       <CheckCircle2 className="h-4 w-4 text-warm mr-2.5 mt-0.5 flex-shrink-0" />
@@ -203,6 +213,10 @@ const Formations = () => {
                     </li>
                   ))}
                 </ul>
+                <Link to="/diagnostic" className="inline-flex items-center gap-1.5 text-sm font-medium text-warm hover:underline">
+                  Évaluer la maturité IA responsable de mon organisation
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </div>

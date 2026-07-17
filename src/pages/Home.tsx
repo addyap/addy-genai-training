@@ -11,24 +11,28 @@ const pillars = [
     title: "IA conversationnelle & prompt engineering",
     description: "Utiliser ChatGPT, Claude ou Gemini efficacement : formuler les bonnes consignes, structurer un échange et obtenir des résultats fiables pour la rédaction, la recherche et l'aide à la décision.",
     tone: "bg-primary/10 text-primary",
+    link: undefined as { to: string; label: string } | undefined,
   },
   {
     icon: ImageIcon,
     title: "Création visuelle par IA",
     description: "Générer des images et des vidéos avec des outils comme Midjourney, DALL·E ou Sora pour la communication, le marketing et la création de contenu, sans compétences graphiques préalables.",
     tone: "bg-fuchsia-500/10 text-fuchsia-600",
+    link: { to: "/ressources#prompt-visuel", label: "Guide : bien prompter le visuel" },
   },
   {
     icon: Workflow,
     title: "Automatisation & agents IA",
     description: "Connecter l'IA à vos outils du quotidien pour automatiser les tâches répétitives — tri d'emails, comptes rendus, veille, reporting — grâce à des agents simples à mettre en place.",
     tone: "bg-indigo-500/10 text-indigo-600",
+    link: { to: "/ressources#automatisation", label: "Guide : identifier une tâche à automatiser" },
   },
   {
     icon: FileSpreadsheet,
     title: "IA intégrée à la bureautique",
     description: "Exploiter Copilot (Microsoft 365) ou Gemini (Google Workspace) directement dans Word, Excel, Outlook ou Docs pour rédiger, synthétiser et analyser plus vite.",
     tone: "bg-sky-500/10 text-sky-600",
+    link: { to: "/ressources#bureautique", label: "Bibliothèque de prompts" },
   },
 ];
 
@@ -89,6 +93,12 @@ const Home = () => {
                 </div>
                 <h3 className="relative font-display text-lg font-semibold text-foreground mb-3 pr-10">{pillar.title}</h3>
                 <p className="relative text-muted-foreground text-sm leading-relaxed">{pillar.description}</p>
+                {pillar.link && (
+                  <Link to={pillar.link.to} className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
+                    {pillar.link.label}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -102,9 +112,13 @@ const Home = () => {
               </div>
               <div>
                 <h3 className="font-display text-lg font-semibold text-foreground mb-1">Un cadre responsable, à chaque formation</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                   Risques éthiques et juridiques, protection des données personnelles (RGPD), fiabilité des réponses générées : chaque module intègre un temps dédié pour développer un regard critique et un usage sécurisé de l'IA, pas seulement sa prise en main technique.
                 </p>
+                <Link to="/diagnostic" onClick={handleNavClick} className="inline-flex items-center gap-1.5 text-sm font-medium text-warm hover:underline">
+                  Évaluer la maturité IA responsable de mon organisation
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </div>

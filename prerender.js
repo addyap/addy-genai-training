@@ -12,6 +12,8 @@ const routesToPrerender = [
   '/',
   '/formations',
   '/faq',
+  '/ressources',
+  '/diagnostic',
   '/a-propos',
   '/contact',
   '/mentions-legales',

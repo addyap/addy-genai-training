@@ -38,6 +38,8 @@ const Footer = () => {
                 { to: '/', label: 'Accueil' },
                 { to: '/formations', label: 'Formations' },
                 { to: '/faq', label: 'FAQ' },
+                { to: '/ressources', label: 'Ressources' },
+                { to: '/diagnostic', label: 'Diagnostic IA responsable' },
                 { to: '/a-propos', label: 'À propos' },
                 { to: '/contact', label: 'Contact' },
                 { to: '/mentions-legales', label: 'Mentions légales' },

@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Formations from "./pages/Formations";
 import FAQ from "./pages/FAQ";
+import Resources from "./pages/Resources";
+import Diagnostic from "./pages/Diagnostic";
 import APropos from "./pages/APropos";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -17,11 +19,18 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 };
@@ -49,6 +58,8 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/formations" element={<Formations />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/ressources" element={<Resources />} />
+            <Route path="/diagnostic" element={<Diagnostic />} />
             <Route path="/a-propos" element={<APropos />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />

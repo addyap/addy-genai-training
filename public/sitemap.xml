@@ -31,6 +31,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ia.antonyaddy.com/generateur-programme</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ia.antonyaddy.com/correction-email</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ia.antonyaddy.com/a-propos</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>

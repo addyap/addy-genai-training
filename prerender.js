@@ -14,6 +14,8 @@ const routesToPrerender = [
   '/faq',
   '/ressources',
   '/diagnostic',
+  '/generateur-programme',
+  '/correction-email',
   '/a-propos',
   '/contact',
   '/mentions-legales',

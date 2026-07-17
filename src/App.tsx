@@ -6,11 +6,14 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Analytics from "./components/Analytics";
 import Home from "./pages/Home";
 import Formations from "./pages/Formations";
 import FAQ from "./pages/FAQ";
 import Resources from "./pages/Resources";
 import Diagnostic from "./pages/Diagnostic";
+import GenerateurProgramme from "./pages/GenerateurProgramme";
+import CorrectionEmail from "./pages/CorrectionEmail";
 import APropos from "./pages/APropos";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -49,6 +52,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <Analytics />
       <SkipToContent />
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
@@ -60,6 +64,8 @@ const App = () => (
             <Route path="/faq" element={<FAQ />} />
             <Route path="/ressources" element={<Resources />} />
             <Route path="/diagnostic" element={<Diagnostic />} />
+            <Route path="/generateur-programme" element={<GenerateurProgramme />} />
+            <Route path="/correction-email" element={<CorrectionEmail />} />
             <Route path="/a-propos" element={<APropos />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />

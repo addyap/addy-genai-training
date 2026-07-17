@@ -55,15 +55,18 @@ const MentionsLegales = () => {
               <p className="mb-4">
                 Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.
               </p>
-              <p>
+              <p className="mb-4">
                 Pour exercer ces droits ou pour toute question concernant le traitement de vos données, veuillez nous contacter à : formations@antonyaddy.com
+              </p>
+              <p>
+                Les outils interactifs de ce site (générateur de programme, correcteur d'email, diagnostic IA responsable) fonctionnent différemment : le diagnostic s'exécute entièrement dans votre navigateur, sans aucune transmission. Le générateur de programme et le correcteur d'email envoient le texte que vous saisissez à l'API d'Anthropic (fournisseur du modèle Claude) pour générer une réponse ; ce texte n'est pas conservé par nos soins après l'affichage du résultat.
               </p>
             </section>
 
             <section>
               <h2 className="font-display text-xl font-semibold text-foreground mb-4">Cookies</h2>
               <p>
-                Ce site web utilise uniquement des cookies essentiels au bon fonctionnement du site. Aucun cookie de suivi ou publicitaire n'est utilisé.
+                Ce site web utilise uniquement des cookies essentiels au bon fonctionnement du site. Aucun cookie de suivi ou publicitaire n'est utilisé. Les statistiques de fréquentation, lorsqu'elles sont activées, sont mesurées via Umami, une solution sans cookie qui ne collecte aucune donnée personnelle identifiable.
               </p>
             </section>
 

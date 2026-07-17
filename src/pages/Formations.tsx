@@ -10,7 +10,7 @@ const services = [
     title: "IA conversationnelle & prompt engineering",
     description: "Utiliser ChatGPT, Claude ou Gemini comme de vrais outils de travail, pas comme des gadgets.",
     tone: "bg-primary/10 text-primary",
-    link: undefined as { to: string; label: string } | undefined,
+    link: { to: "/generateur-programme", label: "Essayer le générateur de programme" },
     features: [
       "Comprendre les fondamentaux de l'IA générative",
       "Rédiger, tester et améliorer des prompts efficaces",

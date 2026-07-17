@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { ImageIcon, Workflow, FileSpreadsheet, Copy, Check, ArrowRight } from 'lucide-react';
+import { ImageIcon, Workflow, FileSpreadsheet, Copy, Check, ArrowRight, Sparkles, Wand2 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
@@ -194,6 +194,40 @@ const Resources = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live tools */}
+      <section className="py-14 sm:py-24 bg-secondary/40">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Outils en direct"
+            title="Deux outils IA à tester tout de suite"
+            description="Des démonstrations interactives, pas seulement des guides — le texte que vous saisissez est envoyé à Claude (Anthropic) pour générer une réponse"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            <Link to="/generateur-programme" className="card-surface p-6 sm:p-8 block hover:border-primary/30">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
+                <Sparkles className="h-6 w-6" />
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground mb-2">Générateur de programme</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">Décrivez votre équipe et votre besoin, obtenez un aperçu de programme en quelques secondes.</p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                Essayer <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </Link>
+            <Link to="/correction-email" className="card-surface p-6 sm:p-8 block hover:border-primary/30">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
+                <Wand2 className="h-6 w-6" />
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground mb-2">Correcteur d'email anglais</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">Collez un email professionnel, obtenez une version corrigée et une explication des améliorations.</p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                Essayer <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>

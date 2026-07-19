@@ -43,7 +43,7 @@ const APropos = () => {
     <div className="min-h-screen">
       <SEOHead
         title="À propos d'Antony Addy - Formateur en IA Générative"
-        description="Antony Addy, Formateur Professionnel d'Adultes certifié d'État depuis 2017, utilisateur quotidien de l'IA générative, propose des formations pratiques en entreprise et pour indépendants."
+        description="Formateur Professionnel d'Adultes certifié d'État depuis 2017, utilisateur quotidien de l'IA générative. Formations en entreprise et pour indépendants."
         keywords={["Antony Addy", "formateur IA générative", "formateur professionnel d'adultes", "FPA", "Fréjus"]}
         jsonLd={aboutJsonLd}
       />

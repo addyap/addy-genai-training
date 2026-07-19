@@ -89,8 +89,8 @@ const Resources = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Ressources IA Générative — Guides & Prompts | Antony Addy"
-        description="Guides pratiques gratuits : bien écrire un prompt pour la création visuelle, identifier une tâche à automatiser avec l'IA, bibliothèque de prompts pour Word, Excel, Outlook et PowerPoint."
+        title="Ressources IA Générative — Guides & Prompts"
+        description="Guides gratuits : bien prompter la création visuelle, identifier une tâche à automatiser, bibliothèque de prompts pour Word, Excel, Outlook et PowerPoint."
         keywords={["guide prompt IA", "prompts Copilot", "prompts bureautique IA", "automatisation IA guide", "prompt image IA"]}
         jsonLd={resourcesJsonLd}
       />

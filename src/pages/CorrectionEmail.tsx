@@ -73,8 +73,8 @@ const CorrectionEmail = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Correcteur d'Email Professionnel en Anglais (démo) | Antony Addy"
-        description="Collez un email professionnel en anglais, obtenez une version corrigée et une explication pédagogique des améliorations — démonstration combinant IA générative et enseignement de l'anglais professionnel."
+        title="Correcteur d'Email Professionnel en Anglais"
+        description="Collez un email professionnel en anglais, obtenez une version corrigée par IA avec une explication pédagogique de chaque amélioration."
         keywords={["correcteur email anglais", "améliorer anglais professionnel IA", "outil IA anglais des affaires"]}
         jsonLd={correctorJsonLd}
       />

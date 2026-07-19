@@ -60,6 +60,9 @@ const SEOHead = ({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Antony Addy — Formateur en IA Générative" />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:site_name" content="Antony Addy — Formation IA Générative" />
 
@@ -68,6 +71,7 @@ const SEOHead = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImageUrl} />
+      <meta name="twitter:image:alt" content="Antony Addy — Formateur en IA Générative" />
 
       {/* Additional SEO */}
       <meta name="geo.region" content="FR-83" />

@@ -117,8 +117,8 @@ const Diagnostic = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Diagnostic IA Responsable — Auto-évaluation Gratuite | Antony Addy"
-        description="Évaluez en 2 minutes la maturité IA responsable de votre organisation : politique d'usage, RGPD, formation, vérification des résultats. Résultat immédiat, aucune donnée transmise."
+        title="Diagnostic IA Responsable Gratuit | Antony Addy"
+        description="Évaluez en 2 minutes la maturité IA responsable de votre organisation : politique d'usage, RGPD, formation. Résultat immédiat, aucune donnée transmise."
         keywords={["diagnostic IA responsable", "maturité IA entreprise", "auto-évaluation IA", "gouvernance IA RGPD"]}
         jsonLd={diagnosticJsonLd}
       />

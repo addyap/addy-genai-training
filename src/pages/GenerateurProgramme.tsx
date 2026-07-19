@@ -61,8 +61,8 @@ const GenerateurProgramme = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Générateur de Programme de Formation IA (démo) | Antony Addy"
-        description="Décrivez votre équipe et votre besoin, obtenez en quelques secondes un aperçu de programme de formation en IA générative — une démonstration de prompt engineering appliqué."
+        title="Générateur de Programme de Formation IA"
+        description="Décrivez votre équipe et votre besoin, obtenez en quelques secondes un aperçu de programme de formation IA générative généré en direct."
         keywords={["générateur programme formation IA", "démo prompt engineering", "outil IA gratuit formation"]}
         jsonLd={generatorJsonLd}
       />

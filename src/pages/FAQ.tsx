@@ -104,8 +104,8 @@ const FAQ = () => {
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Questions Fréquentes — Financement, Format, Contenu | Antony Addy"
-        description="Financement (OPCO, CPF, devis direct), durée, format présentiel/distanciel, prérequis, outils d'IA abordés : les réponses aux questions les plus fréquentes sur les formations en IA générative."
+        title="FAQ Formation IA Générative | Antony Addy"
+        description="Financement (OPCO, CPF, devis), durée, format, prérequis, outils abordés : les réponses aux questions les plus fréquentes sur la formation IA générative."
         keywords={["FAQ formation IA", "financement formation IA", "OPCO IA générative", "CPF IA", "formation IA prérequis"]}
         jsonLd={faqJsonLd}
       />

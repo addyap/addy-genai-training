@@ -8,13 +8,14 @@ const services = [
   {
     icon: MessageSquare,
     title: "IA conversationnelle & prompt engineering",
-    description: "Utiliser ChatGPT, Claude ou Gemini comme de vrais outils de travail, pas comme des gadgets.",
+    description: "Utiliser ChatGPT, Claude ou Gemini comme de vrais outils de travail — pour écrire, organiser et décider, pas comme des gadgets.",
     tone: "bg-primary/10 text-primary",
     link: { to: "/generateur-programme", label: "Essayer le générateur de programme" },
     features: [
       "Comprendre les fondamentaux de l'IA générative",
       "Rédiger, tester et améliorer des prompts efficaces",
-      "Choisir le bon outil selon le besoin",
+      "Améliorer la clarté et la structuration de vos écrits professionnels",
+      "Structurer une réunion, un ordre du jour ou un plan d'action avec l'IA",
       "Vérifier et fiabiliser les réponses de l'IA",
     ],
   },
@@ -91,7 +92,7 @@ const trainingFormats = [
 
 const fundingChecklist = [
   "Objectifs pédagogiques formulés en compétences (« être capable de… »)",
-  "Formats multi-journées avec intersession, pour mettre en pratique entre les sessions",
+  "Formats adaptables : d'une session courte de sensibilisation (1 jour, tout public) à un parcours multi-journées avec intersession",
   "Groupes de 8 à 14 participants, en présentiel ou à distance",
   "Mises en situation, jeux de rôle et travail sur des cas vécus par les participants",
   "Évaluation à chaud (orale et écrite) et suivi à distance après la formation",
@@ -124,7 +125,7 @@ const Formations = () => {
       <SEOHead
         title="Formations IA Générative : Prompts, Automatisation"
         description="Programmes détaillés : IA conversationnelle, création visuelle, automatisation, bureautique augmentée. Pour entreprises et indépendants, en France."
-        keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise", "formation IA éthique", "formation IA RGPD", "formation IA OPCO", "cahier des charges formation IA"]}
+        keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise", "formation IA éthique", "formation IA RGPD", "formation IA OPCO", "cahier des charges formation IA", "formation IA sensibilisation 1 jour"]}
         jsonLd={servicesJsonLd}
       />
 

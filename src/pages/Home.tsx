@@ -9,7 +9,7 @@ const pillars = [
   {
     icon: MessageSquare,
     title: "IA conversationnelle & prompt engineering",
-    description: "Utiliser ChatGPT, Claude ou Gemini efficacement : formuler les bonnes consignes, structurer un échange et obtenir des résultats fiables pour la rédaction, la recherche et l'aide à la décision.",
+    description: "Utiliser ChatGPT, Claude ou Gemini efficacement : formuler les bonnes consignes, structurer un échange et obtenir des résultats fiables pour la rédaction, l'organisation du travail et l'aide à la décision.",
     tone: "bg-primary/10 text-primary",
     link: { to: "/generateur-programme", label: "Essayer le générateur de programme" },
   },

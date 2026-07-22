@@ -5,7 +5,7 @@ import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 
 const expertise = [
-  { title: "IA conversationnelle", description: "Usage quotidien de ChatGPT, Claude et Gemini pour la rédaction, la recherche et l'aide à la décision", icon: MessageSquare, tone: "bg-primary/10 text-primary" },
+  { title: "IA conversationnelle", description: "Usage quotidien de ChatGPT, Claude et Gemini pour la rédaction, l'organisation du travail et l'aide à la décision", icon: MessageSquare, tone: "bg-primary/10 text-primary" },
   { title: "Création visuelle", description: "Génération d'images et de vidéos pour la communication et le contenu", icon: ImageIcon, tone: "bg-fuchsia-500/10 text-fuchsia-600" },
   { title: "Automatisation", description: "Mise en place d'agents et d'automatisations pour gagner du temps sur les tâches répétitives", icon: Workflow, tone: "bg-indigo-500/10 text-indigo-600" },
   { title: "Bureautique augmentée", description: "Copilot et Gemini intégrés à Word, Excel, Outlook et Google Workspace", icon: FileSpreadsheet, tone: "bg-sky-500/10 text-sky-600" },

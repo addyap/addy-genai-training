@@ -65,7 +65,7 @@ const Header = () => {
                 key={item.name}
                 to={item.href}
                 onClick={handleNavClick}
-                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
+                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                   isActive(item.href)
                     ? 'bg-primary/10 text-primary'
                     : 'text-foreground/70 hover:text-primary hover:bg-primary/5'
@@ -81,6 +81,7 @@ const Header = () => {
               <Button size="sm" variant="outline" className="border-green-600/40 text-green-700 hover:border-green-600 hover:bg-green-600 hover:text-white">
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp
+                <span className="sr-only"> (s'ouvre dans un nouvel onglet)</span>
               </Button>
             </a>
             <Link to="/contact" onClick={handleNavClick}>
@@ -97,7 +98,9 @@ const Header = () => {
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2"
-              aria-label="Ouvrir le menu"
+              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav-menu"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -106,13 +109,13 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-border/70 bg-white">
+          <div id="mobile-nav-menu" className="lg:hidden border-t border-border/70 bg-white">
             <div className="px-2 pt-3 pb-4 space-y-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     isActive(item.href)
                       ? 'bg-primary/10 text-primary'
                       : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
@@ -127,6 +130,7 @@ const Header = () => {
                   <Button variant="outline" className="w-full border-green-600/40 text-green-700 hover:border-green-600 hover:bg-green-600 hover:text-white">
                     <MessageCircle className="h-4 w-4" />
                     WhatsApp
+                    <span className="sr-only"> (s'ouvre dans un nouvel onglet)</span>
                   </Button>
                 </a>
                 <Link to="/contact" onClick={handleNavClick} className="block">

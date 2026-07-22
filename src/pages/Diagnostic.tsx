@@ -145,15 +145,17 @@ const Diagnostic = () => {
             <div className="space-y-6">
               {questions.map((q, index) => (
                 <div key={q.id} className="card-surface p-6 sm:p-8">
-                  <p className="font-display text-lg font-semibold text-foreground mb-4">
+                  <p id={`question-${q.id}`} className="font-display text-lg font-semibold text-foreground mb-4">
                     <span className="text-warm mr-2">{index + 1}.</span>{q.question}
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div role="group" aria-labelledby={`question-${q.id}`} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {q.options.map((opt) => (
                       <button
                         key={opt.label}
+                        type="button"
                         onClick={() => handleAnswer(q.id, opt.points)}
-                        className={`rounded-xl border p-3 text-sm text-left transition-all duration-200 ${
+                        aria-pressed={answers[q.id] === opt.points}
+                        className={`rounded-xl border p-3 text-sm text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                           answers[q.id] === opt.points
                             ? 'border-primary bg-primary/10 text-primary font-medium'
                             : 'border-border text-muted-foreground hover:border-primary/30 hover:bg-secondary/40'

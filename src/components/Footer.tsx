@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Brand Section */}
           <div className="md:col-span-5">
-            <Link to="/" onClick={handleNavClick} className="flex items-center gap-3 mb-5 w-fit hover:opacity-90 transition-opacity">
+            <Link to="/" onClick={handleNavClick} className="flex items-center gap-3 mb-5 w-fit hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-lg">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow">
                 <Sparkles className="h-5 w-5" />
               </span>
@@ -32,7 +32,7 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="md:col-span-3">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/40 mb-5">Navigation</h3>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">Navigation</h3>
             <ul className="space-y-3">
               {[
                 { to: '/', label: 'Accueil' },
@@ -47,7 +47,7 @@ const Footer = () => {
                 { to: '/mentions-legales', label: 'Mentions légales' },
               ].map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors">
+                  <Link to={link.to} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
                     {link.label}
                   </Link>
                 </li>
@@ -57,15 +57,15 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="md:col-span-4">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/40 mb-5">Contact</h3>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/70">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:formations@antonyaddy.com" className="hover:text-primary transition-colors">formations@antonyaddy.com</a>
+                <a href="mailto:formations@antonyaddy.com" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">formations@antonyaddy.com</a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MessageCircle className="h-4 w-4 text-primary shrink-0" />
-                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">WhatsApp</a>
+                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MapPin className="h-4 w-4 text-primary shrink-0" />
@@ -76,7 +76,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Border */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/40">
+        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/50">
           <p>© {new Date().getFullYear()} Antony Addy. Tous droits réservés.</p>
           <p>SIRET : 483 178 893 00028</p>
         </div>

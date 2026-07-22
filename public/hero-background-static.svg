@@ -52,9 +52,7 @@
   <!-- Ambient light blooms -->
   <circle cx="1250" cy="180" r="420" fill="url(#bloomWarm)" filter="url(#blurLarge)"/>
   <circle cx="260" cy="700" r="380" fill="url(#bloomCool)" filter="url(#blurLarge)"/>
-  <circle cx="780" cy="480" r="340" fill="url(#core)" filter="url(#blurLarge)">
-    <animate attributeName="r" values="340;362;340" dur="9s" repeatCount="indefinite"/>
-  </circle>
+  <circle cx="780" cy="480" r="340" fill="url(#core)" filter="url(#blurLarge)"/>
 
   <!-- Neural mesh: faint background connections -->
   <g fill="none" stroke="url(#lineFaint)" stroke-width="1.5">
@@ -81,13 +79,11 @@
     <path d="M1100 450 C1260 450 1260 450 1420 450"/>
   </g>
 
-  <!-- Traveling pulse along the signal path, looping -->
+  <!-- Signal path pulse, static (reduced-motion variant) -->
   <path
     d="M140 450 C300 450 300 450 460 450 C620 450 620 500 780 500 C940 500 940 450 1100 450 C1260 450 1260 450 1420 450"
     fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"
-    stroke-dasharray="36 1244" opacity="0.85" filter="url(#glowNode)">
-    <animate attributeName="stroke-dashoffset" from="0" to="-1280" dur="5s" repeatCount="indefinite"/>
-  </path>
+    stroke-dasharray="36 1244" stroke-dashoffset="-640" opacity="0.85" filter="url(#glowNode)"/>
 
   <!-- Nodes -->
   <g filter="url(#glowNode)">
@@ -107,10 +103,7 @@
     <circle cx="780" cy="100" r="4" fill="#a68bfc"/>
     <circle cx="780" cy="250" r="5" fill="#c9baff"/>
     <circle cx="780" cy="380" r="4" fill="#b3a1ff"/>
-    <circle cx="780" cy="500" r="9" fill="#ffffff">
-      <animate attributeName="r" values="9;12;9" dur="3s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
-    </circle>
+    <circle cx="780" cy="500" r="10" fill="#ffffff"/>
     <circle cx="780" cy="630" r="5" fill="#c9baff"/>
     <circle cx="780" cy="780" r="4" fill="#a68bfc"/>
 

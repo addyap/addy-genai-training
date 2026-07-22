@@ -57,7 +57,7 @@ const App = () => (
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/formations" element={<Formations />} />

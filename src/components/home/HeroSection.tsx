@@ -9,12 +9,15 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[560px] flex items-center justify-center overflow-hidden">
-      <img
-        src="/hero-background.svg"
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-      />
+      <picture>
+        <source media="(prefers-reduced-motion: reduce)" srcSet="/hero-background-static.svg" />
+        <img
+          src="/hero-background.svg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
 
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16 sm:py-20 lg:py-24">

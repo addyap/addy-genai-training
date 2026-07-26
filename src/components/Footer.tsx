@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Mail, MessageCircle, MapPin } from 'lucide-react';
+import { Sparkles, Mail, MessageCircle, MapPin, Globe, Settings, ExternalLink } from 'lucide-react';
+import { FORMATIONS } from '@/lib/formations';
+
+const FOOTER_FORMATION_ICONS = { Globe, Sparkles, Settings } as const;
 
 const Footer = () => {
   const handleNavClick = () => {
@@ -28,6 +31,37 @@ const Footer = () => {
             <p className="text-white/65 max-w-sm leading-relaxed">
               Formations pratiques en intelligence artificielle générative pour entreprises et indépendants, animées par un formateur professionnel d'adultes certifié d'État.
             </p>
+
+            {/* Mes formations — cross-domain links */}
+            <div className="mt-6">
+              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">Mes formations</h3>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                {FORMATIONS.map((f) => {
+                  const Icon = FOOTER_FORMATION_ICONS[f.icon];
+                  return (
+                    <li key={f.key}>
+                      {f.external ? (
+                        <a
+                          href={f.href}
+                          target="_blank"
+                          rel="noopener"
+                          className="inline-flex items-center gap-1.5 text-white/70 hover:text-primary transition-colors"
+                        >
+                          <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          {f.navLabel}
+                          <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 text-white font-medium">
+                          <Icon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                          {f.navLabel}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
 
           {/* Navigation Links */}

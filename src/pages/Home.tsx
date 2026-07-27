@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, Building2, User, ShieldCheck, ArrowRight } from 'lucide-react';
+import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, Building2, User, ShieldCheck, ArrowRight, ArrowUpRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import HeroSection from '../components/home/HeroSection';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
+import { CREATIONS } from '../lib/creations';
 
 const pillars = [
   {
@@ -203,6 +204,46 @@ const Home = () => {
                 <p className="text-sm text-muted-foreground">Lancement de l'offre IA générative</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Réalisations — plateformes construites avec l'IA (preuve concrète) */}
+      <section className="py-14 sm:py-24 bg-secondary/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Réalisations"
+            title="Des plateformes que j'ai conçues avec l'IA"
+            description="La meilleure preuve de ce que l'IA générative permet : ces plateformes d'apprentissage de l'anglais, je les ai imaginées, développées et mises en ligne moi-même, en m'appuyant sur l'IA."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {CREATIONS.map((c, index) => (
+              <a
+                key={c.name}
+                href={c.url}
+                target="_blank"
+                rel="noopener"
+                className="card-surface group relative flex flex-col overflow-hidden animate-fade-in-up transition-shadow hover:shadow-card-hover"
+                style={{ animationDelay: `${index * 0.08}s` }}
+              >
+                <div className={`h-1.5 w-full bg-gradient-to-r ${c.accent}`} />
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="mb-3 flex items-start justify-between gap-3">
+                    <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                      {c.tag}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" aria-hidden="true" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-foreground mb-2">{c.name}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground flex-1">{c.description}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                    Découvrir le site
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  </span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>

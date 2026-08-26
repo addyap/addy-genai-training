@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, CheckCircle2 } from 'lucide-react';
+import { MessageSquare, ImageIcon, Workflow, FileSpreadsheet, CheckCircle2, Mail, MessageCircle, MapPin, Linkedin } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
@@ -94,6 +94,31 @@ const APropos = () => {
                   className="relative w-full aspect-square rounded-[1.5rem] object-cover ring-1 ring-white/15 shadow-2xl"
                 />
               </div>
+
+              <ul className="mx-auto lg:mx-0 mt-6 w-full max-w-xs space-y-1.5 text-sm">
+                <li>
+                  <a href="mailto:formations@antonyaddy.com" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
+                    <Mail className="h-4 w-4 text-primary shrink-0" />
+                    <span>formations@antonyaddy.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
+                    <MessageCircle className="h-4 w-4 text-primary shrink-0" />
+                    <span>WhatsApp · +33 6 49 82 98 26<span className="sr-only"> (s'ouvre dans un nouvel onglet)</span></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/antonyaddy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
+                    <Linkedin className="h-4 w-4 text-primary shrink-0" />
+                    <span>LinkedIn<span className="sr-only"> (s'ouvre dans un nouvel onglet)</span></span>
+                  </a>
+                </li>
+                <li className="flex items-center gap-3 px-3 py-2 text-white/60">
+                  <MapPin className="h-4 w-4 text-primary shrink-0" />
+                  <span>Fréjus, France</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

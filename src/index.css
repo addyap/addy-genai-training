@@ -220,7 +220,7 @@
   --hero-navy: 245 48% 7%;
   --hero-navy-2: 245 45% 9%;
   position: relative;
-  min-height: clamp(500px, 66svh, 680px);
+  min-height: clamp(420px, 56svh, 600px);
   display: flex;
   align-items: center;
   overflow: hidden;

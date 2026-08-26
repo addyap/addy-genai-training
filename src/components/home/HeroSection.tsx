@@ -246,7 +246,7 @@ const HeroSection = () => {
     <section ref={stageRef} className="hero-stage">
       <canvas ref={canvasRef} className="hero-canvas" aria-hidden="true" />
 
-      <div className="relative z-[3] w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <div className="relative z-[3] w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
         <span className="hero-kicker hero-reveal">
           <span className="dot" />
           Formation IA générative · Antony Addy
@@ -300,11 +300,6 @@ const HeroSection = () => {
             </Button>
           </Link>
         </div>
-      </div>
-
-      <div className="hero-cue hero-reveal" aria-hidden="true">
-        <span>Scroll</span>
-        <span className="rail" />
       </div>
     </section>
   );

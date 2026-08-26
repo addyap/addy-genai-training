@@ -29,7 +29,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-white/65 max-w-sm leading-relaxed">
-              Formations pratiques en intelligence artificielle générative pour entreprises et indépendants, animées par un formateur professionnel d'adultes certifié d'État.
+              Formations pratiques en intelligence artificielle générative pour entreprises et indépendants, animées par un formateur professionnel d'adultes certifié d'État — en français ou en anglais.
             </p>
 
             {/* Mes formations — cross-domain links */}

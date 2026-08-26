@@ -273,7 +273,7 @@ const HeroSection = () => {
           className="hero-meta hero-reveal mt-4 text-sm text-white/55 tracking-wide"
           style={{ fontFamily: '"IBM Plex Mono", monospace' }}
         >
-          Formateur Professionnel d'Adultes certifié d'État · Fréjus · présentiel &amp; distanciel
+          Formateur certifié d'État · Fréjus · présentiel &amp; distanciel · en français ou en anglais
         </p>
 
         <div className="hero-cta hero-reveal mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-4 items-stretch sm:items-center">

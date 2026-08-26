@@ -47,6 +47,10 @@ const categories = [
         a: "Les deux sont possibles : présentiel dans vos locaux en France, ou sessions à distance en visioconférence.",
       },
       {
+        q: "Les formations sont-elles disponibles en anglais ?",
+        a: "Oui. J'anime les formations en français ou en anglais, au choix : un même programme peut être livré dans l'une ou l'autre langue — pratique pour les équipes internationales ou les entreprises dont la langue de travail est l'anglais.",
+      },
+      {
         q: "Faut-il des prérequis techniques ?",
         a: "Non. Aucune compétence technique particulière n'est nécessaire — seulement une pratique de base d'un ordinateur.",
       },

@@ -23,7 +23,7 @@ const aboutJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "À propos d'Antony Addy - Formateur en IA Générative",
-  "description": "Formateur Professionnel d'Adultes certifié d'État, utilisateur quotidien de l'IA générative, proposant des formations pratiques en France",
+  "description": "Formateur Professionnel d'Adultes certifié d'État, utilisateur quotidien de l'IA générative, proposant des formations pratiques en France, animées en français ou en anglais",
   "provider": {
     "@type": "Person",
     "name": "Antony Addy",
@@ -31,7 +31,8 @@ const aboutJsonLd = {
   },
   "serviceType": "Formation IA Générative",
   "areaServed": ["France"],
-  "inLanguage": "fr"
+  "inLanguage": ["fr", "en"],
+  "availableLanguage": ["French", "English"]
 };
 
 const APropos = () => {
@@ -70,6 +71,9 @@ const APropos = () => {
               </p>
               <p>
                 J'utilise aujourd'hui l'intelligence artificielle générative au quotidien dans mon activité : préparation de supports de cours, rédaction, automatisation de tâches administratives, création de contenus pédagogiques. Cette pratique intensive et concrète est le socle de cette nouvelle offre de formation.
+              </p>
+              <p>
+                Mon parcours de formateur en anglais professionnel me permet d'animer ces formations <strong className="text-white/90">en français comme en anglais</strong> : un même programme peut être livré dans l'une ou l'autre langue — utile pour les équipes internationales et les entreprises anglophones.
               </p>
               <p>
                 C'est une offre que je lance aujourd'hui : je n'ai pas encore d'historique de missions de formation dédiées à l'IA générative, mais j'y apporte la même rigueur pédagogique et la même exigence de résultats concrets que sur mes autres domaines de formation.

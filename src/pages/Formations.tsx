@@ -124,8 +124,8 @@ const Formations = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Formations IA Générative : Prompts, Automatisation"
-        description="Programmes détaillés : IA conversationnelle, création visuelle, automatisation, bureautique augmentée. Pour entreprises et indépendants, en France."
-        keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise", "formation IA éthique", "formation IA RGPD", "formation IA OPCO", "cahier des charges formation IA", "formation IA sensibilisation 1 jour"]}
+        description="Programmes détaillés : IA conversationnelle, création visuelle, automatisation, bureautique augmentée. Pour entreprises et indépendants, en France — en français ou en anglais."
+        keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise", "formation IA éthique", "formation IA RGPD", "formation IA OPCO", "cahier des charges formation IA", "formation IA sensibilisation 1 jour", "formation IA en anglais", "formation IA bilingue"]}
         jsonLd={servicesJsonLd}
       />
 

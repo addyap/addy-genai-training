@@ -62,8 +62,8 @@ const Home = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Formation IA Générative en Entreprise | Antony Addy"
-        description="Formations pratiques en IA générative (ChatGPT, Claude, Copilot) pour entreprises et indépendants, par un formateur certifié d'État. Basé en France."
-        keywords={["formation IA générative", "formation ChatGPT entreprise", "formateur intelligence artificielle", "prompt engineering formation", "Copilot formation", "formation IA responsable", "formation IA RGPD", "formation IA OPCO", "formation IA Fréjus"]}
+        description="Formations pratiques en IA générative (ChatGPT, Claude, Copilot) pour entreprises et indépendants, par un formateur certifié d'État. Animées en français ou en anglais, en France."
+        keywords={["formation IA générative", "formation ChatGPT entreprise", "formateur intelligence artificielle", "prompt engineering formation", "Copilot formation", "formation IA responsable", "formation IA RGPD", "formation IA OPCO", "formation IA Fréjus", "formation IA en anglais", "formation IA bilingue", "bilingual generative AI trainer France", "generative AI training in English"]}
         jsonLd={homeJsonLd}
       />
 

@@ -13,6 +13,7 @@ const trainingOptions = [
   "Accompagnement individuel (indépendants)",
   "Sous-traitance pour centres de formation certifiés Qualiopi",
   "Programme sur-mesure selon vos outils",
+  "Formation en français ou en anglais",
 ];
 
 const Contact = () => {
@@ -81,8 +82,8 @@ ${formData.message}`;
     <div className="min-h-screen">
       <SEOHead
         title="Contact - Formation IA Générative | Antony Addy"
-        description="Contactez Antony Addy pour une formation en intelligence artificielle générative. Disponible pour des programmes sur site et à distance en France."
-        keywords={["contact", "formation IA générative", "devis formation", "consultation IA", "Antony Addy", "Fréjus"]}
+        description="Contactez Antony Addy pour une formation en intelligence artificielle générative. Programmes sur site et à distance en France, animés en français ou en anglais."
+        keywords={["contact", "formation IA générative", "devis formation", "consultation IA", "Antony Addy", "Fréjus", "formation IA en anglais"]}
         jsonLd={contactJsonLd}
       />
 

@@ -53,8 +53,9 @@ const APropos = () => {
       <section className="relative py-14 sm:py-24 bg-ia-navy text-white overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid-dark" />
         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="animate-fade-in-up">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.7fr_1fr] gap-10 lg:gap-16 items-start animate-fade-in-up">
+            <div>
             <div className="inline-flex items-center gap-2 mb-5 rounded-full bg-white/10 border border-white/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/80">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               À propos
@@ -78,6 +79,21 @@ const APropos = () => {
               <p>
                 C'est une offre que je lance aujourd'hui : je n'ai pas encore d'historique de missions de formation dédiées à l'IA générative, mais j'y apporte la même rigueur pédagogique et la même exigence de résultats concrets que sur mes autres domaines de formation.
               </p>
+            </div>
+            </div>
+
+            <div className="order-first lg:order-none lg:pt-1">
+              <div className="relative mx-auto lg:mx-0 w-48 sm:w-64 lg:w-full max-w-xs">
+                <div className="absolute -inset-3 rounded-[1.75rem] bg-primary/30 blur-2xl" aria-hidden="true" />
+                <img
+                  src="/antonyaddy1.jpg"
+                  alt="Antony Addy, formateur en IA générative"
+                  width={960}
+                  height={960}
+                  loading="lazy"
+                  className="relative w-full aspect-square rounded-[1.5rem] object-cover ring-1 ring-white/15 shadow-2xl"
+                />
+              </div>
             </div>
           </div>
         </div>

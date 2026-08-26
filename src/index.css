@@ -211,3 +211,172 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   Signature hero — "De l'intention à l'intelligence"
+   A live prompt blooms into a cursor-reactive constellation.
+   ============================================================ */
+.hero-stage {
+  --hero-navy: 245 48% 7%;
+  --hero-navy-2: 245 45% 9%;
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 90% at 78% 42%, hsl(var(--primary) / 0.20), transparent 60%),
+    radial-gradient(90% 70% at 8% 8%, hsl(var(--ia-violet-deep) / 0.16), transparent 55%),
+    linear-gradient(180deg, hsl(var(--hero-navy-2)), hsl(var(--hero-navy)) 70%);
+}
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -30%;
+  translate: -50% 0;
+  width: 120%;
+  height: 60%;
+  background: radial-gradient(50% 50% at 50% 50%, hsl(var(--primary) / 0.14), transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: block;
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: hsl(210 40% 90%);
+  border: 1px solid hsl(255 78% 80% / 0.16);
+  border-radius: 100px;
+  padding: 0.5rem 0.9rem;
+  background: hsl(var(--hero-navy) / 0.4);
+  backdrop-filter: blur(8px);
+}
+.hero-kicker .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: hsl(var(--ia-amber));
+  box-shadow: 0 0 10px hsl(var(--ia-amber));
+}
+.hero-head {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.7rem, 7vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.hero-head .line {
+  display: block;
+  overflow: hidden;
+}
+.hero-head .line > span {
+  display: block;
+  transform: translateY(110%);
+}
+.hero-grad {
+  background: linear-gradient(100deg, hsl(255 78% 78%), hsl(var(--primary)) 40%, hsl(var(--ia-amber)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.06em;
+}
+.hero-prompt {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(0.8rem, 1.35vw, 0.98rem);
+  color: hsl(210 40% 88%);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  min-height: 1.5em;
+}
+.hero-prompt .chev { color: hsl(255 78% 82%); }
+.hero-prompt .typed { color: #fff; }
+.hero-caret {
+  display: inline-block;
+  width: 0.62ch;
+  height: 1.05em;
+  translate: 0 0.16em;
+  background: hsl(var(--ia-amber));
+  box-shadow: 0 0 8px hsl(var(--ia-amber));
+  animation: heroBlink 1.05s steps(1) infinite;
+}
+@keyframes heroBlink { 50% { opacity: 0; } }
+.hero-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
+  translate: -50% 0;
+  z-index: 3;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: hsl(215 20% 60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero-cue .rail {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(hsl(255 78% 82%), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.hero-cue .rail::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: hsl(var(--ia-amber));
+  animation: heroDrop 1.9s ease-in-out infinite;
+}
+@keyframes heroDrop { 0% { top: -40%; } 60%, 100% { top: 100%; } }
+
+/* Entrance orchestration — gated by .is-live on the stage */
+.hero-reveal { opacity: 0; transform: translateY(12px); }
+.hero-stage.is-live .hero-kicker { animation: heroRise 0.7s 0.1s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.hero-stage.is-live .hero-head .line:nth-child(1) > span { animation: heroUp 0.9s 0.30s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.hero-stage.is-live .hero-head .line:nth-child(2) > span { animation: heroUp 0.9s 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.hero-stage.is-live .hero-prompt { animation: heroFade 0.6s 1.15s ease both; }
+.hero-stage.is-live .hero-sub { animation: heroRise 0.7s 1.5s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.hero-stage.is-live .hero-meta { animation: heroFade 0.7s 1.75s ease both; }
+.hero-stage.is-live .hero-cta { animation: heroRise 0.7s 1.9s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.hero-stage.is-live .hero-cue { animation: heroFade 1s 2.4s ease both; }
+@keyframes heroUp { to { transform: translateY(0); } }
+@keyframes heroRise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal { opacity: 1 !important; transform: none !important; }
+  .hero-head .line > span { transform: none !important; }
+  .hero-caret { animation: none; }
+  .hero-stage.is-live .hero-head .line > span,
+  .hero-stage.is-live .hero-kicker,
+  .hero-stage.is-live .hero-prompt,
+  .hero-stage.is-live .hero-sub,
+  .hero-stage.is-live .hero-meta,
+  .hero-stage.is-live .hero-cta,
+  .hero-stage.is-live .hero-cue { animation: none !important; opacity: 1 !important; transform: none !important; }
+}

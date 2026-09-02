@@ -2,10 +2,63 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, Mail, MessageCircle, MapPin, Globe, Settings, ExternalLink } from 'lucide-react';
 import { FORMATIONS } from '@/lib/formations';
+import { useLocale, localizePath, type Locale } from '@/i18n';
 
 const FOOTER_FORMATION_ICONS = { Globe, Sparkles, Settings } as const;
 
+const strings: Record<Locale, {
+  role: string; tagline: string; myTraining: string; navigation: string; contact: string;
+  rights: string; newTab: string; links: { to: string; label: string }[];
+}> = {
+  fr: {
+    role: 'Formateur en IA Générative',
+    tagline: "Formations pratiques en intelligence artificielle générative pour entreprises et indépendants, animées par un formateur professionnel d'adultes certifié d'État — en français ou en anglais.",
+    myTraining: 'Mes formations',
+    navigation: 'Navigation',
+    contact: 'Contact',
+    rights: 'Tous droits réservés.',
+    newTab: " (s'ouvre dans un nouvel onglet)",
+    links: [
+      { to: '/', label: 'Accueil' },
+      { to: '/formations', label: 'Formations' },
+      { to: '/faq', label: 'FAQ' },
+      { to: '/ressources', label: 'Ressources' },
+      { to: '/diagnostic', label: 'Diagnostic IA responsable' },
+      { to: '/generateur-programme', label: 'Générateur de programme' },
+      { to: '/correction-email', label: "Correcteur d'email anglais" },
+      { to: '/a-propos', label: 'À propos' },
+      { to: '/contact', label: 'Contact' },
+      { to: '/mentions-legales', label: 'Mentions légales' },
+    ],
+  },
+  en: {
+    role: 'Generative AI Trainer',
+    tagline: 'Practical generative-AI training for companies and independent professionals, delivered by a state-certified adult-education trainer — in French or English.',
+    myTraining: 'My training',
+    navigation: 'Navigation',
+    contact: 'Contact',
+    rights: 'All rights reserved.',
+    newTab: ' (opens in a new tab)',
+    links: [
+      { to: '/', label: 'Home' },
+      { to: '/formations', label: 'Training' },
+      { to: '/faq', label: 'FAQ' },
+      { to: '/ressources', label: 'Resources' },
+      { to: '/diagnostic', label: 'Responsible-AI check' },
+      { to: '/generateur-programme', label: 'Programme generator' },
+      { to: '/correction-email', label: 'English email corrector' },
+      { to: '/a-propos', label: 'About' },
+      { to: '/contact', label: 'Contact' },
+      { to: '/mentions-legales', label: 'Legal notice' },
+    ],
+  },
+};
+
 const Footer = () => {
+  const locale = useLocale();
+  const t = strings[locale];
+  const lp = (href: string) => localizePath(href, locale);
+
   const handleNavClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -19,22 +72,22 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Brand Section */}
           <div className="md:col-span-5">
-            <Link to="/" onClick={handleNavClick} className="flex items-center gap-3 mb-5 w-fit hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-lg">
+            <Link to={lp('/')} onClick={handleNavClick} className="flex items-center gap-3 mb-5 w-fit hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-lg">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow">
                 <Sparkles className="h-5 w-5" />
               </span>
               <div>
                 <div className="font-display text-xl font-semibold text-white">Antony Addy</div>
-                <div className="text-sm text-white/60">Formateur en IA Générative</div>
+                <div className="text-sm text-white/60">{t.role}</div>
               </div>
             </Link>
             <p className="text-white/65 max-w-sm leading-relaxed">
-              Formations pratiques en intelligence artificielle générative pour entreprises et indépendants, animées par un formateur professionnel d'adultes certifié d'État — en français ou en anglais.
+              {t.tagline}
             </p>
 
             {/* Mes formations — cross-domain links */}
             <div className="mt-6">
-              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">Mes formations</h3>
+              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">{t.myTraining}</h3>
               <ul className="flex flex-wrap gap-x-5 gap-y-2">
                 {FORMATIONS.map((f) => {
                   const Icon = FOOTER_FORMATION_ICONS[f.icon];
@@ -66,22 +119,11 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="md:col-span-3">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">Navigation</h3>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.navigation}</h3>
             <ul className="space-y-3">
-              {[
-                { to: '/', label: 'Accueil' },
-                { to: '/formations', label: 'Formations' },
-                { to: '/faq', label: 'FAQ' },
-                { to: '/ressources', label: 'Ressources' },
-                { to: '/diagnostic', label: 'Diagnostic IA responsable' },
-                { to: '/generateur-programme', label: 'Générateur de programme' },
-                { to: '/correction-email', label: "Correcteur d'email anglais" },
-                { to: '/a-propos', label: 'À propos' },
-                { to: '/contact', label: 'Contact' },
-                { to: '/mentions-legales', label: 'Mentions légales' },
-              ].map((link) => (
+              {t.links.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
+                  <Link to={lp(link.to)} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
                     {link.label}
                   </Link>
                 </li>
@@ -91,7 +133,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="md:col-span-4">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">Contact</h3>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.contact}</h3>
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/70">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
@@ -99,7 +141,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MessageCircle className="h-4 w-4 text-primary shrink-0" />
-                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only"> (s'ouvre dans un nouvel onglet)</span></a>
+                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only">{t.newTab}</span></a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MapPin className="h-4 w-4 text-primary shrink-0" />
@@ -111,7 +153,7 @@ const Footer = () => {
 
         {/* Bottom Border */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/50">
-          <p>© {new Date().getFullYear()} Antony Addy. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} Antony Addy. {t.rights}</p>
           <p>SIRET : 483 178 893 00028</p>
         </div>
       </div>

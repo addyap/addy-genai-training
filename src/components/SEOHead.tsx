@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { getLocaleFromPath, canonicalPath } from '../i18n';
 
 const BASE_URL = 'https://ia.antonyaddy.com';
 
@@ -23,8 +24,14 @@ const SEOHead = ({
   robots = "index, follow"
 }: SEOHeadProps) => {
   const location = useLocation();
+  const locale = getLocaleFromPath(location.pathname);
   const currentUrl = canonicalUrl || `${BASE_URL}${location.pathname}`;
   const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`;
+
+  // hreflang alternates: map the current route to both language URLs.
+  const routeCanonical = canonicalPath(location.pathname); // '/', '/formations', …
+  const frUrl = `${BASE_URL}${routeCanonical}`;
+  const enUrl = routeCanonical === '/' ? `${BASE_URL}/en` : `${BASE_URL}/en${routeCanonical}`;
 
   const defaultJsonLd = {
     "@context": "https://schema.org",
@@ -47,14 +54,19 @@ const SEOHead = ({
   const structuredData = jsonLd || defaultJsonLd;
 
   return (
-    <Helmet>
+    <Helmet htmlAttributes={{ lang: locale }}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords.join(", ")} />
       <meta name="robots" content={robots} />
       <meta name="author" content="Antony Addy" />
-      <meta name="language" content="French" />
+      <meta name="language" content={locale === 'en' ? 'English' : 'French'} />
       <link rel="canonical" href={currentUrl} />
+
+      {/* hreflang alternates */}
+      <link rel="alternate" hrefLang="fr" href={frUrl} />
+      <link rel="alternate" hrefLang="en" href={enUrl} />
+      <link rel="alternate" hrefLang="x-default" href={frUrl} />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
@@ -65,7 +77,10 @@ const SEOHead = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="Antony Addy — Formateur en IA Générative" />
-      <meta property="og:locale" content="fr_FR" />
+      <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'fr_FR'} />
+      {locale === 'en'
+        ? <meta property="og:locale:alternate" content="fr_FR" />
+        : <meta property="og:locale:alternate" content="en_US" />}
       <meta property="og:site_name" content="Antony Addy — Formation IA Générative" />
 
       {/* Twitter Card */}

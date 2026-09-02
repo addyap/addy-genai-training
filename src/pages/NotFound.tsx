@@ -2,9 +2,29 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import SEOHead from "../components/SEOHead";
 import { Button } from "../components/ui/button";
+import { useLocale, localizePath } from "@/i18n";
+
+const STR = {
+  fr: {
+    title: 'Page non trouvée - Erreur 404',
+    desc: "La page que vous recherchez est introuvable. Retournez à l'accueil pour découvrir les formations en IA générative.",
+    h2: 'Page non trouvée',
+    body: "La page que vous recherchez n'existe pas ou a été déplacée.",
+    back: "Retour à l'accueil",
+  },
+  en: {
+    title: 'Page not found - Error 404',
+    desc: "The page you're looking for could not be found. Head back home to explore the generative-AI training.",
+    h2: 'Page not found',
+    body: "The page you're looking for doesn't exist or has been moved.",
+    back: 'Back to home',
+  },
+};
 
 const NotFound = () => {
   const location = useLocation();
+  const locale = useLocale();
+  const t = STR[locale];
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -13,15 +33,16 @@ const NotFound = () => {
   const notFoundJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Page non trouvée",
-    "description": "La page demandée est introuvable"
+    "name": t.h2,
+    "description": t.desc,
+    "inLanguage": locale,
   };
 
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Page non trouvée - Erreur 404"
-        description="La page que vous recherchez est introuvable. Retournez à l'accueil pour découvrir les formations en IA générative."
+        title={t.title}
+        description={t.desc}
         robots="noindex, nofollow"
         jsonLd={notFoundJsonLd}
       />
@@ -32,13 +53,13 @@ const NotFound = () => {
         <div className="relative max-w-md mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="animate-fade-in-up">
             <h1 className="text-gradient-light text-8xl font-bold mb-4">404</h1>
-            <h2 className="text-2xl font-semibold text-white mb-4">Page non trouvée</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">{t.h2}</h2>
             <p className="text-lg text-white/70 mb-8">
-              La page que vous recherchez n'existe pas ou a été déplacée.
+              {t.body}
             </p>
-            <Link to="/">
+            <Link to={localizePath('/', locale)}>
               <Button size="lg">
-                Retour à l'accueil
+                {t.back}
               </Button>
             </Link>
           </div>

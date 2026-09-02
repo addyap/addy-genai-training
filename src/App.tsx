@@ -47,6 +47,19 @@ const SkipToContent = () => (
   </a>
 );
 
+const routeList = [
+  { path: '/', element: <Home /> },
+  { path: '/formations', element: <Formations /> },
+  { path: '/faq', element: <FAQ /> },
+  { path: '/ressources', element: <Resources /> },
+  { path: '/diagnostic', element: <Diagnostic /> },
+  { path: '/generateur-programme', element: <GenerateurProgramme /> },
+  { path: '/correction-email', element: <CorrectionEmail /> },
+  { path: '/a-propos', element: <APropos /> },
+  { path: '/contact', element: <Contact /> },
+  { path: '/mentions-legales', element: <MentionsLegales /> },
+];
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -59,16 +72,19 @@ const App = () => (
         <Header />
         <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/formations" element={<Formations />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/ressources" element={<Resources />} />
-            <Route path="/diagnostic" element={<Diagnostic />} />
-            <Route path="/generateur-programme" element={<GenerateurProgramme />} />
-            <Route path="/correction-email" element={<CorrectionEmail />} />
-            <Route path="/a-propos" element={<APropos />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            {routeList.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+            {/* English mirror — same components, locale derived from the /en prefix */}
+            {routeList
+              .filter((r) => r.path !== '*')
+              .map(({ path, element }) => (
+                <Route
+                  key={`en${path}`}
+                  path={path === '/' ? '/en' : `/en${path}`}
+                  element={element}
+                />
+              ))}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

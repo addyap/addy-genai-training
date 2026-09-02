@@ -2,18 +2,53 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import { Button } from '../ui/button';
+import { useLocale, localizePath, type Locale } from '@/i18n';
 
 /**
  * Signature hero — « De l'intention à l'intelligence ».
- * A real French instruction types itself while a cursor-reactive constellation
+ * A real instruction types itself while a cursor-reactive constellation
  * of particles converges out of noise into an ordered "intelligence": the brand's
  * promise (turn a plain sentence into a reliable AI result) performed, not described.
  * Pure Canvas 2D, no dependencies. Fully degrades under prefers-reduced-motion.
  */
 
-const PROMPT_TEXT = "Résume ce rapport de 40 pages en 5 points pour mon équipe.";
+const HERO = {
+  fr: {
+    kicker: 'Formation IA générative · Antony Addy',
+    prompt: 'Résume ce rapport de 40 pages en 5 points pour mon équipe.',
+    head1: "De l'intention",
+    head2a: 'à ',
+    head2b: "l'intelligence",
+    subA: 'Je forme vos équipes à transformer une phrase du quotidien en un résultat ',
+    subFiable: 'fiable',
+    subB: " avec l'IA générative — ",
+    subJargon: 'sans jargon',
+    subC: ', sur vos propres cas d’usage.',
+    meta: "Formateur certifié d'État · Fréjus · présentiel & distanciel · en français ou en anglais",
+    quote: 'Demander un devis',
+    seeTraining: 'Voir les formations',
+  },
+  en: {
+    kicker: 'Generative AI training · Antony Addy',
+    prompt: 'Summarise this 40-page report into 5 points for my team.',
+    head1: 'From intention',
+    head2a: 'to ',
+    head2b: 'intelligence',
+    subA: 'I train your teams to turn an everyday sentence into a ',
+    subFiable: 'reliable',
+    subB: ' result with generative AI — ',
+    subJargon: 'no jargon',
+    subC: ', on your own real use cases.',
+    meta: 'State-certified trainer · Fréjus · on-site & remote · in French or English',
+    quote: 'Get a quote',
+    seeTraining: 'See the training',
+  },
+} satisfies Record<Locale, Record<string, string>>;
 
 const HeroSection = () => {
+  const locale = useLocale();
+  const t = HERO[locale];
+  const lp = (href: string) => localizePath(href, locale);
   const handleNavClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const stageRef = useRef<HTMLDivElement>(null);
@@ -215,15 +250,16 @@ const HeroSection = () => {
 
     // ---- entrance: reveal + typing ----
     stage.classList.add('is-live');
+    const promptText = t.prompt;
     let typeTimer: number | undefined;
     if (reduce) {
-      if (typedRef.current) typedRef.current.textContent = PROMPT_TEXT;
+      if (typedRef.current) typedRef.current.textContent = promptText;
       if (caretRef.current) caretRef.current.style.display = 'none';
     } else {
       const type = (i: number) => {
-        if (i > PROMPT_TEXT.length) return;
-        if (typedRef.current) typedRef.current.textContent = PROMPT_TEXT.slice(0, i);
-        const ch = PROMPT_TEXT[i - 1] || '';
+        if (i > promptText.length) return;
+        if (typedRef.current) typedRef.current.textContent = promptText.slice(0, i);
+        const ch = promptText[i - 1] || '';
         const delay = ch === ' ' ? 34 : ch === '.' ? 260 : 30 + Math.random() * 45;
         typeTimer = window.setTimeout(() => type(i + 1), delay);
       };
@@ -237,7 +273,7 @@ const HeroSection = () => {
       window.removeEventListener('resize', resize);
       if (typeTimer) clearTimeout(typeTimer);
     };
-  }, []);
+  }, [t.prompt]);
 
   const warmOn = () => { warm.current.t = 1; };
   const warmOff = () => { warm.current.t = 0; };
@@ -249,12 +285,12 @@ const HeroSection = () => {
       <div className="relative z-[3] w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
         <span className="hero-kicker hero-reveal">
           <span className="dot" />
-          Formation IA générative · Antony Addy
+          {t.kicker}
         </span>
 
         <h1 className="hero-head mt-6 text-white">
-          <span className="line"><span>De l'intention</span></span>
-          <span className="line"><span>à&nbsp;<span className="hero-grad">l'intelligence</span></span></span>
+          <span className="line"><span>{t.head1}</span></span>
+          <span className="line"><span>{t.head2a}<span className="hero-grad">{t.head2b}</span></span></span>
         </h1>
 
         <div className="hero-prompt hero-reveal mt-7">
@@ -264,22 +300,22 @@ const HeroSection = () => {
         </div>
 
         <p className="hero-sub hero-reveal mt-6 max-w-[46ch] text-lg sm:text-xl text-white/80 leading-relaxed">
-          Je forme vos équipes à transformer une phrase du quotidien en un résultat{' '}
-          <b className="font-semibold text-white">fiable</b> avec l'IA générative —{' '}
-          <b className="font-semibold text-white">sans jargon</b>, sur vos propres cas d'usage.
+          {t.subA}
+          <b className="font-semibold text-white">{t.subFiable}</b>{t.subB}
+          <b className="font-semibold text-white">{t.subJargon}</b>{t.subC}
         </p>
 
         <p
           className="hero-meta hero-reveal mt-4 text-sm text-white/55 tracking-wide"
           style={{ fontFamily: '"IBM Plex Mono", monospace' }}
         >
-          Formateur certifié d'État · Fréjus · présentiel &amp; distanciel · en français ou en anglais
+          {t.meta}
         </p>
 
         <div className="hero-cta hero-reveal mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-4 items-stretch sm:items-center">
-          <Link to="/contact" onClick={handleNavClick} onPointerEnter={warmOn} onPointerLeave={warmOff}>
+          <Link to={lp('/contact')} onClick={handleNavClick} onPointerEnter={warmOn} onPointerLeave={warmOff}>
             <Button size="lg" className="w-full sm:w-auto text-base">
-              Demander un devis
+              {t.quote}
             </Button>
           </Link>
 
@@ -290,13 +326,13 @@ const HeroSection = () => {
             </Button>
           </a>
 
-          <Link to="/formations" onClick={handleNavClick}>
+          <Link to={lp('/formations')} onClick={handleNavClick}>
             <Button
               variant="outline"
               size="lg"
               className="w-full sm:w-auto border-white/60 bg-white/10 text-white hover:bg-white hover:text-primary backdrop-blur-sm text-base"
             >
-              Voir les formations
+              {t.seeTraining}
             </Button>
           </Link>
         </div>

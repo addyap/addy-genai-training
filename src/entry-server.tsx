@@ -19,11 +19,12 @@ export function render(url: string) {
   
   return {
     html,
-    head: helmet ? 
-      helmet.title.toString() + 
-      helmet.meta.toString() + 
-      helmet.link.toString() + 
-      helmet.script.toString() 
+    head: helmet ?
+      helmet.title.toString() +
+      helmet.meta.toString() +
+      helmet.link.toString() +
+      helmet.script.toString()
       : '',
+    htmlAttrs: helmet ? helmet.htmlAttributes.toString() : '',
   };
 }

@@ -6,6 +6,7 @@ import { Button } from '../components/ui/button';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
+import { useLocale, localizePath, useT, type Locale } from '@/i18n';
 
 interface EmailResult {
   corrected_text: string;
@@ -14,16 +15,57 @@ interface EmailResult {
 
 const EXAMPLE = "Hello, I am writing you because I want to know if you are available for a meeting next week. Please tell me your disponibility.";
 
-const correctorJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Correcteur d'email professionnel en anglais",
-  "applicationCategory": "EducationalApplication",
-  "description": "Outil qui corrige et améliore un email professionnel en anglais, avec explication pédagogique des corrections",
-  "inLanguage": "fr"
-};
+const CONTENT = {
+  fr: {
+    seoTitle: "Correcteur d'Email Professionnel en Anglais",
+    seoDesc: "Collez un email professionnel en anglais, obtenez une version corrigée par IA avec une explication pédagogique de chaque amélioration.",
+    keywords: ["correcteur email anglais", "améliorer anglais professionnel IA", "outil IA anglais des affaires"],
+    badge: 'Démonstration',
+    h1: "Correcteur d'email professionnel en anglais",
+    lede: "Un aperçu concret de ce que l'IA générative permet, à la croisée de mes deux domaines de formation",
+    fieldLabel: 'Votre email (en anglais)',
+    correcting: 'Correction en cours…',
+    improve: 'Améliorer mon email',
+    genericError: 'Une erreur est survenue.',
+    networkError: "Impossible de contacter le service. Vérifiez votre connexion et réessayez.",
+    copied: 'Email copié',
+    copyFailTitle: 'Copie impossible',
+    copyFailDesc: 'Sélectionnez le texte manuellement.',
+    correctedVersion: 'Version corrigée',
+    copy: 'Copier',
+    copiedShort: 'Copié',
+    whatImproved: 'Ce qui a été amélioré',
+    disclaimer: "Cet outil illustre une démarche pédagogique — vérifiez toujours un email sensible vous-même avant envoi. Pour aller plus loin en anglais professionnel, je propose aussi des formations dédiées.",
+    talkTraining: "Discuter d'une formation",
+  },
+  en: {
+    seoTitle: 'Professional English Email Corrector',
+    seoDesc: "Paste a professional email in English and get an AI-corrected version with a teaching explanation of every improvement.",
+    keywords: ["English email corrector", "improve business English with AI", "business English AI tool"],
+    badge: 'Demonstration',
+    h1: 'Professional English email corrector',
+    lede: "A concrete glimpse of what generative AI makes possible, where my two training fields meet",
+    fieldLabel: 'Your email (in English)',
+    correcting: 'Correcting…',
+    improve: 'Improve my email',
+    genericError: 'An error occurred.',
+    networkError: "Couldn't reach the service. Check your connection and try again.",
+    copied: 'Email copied',
+    copyFailTitle: 'Copy failed',
+    copyFailDesc: 'Select the text manually.',
+    correctedVersion: 'Corrected version',
+    copy: 'Copy',
+    copiedShort: 'Copied',
+    whatImproved: 'What was improved',
+    disclaimer: "This tool illustrates a teaching approach — always check a sensitive email yourself before sending. To go further in business English, I also offer dedicated training.",
+    talkTraining: 'Talk about training',
+  },
+} satisfies Record<Locale, unknown>;
 
 const CorrectionEmail = () => {
+  const locale = useLocale();
+  const t = useT(CONTENT) as typeof CONTENT['fr'];
+  const lp = (href: string) => localizePath(href, locale);
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,18 +83,18 @@ const CorrectionEmail = () => {
       const res = await fetch('/api/correct-email', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, locale }),
       });
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Une erreur est survenue.");
+        setError(data.error || t.genericError);
         return;
       }
 
       setResult(data);
     } catch {
-      setError("Impossible de contacter le service. Vérifiez votre connexion et réessayez.");
+      setError(t.networkError);
     } finally {
       setLoading(false);
     }
@@ -63,19 +105,28 @@ const CorrectionEmail = () => {
     try {
       await navigator.clipboard.writeText(result.corrected_text);
       setCopied(true);
-      toast({ title: "Email copié" });
+      toast({ title: t.copied });
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast({ title: "Copie impossible", description: "Sélectionnez le texte manuellement.", variant: "destructive" });
+      toast({ title: t.copyFailTitle, description: t.copyFailDesc, variant: "destructive" });
     }
+  };
+
+  const correctorJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": t.h1,
+    "applicationCategory": "EducationalApplication",
+    "description": t.seoDesc,
+    "inLanguage": locale,
   };
 
   return (
     <div className="min-h-screen">
       <SEOHead
-        title="Correcteur d'Email Professionnel en Anglais"
-        description="Collez un email professionnel en anglais, obtenez une version corrigée par IA avec une explication pédagogique de chaque amélioration."
-        keywords={["correcteur email anglais", "améliorer anglais professionnel IA", "outil IA anglais des affaires"]}
+        title={t.seoTitle}
+        description={t.seoDesc}
+        keywords={t.keywords}
         jsonLd={correctorJsonLd}
       />
 
@@ -84,13 +135,13 @@ const CorrectionEmail = () => {
         <div className="relative max-w-3xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 mb-5 rounded-full bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary animate-fade-in-up">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Démonstration
+            {t.badge}
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 animate-fade-in-up animate-delay-100">
-            Correcteur d'email professionnel en anglais
+            {t.h1}
           </h1>
           <p className="text-xl text-muted-foreground animate-fade-in-up animate-delay-200">
-            Un aperçu concret de ce que l'IA générative permet, à la croisée de mes deux domaines de formation
+            {t.lede}
           </p>
         </div>
       </section>
@@ -98,7 +149,7 @@ const CorrectionEmail = () => {
       <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <form onSubmit={handleSubmit} className="card-surface p-6 sm:p-8">
-            <Label htmlFor="email-text">Votre email (en anglais)</Label>
+            <Label htmlFor="email-text">{t.fieldLabel}</Label>
             <Textarea
               id="email-text"
               value={text}
@@ -115,12 +166,12 @@ const CorrectionEmail = () => {
               {loading ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Correction en cours…
+                  {t.correcting}
                 </>
               ) : (
                 <>
                   <Wand2 className="h-4 w-4" />
-                  Améliorer mon email
+                  {t.improve}
                 </>
               )}
             </Button>
@@ -136,13 +187,13 @@ const CorrectionEmail = () => {
           {result && (
             <div className="card-surface p-6 sm:p-8 mt-6 animate-fade-in-up">
               <div className="flex items-center justify-between gap-4 mb-3">
-                <h2 className="font-display text-lg font-semibold text-foreground">Version corrigée</h2>
+                <h2 className="font-display text-lg font-semibold text-foreground">{t.correctedVersion}</h2>
                 <button
                   onClick={handleCopy}
                   className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline shrink-0"
                 >
                   {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  {copied ? 'Copié' : 'Copier'}
+                  {copied ? t.copiedShort : t.copy}
                 </button>
               </div>
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm text-foreground/90 leading-relaxed whitespace-pre-wrap mb-6">
@@ -150,7 +201,7 @@ const CorrectionEmail = () => {
               </div>
 
               <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground/70 mb-3">
-                <Lightbulb className="h-3.5 w-3.5 text-warm" /> Ce qui a été amélioré
+                <Lightbulb className="h-3.5 w-3.5 text-warm" /> {t.whatImproved}
               </p>
               <ul className="space-y-2.5">
                 {result.improvements.map((imp) => (
@@ -163,11 +214,11 @@ const CorrectionEmail = () => {
 
               <div className="border-t border-border mt-6 pt-6">
                 <p className="text-sm text-muted-foreground mb-4">
-                  Cet outil illustre une démarche pédagogique — vérifiez toujours un email sensible vous-même avant envoi. Pour aller plus loin en anglais professionnel, je propose aussi des formations dédiées.
+                  {t.disclaimer}
                 </p>
-                <Link to="/contact">
+                <Link to={lp('/contact')}>
                   <Button size="lg">
-                    Discuter d'une formation
+                    {t.talkTraining}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>

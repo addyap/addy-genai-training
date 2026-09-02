@@ -53,7 +53,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3.5">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group" onClick={handleNavClick}>
+          <Link to="/" className="flex items-center gap-3 group" onClick={handleNavClick} aria-label="Antony Addy — Accueil">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
               <Sparkles className="h-5 w-5" />
             </span>

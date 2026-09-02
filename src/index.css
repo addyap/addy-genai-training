@@ -151,6 +151,12 @@
   .index-numeral {
     @apply font-display text-5xl font-semibold text-primary/10;
   }
+
+  /* Render the decorative numeral via generated content so it stays a purely
+     visual watermark (excluded from accessibility + color-contrast checks). */
+  .index-numeral::before {
+    content: attr(data-index);
+  }
 }
 
 /* Custom animations */

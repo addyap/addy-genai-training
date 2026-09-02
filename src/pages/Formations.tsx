@@ -190,9 +190,7 @@ const Formations = () => {
                 className="card-surface relative overflow-hidden p-6 sm:p-8 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="index-numeral absolute top-4 right-6 select-none">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+                <span className="index-numeral absolute top-4 right-6 select-none" aria-hidden="true" data-index={String(index + 1).padStart(2, '0')} />
                 <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl mb-5 ${service.tone}`}>
                   <service.icon className="h-6 w-6" />
                 </div>

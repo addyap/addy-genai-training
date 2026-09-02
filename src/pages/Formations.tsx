@@ -100,19 +100,49 @@ const fundingChecklist = [
   "Intervention possible en sous-traitance pour un centre de formation certifié Qualiopi",
 ];
 
+const courseProvider = {
+  "@type": "Person",
+  "name": "Antony Addy",
+  "jobTitle": "Formateur en IA Générative",
+  "url": "https://ia.antonyaddy.com",
+  "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
+};
+
 const servicesJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Formations en IA Générative",
-  "description": "Formations pratiques en intelligence artificielle générative : prompt engineering, création visuelle, automatisation, bureautique augmentée, cadre éthique et RGPD",
-  "provider": {
-    "@type": "Person",
-    "name": "Antony Addy",
-    "jobTitle": "Formateur en IA Générative"
-  },
-  "serviceType": "Formation IA Générative",
-  "areaServed": ["France"],
-  "inLanguage": "fr"
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "Formations en IA Générative",
+      "description": "Formations pratiques en intelligence artificielle générative : prompt engineering, création visuelle, automatisation, bureautique augmentée, cadre éthique et RGPD",
+      "provider": courseProvider,
+      "serviceType": "Formation IA Générative",
+      "areaServed": ["France"],
+      "availableLanguage": ["fr", "en"],
+      "inLanguage": "fr",
+    },
+    {
+      "@type": "ItemList",
+      "name": "Programmes de formation IA générative",
+      "itemListElement": [...services, responsibleUse].map((s, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "Course",
+          "name": s.title,
+          "description": s.description,
+          "url": "https://ia.antonyaddy.com/formations",
+          "inLanguage": ["fr", "en"],
+          "provider": courseProvider,
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": ["Onsite", "Online"],
+            "location": { "@type": "Place", "name": "France" },
+          },
+        },
+      })),
+    },
+  ],
 };
 
 const Formations = () => {
@@ -124,7 +154,7 @@ const Formations = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Formations IA Générative : Prompts, Automatisation"
-        description="Programmes détaillés : IA conversationnelle, création visuelle, automatisation, bureautique augmentée. Pour entreprises et indépendants, en France — en français ou en anglais."
+        description="Programmes de formation IA générative : IA conversationnelle, création visuelle, automatisation, bureautique. Entreprises et indépendants, en français ou en anglais."
         keywords={["formation prompt engineering", "formation ChatGPT", "formation Copilot", "formation automatisation IA", "formation Midjourney", "formation IA entreprise", "formation IA éthique", "formation IA RGPD", "formation IA OPCO", "cahier des charges formation IA", "formation IA sensibilisation 1 jour", "formation IA en anglais", "formation IA bilingue"]}
         jsonLd={servicesJsonLd}
       />

@@ -41,15 +41,31 @@ const homeJsonLd = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "Antony Addy — Formation IA Générative",
-  "description": "Formations en intelligence artificielle générative pour entreprises et indépendants",
+  "description": "Formations en intelligence artificielle générative pour entreprises et indépendants, animées en français ou en anglais",
   "url": "https://ia.antonyaddy.com",
+  "logo": "https://ia.antonyaddy.com/favicon.svg",
+  "image": "https://ia.antonyaddy.com/antonyaddy1.jpg",
+  "email": "formations@antonyaddy.com",
+  "telephone": "+33649829826",
+  "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
   "founder": {
     "@type": "Person",
     "name": "Antony Addy",
-    "jobTitle": "Formateur en IA Générative"
+    "jobTitle": "Formateur en IA Générative",
+    "image": "https://ia.antonyaddy.com/antonyaddy1.jpg",
+    "knowsLanguage": ["fr", "en"],
+    "sameAs": ["https://www.linkedin.com/in/antonyaddy/"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Fréjus",
+    "addressRegion": "Provence-Alpes-Côte d'Azur",
+    "postalCode": "83600",
+    "addressCountry": "FR"
   },
   "areaServed": ["France"],
   "serviceType": "Formation IA Générative",
+  "availableLanguage": ["fr", "en"],
   "inLanguage": "fr"
 };
 
@@ -62,7 +78,7 @@ const Home = () => {
     <div className="min-h-screen">
       <SEOHead
         title="Formation IA Générative en Entreprise | Antony Addy"
-        description="Formations pratiques en IA générative (ChatGPT, Claude, Copilot) pour entreprises et indépendants, par un formateur certifié d'État. Animées en français ou en anglais, en France."
+        description="Formations pratiques en IA générative (ChatGPT, Claude, Copilot) pour entreprises et indépendants, par un formateur certifié d'État — en français ou en anglais."
         keywords={["formation IA générative", "formation ChatGPT entreprise", "formateur intelligence artificielle", "prompt engineering formation", "Copilot formation", "formation IA responsable", "formation IA RGPD", "formation IA OPCO", "formation IA Fréjus", "formation IA en anglais", "formation IA bilingue", "bilingual generative AI trainer France", "generative AI training in English"]}
         jsonLd={homeJsonLd}
       />

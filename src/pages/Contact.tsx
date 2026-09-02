@@ -63,6 +63,7 @@ ${formData.message}`;
       "jobTitle": "Formateur en IA Générative",
       "telephone": "+33649829826",
       "email": "formations@antonyaddy.com",
+      "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Fréjus",
@@ -72,7 +73,7 @@ ${formData.message}`;
         "@type": "ContactPoint",
         "telephone": "+33649829826",
         "contactType": "Customer Service",
-        "availableLanguage": ["French"]
+        "availableLanguage": ["French", "English"]
       }
     },
     "inLanguage": "fr"

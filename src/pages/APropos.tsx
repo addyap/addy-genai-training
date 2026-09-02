@@ -27,7 +27,12 @@ const aboutJsonLd = {
   "provider": {
     "@type": "Person",
     "name": "Antony Addy",
-    "jobTitle": "Formateur en IA Générative"
+    "jobTitle": "Formateur en IA Générative",
+    "image": "https://ia.antonyaddy.com/antonyaddy1.jpg",
+    "email": "formations@antonyaddy.com",
+    "knowsLanguage": ["fr", "en"],
+    "knowsAbout": ["IA générative", "ChatGPT", "Prompt engineering", "Microsoft Copilot", "Automatisation IA", "Formation professionnelle"],
+    "sameAs": ["https://www.linkedin.com/in/antonyaddy/"]
   },
   "serviceType": "Formation IA Générative",
   "areaServed": ["France"],

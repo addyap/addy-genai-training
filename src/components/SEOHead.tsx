@@ -31,10 +31,12 @@ const SEOHead = ({
     "@type": "WebSite",
     "name": "Antony Addy — Formation IA Générative",
     "url": BASE_URL,
+    "inLanguage": "fr",
     "author": {
       "@type": "Person",
       "name": "Antony Addy",
       "jobTitle": "Formateur en IA Générative",
+      "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
       "worksFor": {
         "@type": "Organization",
         "name": "Antony Addy Formation"

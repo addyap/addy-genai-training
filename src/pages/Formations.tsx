@@ -121,27 +121,19 @@ const servicesJsonLd = {
       "availableLanguage": ["fr", "en"],
       "inLanguage": "fr",
     },
-    {
-      "@type": "ItemList",
-      "name": "Programmes de formation IA générative",
-      "itemListElement": [...services, responsibleUse].map((s, i) => ({
-        "@type": "ListItem",
-        "position": i + 1,
-        "item": {
-          "@type": "Course",
-          "name": s.title,
-          "description": s.description,
-          "url": "https://ia.antonyaddy.com/formations",
-          "inLanguage": ["fr", "en"],
-          "provider": courseProvider,
-          "hasCourseInstance": {
-            "@type": "CourseInstance",
-            "courseMode": ["Onsite", "Online"],
-            "location": { "@type": "Place", "name": "France" },
-          },
-        },
-      })),
-    },
+    ...[...services, responsibleUse].map((s) => ({
+      "@type": "Course",
+      "name": s.title,
+      "description": s.description,
+      "url": "https://ia.antonyaddy.com/formations",
+      "inLanguage": ["fr", "en"],
+      "provider": courseProvider,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": ["Onsite", "Online"],
+        "location": { "@type": "Place", "name": "France" },
+      },
+    })),
   ],
 };
 

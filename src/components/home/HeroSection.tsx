@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useLocale, localizePath, type Locale } from '@/i18n';
 
@@ -27,6 +27,8 @@ const HERO = {
     meta: "Formateur certifié d'État · Fréjus · présentiel & distanciel · en français ou en anglais",
     quote: 'Demander un devis',
     seeTraining: 'Voir les formations',
+    whatsapp: 'Une question ? WhatsApp',
+    newTab: " (s'ouvre dans un nouvel onglet)",
   },
   en: {
     kicker: 'Generative AI training · Antony Addy',
@@ -42,8 +44,12 @@ const HERO = {
     meta: 'State-certified trainer · Fréjus · on-site & remote · in French or English',
     quote: 'Get a quote',
     seeTraining: 'See the training',
+    whatsapp: 'A question? WhatsApp',
+    newTab: ' (opens in a new tab)',
   },
 } satisfies Record<Locale, Record<string, string>>;
+
+const SEEN_KEY = 'hero-seen';
 
 const HeroSection = () => {
   const locale = useLocale();
@@ -54,7 +60,6 @@ const HeroSection = () => {
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const typedRef = useRef<HTMLSpanElement>(null);
-  const caretRef = useRef<HTMLSpanElement>(null);
 
   // Mutable animation state kept in refs so the rAF loop never re-renders React.
   const mouse = useRef({ tx: 0, ty: 0, x: 0, y: 0 });
@@ -71,7 +76,14 @@ const HeroSection = () => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
-    let W = 0, H = 0, cx = 0, cy = 0, R = 0;
+    // Second visit in this session: skip the performance, keep the composition.
+    let quick = false;
+    try {
+      quick = sessionStorage.getItem(SEEN_KEY) === '1';
+      sessionStorage.setItem(SEEN_KEY, '1');
+    } catch { /* storage blocked — play the full intro */ }
+
+    let W = 0, H = 0, cx = 0, cy = 0, R = 0, veil = 1;
     let particles: {
       x: number; y: number; z: number;
       sx: number; sy: number; sz: number;
@@ -79,7 +91,8 @@ const HeroSection = () => {
     }[] = [];
 
     const buildParticles = () => {
-      const N = W > 820 ? 900 : 520;
+      // Phones get fewer, dimmer particles: the constellation sits behind the copy there.
+      const N = W > 820 ? 900 : 360;
       R = Math.min(W, H) * (W > 820 ? 0.30 : 0.34);
       particles = [];
       for (let i = 0; i < N; i++) {
@@ -113,60 +126,56 @@ const HeroSection = () => {
 
     const resize = () => {
       W = canvas.clientWidth; H = canvas.clientHeight;
+      // A collapsed or hidden stage would make R zero and the gradients NaN.
+      if (W < 2 || H < 2) { R = 0; particles = []; return; }
       canvas.width = W * DPR; canvas.height = H * DPR;
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       cx = W > 820 ? W * 0.68 : W * 0.5;
       cy = H * 0.5;
+      veil = W > 820 ? 1 : 0.55;
       buildParticles();
     };
     resize();
 
+    // ---- story state: the typed instruction pulls the noise into order ----
+    const promptText = t.prompt;
+    let progress = 0;      // share of the prompt typed, 0..1
+    let done = false;      // prompt "sent"
+    let conv = 0;          // noise → form, eased toward its target
+    let filament = 0;      // connective structure, appears once the prompt is sent
+    let pulse = 0;         // brief glow when the prompt is sent
     let rotY = 0, rotX = 0;
-    const born = performance.now();
-    const INTRO = reduce ? 0 : 1500;
-    const startDelay = reduce ? 0 : 850;
 
-    let raf = 0;
-    const frame = (now: number) => {
-      const t = now - born;
-      let conv = INTRO <= 0 ? 1 : Math.max(0, Math.min(1, (t - startDelay) / INTRO));
-      conv = conv < 1 ? 1 - Math.pow(1 - conv, 3) : 1; // easeOutCubic
+    const draw = (now: number) => {
+      ctx.clearRect(0, 0, W, H);
+      if (R <= 0) return;
 
-      mouse.current.x += (mouse.current.tx - mouse.current.x) * 0.06;
-      mouse.current.y += (mouse.current.ty - mouse.current.y) * 0.06;
-      warm.current.v += (warm.current.t - warm.current.v) * 0.08;
       const mx = mouse.current.x, my = mouse.current.y, wv = warm.current.v;
       const scrollK = scroll.current;
-
-      rotY += (reduce ? 0 : 0.0016) * (1 - scrollK * 0.7) + mx * 0.0009;
-      rotX += (my * 0.35 - rotX) * 0.05;
-
       const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
       const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
       const persp = R * 3.2;
       const lightX = mx * R * 1.3, lightY = my * R * 1.3, lightZ = R * 1.6;
-      const expand = 1 + scrollK * 0.8;
-      const globalFade = 1 - scrollK;
-
-      ctx.clearRect(0, 0, W, H);
-      if (globalFade <= 0.01) { raf = requestAnimationFrame(frame); return; }
+      const expand = (1 + scrollK * 0.8) * (1 + pulse * 0.05);
+      const globalFade = (1 - scrollK) * veil;
+      if (globalFade <= 0.01) return;
 
       // core glow + luminous heart
       const coreR = R * 1.6 * (1 + wv * 0.05);
       const coreCol = wv > 0.02 ? '245,158,11' : '124,92,240';
       const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
-      g.addColorStop(0, `rgba(${coreCol},${0.20 * globalFade * (0.5 + conv * 0.5)})`);
+      g.addColorStop(0, `rgba(${coreCol},${(0.20 * (0.5 + conv * 0.5) + pulse * 0.14) * globalFade})`);
       g.addColorStop(0.5, `rgba(124,92,240,${0.06 * globalFade})`);
       g.addColorStop(1, 'rgba(124,92,240,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
       const hg = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.5);
-      hg.addColorStop(0, `rgba(${wv > 0.02 ? '255,210,140' : '200,185,255'},${0.22 * globalFade * conv})`);
+      hg.addColorStop(0, `rgba(${wv > 0.02 ? '255,210,140' : '200,185,255'},${(0.22 * conv + pulse * 0.2) * globalFade})`);
       hg.addColorStop(1, 'rgba(124,92,240,0)');
       ctx.fillStyle = hg; ctx.fillRect(0, 0, W, H);
 
       ctx.globalCompositeOperation = 'lighter';
 
-      const draw: { sx: number; sy: number; s: number; z: number; amber: boolean; tw: number; lit: number }[] = [];
+      const pts: { sx: number; sy: number; s: number; z: number; amber: boolean; tw: number; lit: number }[] = [];
       for (const p of particles) {
         const hx = p.x * expand, hy = p.y * expand, hz = p.z * expand;
         let bx = p.sx + (hx - p.sx) * conv;
@@ -180,21 +189,21 @@ const HeroSection = () => {
         const y1 = by * cosX - z1 * sinX;
         const z2 = by * sinX + z1 * cosX;
 
-        const s = persp / (persp - z2);
+        const sc = persp / (persp - z2);
         const lit = 1 - Math.min(1, (Math.abs(x1 - lightX) + Math.abs(y1 - lightY) + Math.abs(z2 - lightZ)) / (R * 4));
-        draw.push({ sx: cx + x1 * s, sy: cy + y1 * s, s, z: z2, amber: p.amber, tw: p.tw + now * 0.002 * p.sp, lit });
+        pts.push({ sx: cx + x1 * sc, sy: cy + y1 * sc, s: sc, z: z2, amber: p.amber, tw: p.tw + now * 0.002 * p.sp, lit });
       }
-      draw.sort((a, b) => a.z - b.z);
+      pts.sort((a, b) => a.z - b.z);
 
       const wr = Math.round(124 + (245 - 124) * wv);
       const wg = Math.round(92 + (158 - 92) * wv);
       const wb = Math.round(240 + (11 - 240) * wv);
       const violet = `${wr},${wg},${wb}`;
 
-      for (const d of draw) {
+      for (const d of pts) {
         if (d.sx < -50 || d.sx > W + 50 || d.sy < -50 || d.sy > H + 50) continue;
         const depth = (d.z + R) / (2 * R);
-        const tw = 0.6 + 0.4 * Math.sin(d.tw);
+        const tw = reduce ? 1 : 0.6 + 0.4 * Math.sin(d.tw);
         const size = (d.amber ? 1.9 : 1.4) * d.s * tw;
         const alpha = (0.18 + depth * 0.72) * (0.4 + d.lit * 0.6) * globalFade * (0.25 + conv * 0.75) * tw;
         if (alpha <= 0.01) continue;
@@ -210,8 +219,8 @@ const HeroSection = () => {
       }
 
       // connective filaments among front particles — "structure" out of noise
-      if (conv > 0.55) {
-        const front = draw.slice(Math.max(0, draw.length - 70));
+      if (filament > 0.01) {
+        const front = pts.slice(Math.max(0, pts.length - 70));
         const thr = R * 0.34, thr2 = thr * thr;
         const lw = wv > 0.02 ? '245,190,90' : '150,130,255';
         ctx.lineWidth = 1;
@@ -221,7 +230,7 @@ const HeroSection = () => {
             const B = front[b];
             const dx = A.sx - B.sx, dy = A.sy - B.sy, dd = dx * dx + dy * dy;
             if (dd < thr2) {
-              const la = (1 - dd / thr2) * 0.16 * globalFade * (conv - 0.55) / 0.45;
+              const la = (1 - dd / thr2) * (0.16 + pulse * 0.12) * globalFade * filament;
               if (la <= 0.008) continue;
               ctx.strokeStyle = `rgba(${lw},${la})`;
               ctx.beginPath(); ctx.moveTo(A.sx, A.sy); ctx.lineTo(B.sx, B.sy); ctx.stroke();
@@ -231,12 +240,54 @@ const HeroSection = () => {
       }
 
       ctx.globalCompositeOperation = 'source-over';
-      raf = requestAnimationFrame(frame);
     };
-    raf = requestAnimationFrame(frame);
+
+    stage.classList.add('is-live');
+
+    // ---- reduced motion: one composed, still frame; no loop, no pointer tracking ----
+    if (reduce) {
+      if (typedRef.current) typedRef.current.textContent = promptText;
+      conv = 1; filament = 1; done = true;
+      stage.classList.add('is-done');
+      const still = () => { resize(); draw(0); };
+      still();
+      window.addEventListener('resize', still);
+      return () => window.removeEventListener('resize', still);
+    }
+
+    // ---- loop: runs only while the hero is on screen and the tab is visible ----
+    let raf = 0, running = false, last = 0, onScreen = true;
+    const frame = (now: number) => {
+      const dt = Math.min(now - last, 64);
+      last = now;
+      const k = (ms: number) => 1 - Math.exp(-dt / ms); // frame-rate independent easing
+
+      const target = done ? 1 : 0.06 + 0.82 * progress;
+      conv += (target - conv) * k(done ? 260 : 140);
+      filament += ((done ? 1 : 0) - filament) * k(320);
+      pulse *= Math.exp(-dt / 420);
+
+      mouse.current.x += (mouse.current.tx - mouse.current.x) * k(260);
+      mouse.current.y += (mouse.current.ty - mouse.current.y) * k(260);
+      warm.current.v += (warm.current.t - warm.current.v) * k(200);
+      rotY += (0.0016 * (1 - scroll.current * 0.7) + mouse.current.x * 0.0009) * (dt / 16.7);
+      rotX += (mouse.current.y * 0.35 - rotX) * k(320);
+
+      draw(now);
+      if (running) raf = requestAnimationFrame(frame);
+    };
+    const sync = () => {
+      const should = onScreen && !document.hidden;
+      if (should && !running) { running = true; last = performance.now(); raf = requestAnimationFrame(frame); }
+      if (!should && running) { running = false; cancelAnimationFrame(raf); }
+    };
+    const io = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; sync(); });
+    io.observe(stage);
+    sync();
 
     // ---- interactions ----
     const onMove = (e: PointerEvent) => {
+      if (!running) return;
       const r = canvas.getBoundingClientRect();
       mouse.current.tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
       mouse.current.ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
@@ -247,30 +298,45 @@ const HeroSection = () => {
     window.addEventListener('pointermove', onMove);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', sync);
 
-    // ---- entrance: reveal + typing ----
-    stage.classList.add('is-live');
-    const promptText = t.prompt;
+    // ---- the instruction types itself; sending it completes the form ----
     let typeTimer: number | undefined;
-    if (reduce) {
+    const send = () => {
+      done = true;
+      pulse = 1;
+      stage.classList.remove('is-typing');
+      stage.classList.add('is-done');
+    };
+    if (quick) {
+      stage.classList.add('is-quick');
       if (typedRef.current) typedRef.current.textContent = promptText;
-      if (caretRef.current) caretRef.current.style.display = 'none';
+      progress = 1; conv = 0.7;
+      send();
+      pulse = 0;
     } else {
       const type = (i: number) => {
-        if (i > promptText.length) return;
         if (typedRef.current) typedRef.current.textContent = promptText.slice(0, i);
-        const ch = promptText[i - 1] || '';
-        const delay = ch === ' ' ? 34 : ch === '.' ? 260 : 30 + Math.random() * 45;
+        progress = i / promptText.length;
+        if (i >= promptText.length) { typeTimer = window.setTimeout(send, 220); return; }
+        const ch = promptText[i];
+        const delay = ch === ' ' ? 40 : ch === ',' ? 160 : 20 + Math.random() * 20;
         typeTimer = window.setTimeout(() => type(i + 1), delay);
       };
-      typeTimer = window.setTimeout(() => type(1), 1250);
+      typeTimer = window.setTimeout(() => {
+        stage.classList.add('is-typing');
+        type(1);
+      }, 650);
     }
 
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', sync);
       if (typeTimer) clearTimeout(typeTimer);
     };
   }, [t.prompt]);
@@ -282,7 +348,7 @@ const HeroSection = () => {
     <section ref={stageRef} className="hero-stage">
       <canvas ref={canvasRef} className="hero-canvas" aria-hidden="true" />
 
-      <div className="relative z-[3] w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
+      <div className="hero-content relative z-[3] w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
         <span className="hero-kicker hero-reveal">
           <span className="dot" />
           {t.kicker}
@@ -296,7 +362,7 @@ const HeroSection = () => {
         <div className="hero-prompt hero-reveal mt-7">
           <span className="chev">&gt;_</span>
           <span className="typed" ref={typedRef} />
-          <span className="hero-caret" ref={caretRef} />
+          <span className="hero-caret" />
         </div>
 
         <p className="hero-sub hero-reveal mt-6 max-w-[46ch] text-lg sm:text-xl text-white/80 leading-relaxed">
@@ -312,29 +378,35 @@ const HeroSection = () => {
           {t.meta}
         </p>
 
-        <div className="hero-cta hero-reveal mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-4 items-stretch sm:items-center">
+        {/* One primary action; training is the secondary path; WhatsApp a quiet direct line */}
+        <div className="hero-cta hero-reveal mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-4 items-stretch sm:items-center">
           <Link to={lp('/contact')} onClick={handleNavClick} onPointerEnter={warmOn} onPointerLeave={warmOff}>
             <Button size="lg" className="w-full sm:w-auto text-base">
               {t.quote}
+              <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
-
-          <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white text-base">
-              <MessageCircle className="h-5 w-5" />
-              WhatsApp
-            </Button>
-          </a>
 
           <Link to={lp('/formations')} onClick={handleNavClick}>
             <Button
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto border-white/60 bg-white/10 text-white hover:bg-white hover:text-primary backdrop-blur-sm text-base"
+              className="w-full sm:w-auto border-white/40 bg-white/5 text-white hover:bg-white hover:text-primary backdrop-blur-sm text-base"
             >
               {t.seeTraining}
             </Button>
           </Link>
+
+          <a
+            href="https://wa.me/33649829826"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full py-2 text-sm font-medium text-white/75 transition-colors duration-fast hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          >
+            <MessageCircle className="h-4 w-4 text-green-400" aria-hidden="true" />
+            {t.whatsapp}
+            <span className="sr-only">{t.newTab}</span>
+          </a>
         </div>
       </div>
     </section>

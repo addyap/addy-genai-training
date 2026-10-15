@@ -66,26 +66,33 @@ Nothing the user is waiting on (a menu, a button) takes longer than 240ms.
 
 ### Home: the signature sequence (`HeroSection.tsx`)
 
-Already built. Its timing is the reference for the rest of the site:
+The hero *performs* the promise: the instruction is typed, and that typing pulls the noise
+into form. Sending it completes the structure.
 
 | t (ms) | Element | Motion |
 |---|---|---|
-| 0 | Canvas | Particles scattered as noise |
-| 100 | Kicker pill | Rise 12px + fade, 700ms, out-expo |
-| 300 / 420 | Headline line 1 / line 2 | Masked slide up from 110%, 900ms, out-expo |
-| 850 → 2350 | Constellation | Converges from noise to sphere + torus, out-cubic |
-| 1150 | Prompt line | Fade 600ms, then types itself from 1250ms |
-| 1500 | Subhead | Rise + fade 700ms |
-| 1750 | Meta line | Fade |
-| 1900 | CTAs | Rise + fade |
-| 2400 | Scroll cue | Fade, then the amber drip loops |
+| 0 | Canvas | Particles scattered as noise (6% formed) |
+| 50 | Kicker pill | Rise 12px + fade, 700ms, out-expo |
+| 150 / 250 | Headline line 1 / line 2 | Masked slide up from 110%, `--dur-hero`, out-expo |
+| 550 | Prompt line | Fade 500ms |
+| 650 → ~2500 | Prompt types (20–40ms/char) | Each character pulls the particles further into form (up to 88%). Caret stays solid while typing. |
+| 700 | Subhead | Rise + fade 700ms |
+| 850 | Meta line | Fade |
+| 950 | Buttons | Rise + fade. Clickable and settled by ~1.65s. |
+| end + 220 | "Send" | Form completes, filaments connect, one glow pulse (decays over ~420ms). Caret blinks 4 times, then rests. |
 
-The CTAs become interactive by ~2.6s, but the headline is readable at ~0.8s. On scroll,
-the constellation expands and dissolves over 85% of the viewport height, which hands off
-from the hero to the page.
-
-Reduced motion: all copy visible at once, prompt pre-filled, caret hidden, constellation
-drawn already converged and static.
+- **Return visits** in the same browser session (`sessionStorage`): everything settles in 300ms
+  with no delays, the prompt is already typed, and the form completes from 70%.
+- **Scroll handoff**: the constellation expands and dissolves over 85% of the viewport height,
+  and the copy lifts 48px and recedes to 15% opacity over the first 60vh (CSS scroll timeline).
+- **Buttons**: one primary ("Demander un devis", with a forward arrow), one outline ("Voir les
+  formations") and a quiet WhatsApp text link, so nothing competes with the main action.
+- **Cost**: the canvas loop runs only while the hero is on screen and the tab is visible.
+  Phones get 360 particles at 55% strength behind the copy. Desktops get 900.
+- **No-JS**: hidden entrance states require `html.js` (set inline in `index.html`), so the
+  prerendered hero is readable without JavaScript.
+- **Reduced motion**: one static, fully formed frame (redrawn on resize), the prompt
+  pre-typed, no loop and no pointer tracking.
 
 ### About page portrait
 

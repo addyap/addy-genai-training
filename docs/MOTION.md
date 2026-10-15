@@ -43,20 +43,21 @@ No springs, no bounce and no overshoot. Overshoot reads as playful, and this bra
 | `--dur-fast` | 160ms | Colour/opacity hover changes, menu exit |
 | `--dur-base` | 240ms | Lift on hover, menu enter, header state |
 | `--dur-slow` | 420ms | Page enter, image settle start |
-| `--dur-reveal` | 720ms | Scroll reveals |
-| `--dur-hero` | 900ms | Hero headline lines (signature only) |
+| `--dur-reveal` | 1000ms | Scroll reveals |
+| `--dur-hero` | 1200ms | Image settle (the hero headline keeps its own 900ms) |
 
-Rule of thumb: **the more of the screen it covers, the longer it may take, up to 900ms.**
+Rule of thumb: **the more of the screen it covers, the longer it may take, up to 1.2s.**
 Nothing the user is waiting on (a menu, a button) takes longer than 240ms.
 
 ### Distance and stagger
 
 | Token | Value | Notes |
 |---|---|---|
-| `--reveal-distance` | 16px | Rise distance for reveals. Never more than 24px. |
-| `--stagger` | 70ms | Between siblings in a group |
+| `--reveal-distance` | 40px | Rise distance for reveals. Never more than 48px. |
+| `--reveal-scale` | 0.96 | Blocks grow to full size as they rise |
+| `--stagger` | 110ms | Between siblings in a group |
 | Stagger cap | 6 items | Item 7+ shares item 6's delay, so a long list never feels slow |
-| Hover lift | −4px cards, −2px buttons | |
+| Hover lift | −6px cards, −2px buttons | |
 | Press | `scale(0.98)` | |
 
 ---
@@ -88,7 +89,7 @@ drawn already converged and static.
 
 ### About page portrait
 
-`.image-settle`: opacity + scale 1.04→1, `--dur-hero`, out-expo, 160ms after the intro starts.
+`.image-settle`: opacity + scale 1.08→1, `--dur-hero`, out-expo, 160ms after the intro starts.
 This is the one image transition on the site, because the portrait is the one image that carries the story.
 
 ### Inner pages: the standard intro
@@ -115,8 +116,8 @@ Route changes (React Router `BrowserRouter`):
 1. **Scroll jumps to the top instantly** (`behavior: 'instant'`). A smooth scroll back up
    from deep in a page, while the new page renders, is the most disorienting motion on
    the old site. Hash links (`/ressources#automatisation`) still scroll smoothly to their target.
-2. **The new page enters**: `.page-enter` on the route wrapper, fade + 8px rise,
-   `--dur-slow`, `--ease-out-expo`. No exit animation, because exits delay the content the
+2. **The new page enters**: `.page-enter` on the route wrapper, fade + 24px rise,
+   600ms, `--ease-out-expo`. No exit animation, because exits delay the content the
    user just asked for.
 3. The first, prerendered page load does **not** play the page-enter. That load belongs to
    the page's own intro.
@@ -137,12 +138,13 @@ Route changes (React Router `BrowserRouter`):
 
 | Variant | Attribute | Motion |
 |---|---|---|
-| Rise (default) | `data-reveal` | opacity 0→1, translateY(16px)→0 |
-| Fade | `data-reveal="fade"` | opacity only. Use for large blocks and dark panels. |
-| Image | `data-reveal="image"` | opacity + scale 1.04→1 over `--dur-hero`. Media only. |
+| Rise (default) | `data-reveal` | opacity 0→1, translateY(40px) + scale 0.96 → rest |
+| Heading | `data-reveal="heading"` | Wipes up out of a mask (clip-path) while rising 0.5em, echoing the hero headline |
+| Fade | `data-reveal="fade"` | opacity + 20px rise, no scale. Use for large blocks and dark panels. |
+| Image | `data-reveal="image"` | opacity + scale 1.08→1 over `--dur-hero`. Media only. |
 
-- **Trigger:** one shared `IntersectionObserver`, threshold 0 and `rootMargin: 0px 0px -10% 0px`,
-  so an element reveals when its top crosses 90% of the viewport height. Each element reveals **once**. Scrolling back up
+- **Trigger:** one shared `IntersectionObserver`, threshold 0 and `rootMargin: 0px 0px -15% 0px`,
+  so an element reveals when its top crosses 85% of the viewport height, clearly in view. Each element reveals **once**. Scrolling back up
   never hides it again, so content doesn't flicker in and out.
 - **Stagger:** children of `data-reveal-group` get `--i` (0…5, capped) and delay `--i × --stagger`.
 - **No-flash guarantee** (`src/hooks/use-reveal.ts`): before hiding anything, the hook marks every
@@ -155,7 +157,7 @@ Route changes (React Router `BrowserRouter`):
 
 ### Section headings: text reveal
 
-`SectionHeading` is a group of three: eyebrow (fade) → H2 (rise) → description (rise), staggered.
+`SectionHeading` is a group of three: eyebrow (fade) → H2 (masked wipe) → description (rise), staggered.
 Headings reveal as whole lines, never word by word or letter by letter. Splitting text breaks
 screen readers and translation, and makes a heading slower to read.
 
@@ -165,7 +167,7 @@ screen readers and translation, and makes a heading slower to read.
 
 Only decorative layers move, and only slightly. Text never parallaxes.
 
-- `.motion-drift`: a decorative layer (dot grid, glow blob) translates up to −48px across
+- `.motion-drift`: a decorative layer (dot grid, glow blob) travels 120px (+60 → −60) across
   its section's pass through the viewport. It's built on **CSS scroll-driven animations**
   (`animation-timeline: view()`), so it runs off the main thread with no JS and no scroll
   listeners. It's wrapped in `@supports (animation-timeline: view())` and
@@ -201,7 +203,7 @@ with the right column scrolling normally. That gives a pinned feel without hijac
 | `.card-surface` | translateY(−4px), border → primary/25, shadow → `card-hover` | `--dur-base`, out-quart |
 | Primary button | translateY(−2px), glow → `glow-lg` | `--dur-base`, out-quart |
 | Outline/secondary button | translateY(−2px), bg tint | `--dur-base`, out-quart |
-| Any forward arrow (lucide `ArrowRight`) | Nudges +3px on x when its link, button or card is hovered (automatic, no markup) | `--dur-base`, out-quart |
+| Any forward arrow (lucide `ArrowRight`) | Nudges +5px on x when its link, button or card is hovered (automatic, no markup) | `--dur-base`, out-quart |
 | Nav pills | Colour + background tint only (no movement) | `--dur-fast` |
 | Logo mark | scale 1.05 + rotate 3° | `--dur-base` |
 
@@ -229,7 +231,7 @@ with the right column scrolling normally. That gives a pinned feel without hijac
 
 ## 9. Performance budget
 
-- Animate **only `opacity` and `transform`/`translate`**. Never width, height, top, margin, filter or clip-path. Radix accordion height is the one allowed exception.
+- Animate **only `opacity`, `transform`/`translate` and `clip-path`** (headings only). Never width, height, top, margin or filter. Radix accordion height is the one allowed exception.
 - No animation library: the reveal hook is ~60 lines and one observer per page.
 - `will-change` is not set globally. The browser promotes layers during transitions by itself.
 - One scroll listener in the hero (passive, already present) and one in the header (passive,
@@ -251,7 +253,7 @@ with the right column scrolling normally. That gives a pinned feel without hijac
 - [ ] Does this motion explain, confirm, or belong to the signature hero? If not, remove it.
 - [ ] Uses tokens (`--ease-*`, `--dur-*`), not raw numbers.
 - [ ] Animates only opacity and transform.
-- [ ] Entrance ≤ 720ms (UI ≤ 240ms). Exits are shorter than entrances.
+- [ ] Entrance ≤ 1000ms (UI ≤ 240ms). Exits are shorter than entrances.
 - [ ] Hidden states only under `html.motion-ready`.
 - [ ] Hover transforms gated to fine pointers and removed under reduced motion.
 - [ ] Checked with reduced motion on, and on a mid-range phone.

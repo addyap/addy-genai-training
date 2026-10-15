@@ -43,10 +43,11 @@
     --dur-fast: 160ms;
     --dur-base: 240ms;
     --dur-slow: 420ms;
-    --dur-reveal: 720ms;
-    --dur-hero: 900ms;
-    --reveal-distance: 16px;
-    --stagger: 70ms;
+    --dur-reveal: 1000ms;
+    --dur-hero: 1200ms;
+    --reveal-distance: 40px;
+    --reveal-scale: 0.96;
+    --stagger: 110ms;
   }
 
   .dark {
@@ -196,7 +197,7 @@
 }
 
 @keyframes imageSettle {
-  from { opacity: 0; transform: scale(1.04); }
+  from { opacity: 0; transform: scale(1.08); }
   to { opacity: 1; transform: none; }
 }
 
@@ -219,15 +220,26 @@
 /* Scroll reveals — see src/hooks/use-reveal.ts */
 .motion-ready [data-reveal] {
   opacity: 0;
-  transform: translateY(var(--reveal-distance));
+  transform: translateY(var(--reveal-distance)) scale(var(--reveal-scale));
   transition:
     opacity var(--dur-reveal) var(--ease-out-expo),
-    transform var(--dur-reveal) var(--ease-out-expo);
+    transform var(--dur-reveal) var(--ease-out-expo),
+    clip-path var(--dur-reveal) var(--ease-out-expo);
   transition-delay: calc(var(--i, 0) * var(--stagger));
 }
 
-.motion-ready [data-reveal="fade"] { transform: none; }
-.motion-ready [data-reveal="image"] { transform: scale(1.04); transition-duration: var(--dur-hero); }
+.motion-ready [data-reveal="fade"] { transform: translateY(calc(var(--reveal-distance) / 2)); }
+.motion-ready [data-reveal="image"] { transform: scale(1.08); transition-duration: var(--dur-hero); }
+
+/* Headings wipe up out of a mask, echoing the hero headline */
+.motion-ready [data-reveal="heading"] {
+  transform: translateY(0.5em);
+  clip-path: inset(0 0 100% 0);
+}
+
+.motion-ready [data-reveal="heading"][data-revealed] {
+  clip-path: inset(0 0 0 0);
+}
 
 .motion-ready [data-reveal][data-revealed] {
   opacity: 1;
@@ -236,12 +248,12 @@
 
 /* Route change — the new page settles in; no exit, so content is never delayed */
 @keyframes pageEnter {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: none; }
 }
 
 .page-enter {
-  animation: pageEnter var(--dur-slow) var(--ease-out-expo) both;
+  animation: pageEnter 600ms var(--ease-out-expo) both;
 }
 
 /* Menus open from their anchor; closing is instant */
@@ -268,7 +280,7 @@
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .card-surface:hover,
   .hover-lift:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
   }
 
   /* Every forward arrow (lucide ArrowRight) leans toward where the link goes */
@@ -279,7 +291,7 @@
   a:hover .lucide-arrow-right,
   button:hover .lucide-arrow-right,
   .group:hover .lucide-arrow-right {
-    transform: translateX(3px);
+    transform: translateX(5px);
   }
 }
 
@@ -287,8 +299,8 @@
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     @keyframes drift {
-      from { translate: 0 24px; }
-      to { translate: 0 -24px; }
+      from { translate: 0 60px; }
+      to { translate: 0 -60px; }
     }
 
     .motion-drift {

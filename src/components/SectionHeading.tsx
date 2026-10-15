@@ -22,7 +22,7 @@ const SectionHeading = ({ eyebrow, title, description, align = 'center', light =
           {eyebrow}
         </div>
       )}
-      <h2 data-reveal className={`text-3xl sm:text-4xl font-bold mb-4 ${light ? 'text-white' : 'text-foreground'}`}>
+      <h2 data-reveal="heading" className={`text-3xl sm:text-4xl font-bold mb-4 ${light ? 'text-white' : 'text-foreground'}`}>
         {title}
       </h2>
       {description && (

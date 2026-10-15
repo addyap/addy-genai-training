@@ -10,8 +10,8 @@ import { useEffect } from 'react';
  */
 
 const STAGGER_CAP = 5; // item 7+ shares item 6's delay
-const STAGGER_MS = 70;
-const REVEAL_MS = 900; // longest reveal duration (image variant)
+const STAGGER_MS = 110;
+const REVEAL_MS = 1200; // longest reveal duration (image variant)
 
 // Drop the reveal attributes once played, so the element's own transitions
 // (card hover lift, etc.) take over again at their normal speed.
@@ -48,7 +48,7 @@ export function useReveal() {
           window.setTimeout(() => settle(el), REVEAL_MS + i * STAGGER_MS + 50);
         }
       },
-      { rootMargin: '0px 0px -10% 0px' },
+      { rootMargin: '0px 0px -15% 0px' },
     );
 
     const watch = (root: ParentNode) => {

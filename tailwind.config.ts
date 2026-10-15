@@ -9,6 +9,10 @@ export default {
 		"./src/**/*.{ts,tsx}",
 	],
 	prefix: "",
+	future: {
+		// Hover styles only on devices that truly hover — no sticky states after a tap.
+		hoverOnlyWhenSupported: true,
+	},
 	theme: {
 		container: {
 			center: true,
@@ -79,6 +83,20 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			// Motion tokens — values live in src/index.css, spec in docs/MOTION.md
+			transitionTimingFunction: {
+				'out-expo': 'var(--ease-out-expo)',
+				'out-quart': 'var(--ease-out-quart)',
+				'in-out': 'var(--ease-in-out)',
+				in: 'var(--ease-in)',
+			},
+			transitionDuration: {
+				instant: 'var(--dur-instant)',
+				fast: 'var(--dur-fast)',
+				base: 'var(--dur-base)',
+				slow: 'var(--dur-slow)',
+				reveal: 'var(--dur-reveal)',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -103,8 +121,8 @@ export default {
 				}
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-down': 'accordion-down var(--dur-base) var(--ease-out-quart)',
+				'accordion-up': 'accordion-up var(--dur-fast) var(--ease-in)'
 			}
 		}
 	},

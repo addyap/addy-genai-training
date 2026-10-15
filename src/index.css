@@ -33,6 +33,20 @@
     --ia-light-grey: 250 45% 97%;
     --ia-amber: 38 92% 50%;
     --ia-amber-deep: 32 90% 44%;
+
+    /* Motion tokens — see docs/MOTION.md */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+    --dur-instant: 100ms;
+    --dur-fast: 160ms;
+    --dur-base: 240ms;
+    --dur-slow: 420ms;
+    --dur-reveal: 720ms;
+    --dur-hero: 900ms;
+    --reveal-distance: 16px;
+    --stagger: 70ms;
   }
 
   .dark {
@@ -125,7 +139,7 @@
   }
 
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+    transition: transform var(--dur-base) var(--ease-out-quart), box-shadow var(--dur-base) var(--ease-out-quart);
   }
 
   /* Faint dot-grid texture for light sections */
@@ -141,11 +155,15 @@
   }
 
   .card-surface {
-    @apply relative rounded-2xl border border-border bg-card shadow-card transition-all duration-300;
+    @apply relative rounded-2xl border border-border bg-card shadow-card;
+    transition:
+      transform var(--dur-base) var(--ease-out-quart),
+      box-shadow var(--dur-base) var(--ease-out-quart),
+      border-color var(--dur-base) var(--ease-out-quart);
   }
 
   .card-surface:hover {
-    @apply -translate-y-1 border-primary/25 shadow-card-hover;
+    @apply border-primary/25 shadow-card-hover;
   }
 
   .index-numeral {
@@ -159,50 +177,142 @@
   }
 }
 
-/* Custom animations */
+/* ============================================================
+   Motion system — tokens on :root, full spec in docs/MOTION.md.
+   Only opacity / transform are animated. Hidden states exist only
+   under html.motion-ready (set by useReveal), so prerendered HTML,
+   no-JS visitors and reduced-motion users always see everything.
+   ============================================================ */
+
+/* Page intros — above the fold, play on load */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(var(--reveal-distance)); }
+  to { opacity: 1; transform: none; }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes imageSettle {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: none; }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out both;
+  animation: fadeInUp var(--dur-reveal) var(--ease-out-expo) both;
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out both;
+  animation: fadeIn var(--dur-slow) var(--ease-out-quart) both;
 }
 
-.animate-delay-100 {
-  animation-delay: 0.1s;
+.animate-delay-100 { animation-delay: 80ms; }
+.animate-delay-200 { animation-delay: 160ms; }
+.animate-delay-300 { animation-delay: 240ms; }
+
+.image-settle {
+  animation: imageSettle var(--dur-hero) var(--ease-out-expo) 160ms both;
 }
 
-.animate-delay-200 {
-  animation-delay: 0.2s;
+/* Scroll reveals — see src/hooks/use-reveal.ts */
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-expo),
+    transform var(--dur-reveal) var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * var(--stagger));
 }
 
-.animate-delay-300 {
-  animation-delay: 0.3s;
+.motion-ready [data-reveal="fade"] { transform: none; }
+.motion-ready [data-reveal="image"] { transform: scale(1.04); transition-duration: var(--dur-hero); }
+
+.motion-ready [data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Route change — the new page settles in; no exit, so content is never delayed */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.page-enter {
+  animation: pageEnter var(--dur-slow) var(--ease-out-expo) both;
+}
+
+/* Menus open from their anchor; closing is instant */
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes sheetIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.motion-menu {
+  transform-origin: top right;
+  animation: menuIn var(--dur-base) var(--ease-out-quart) both;
+}
+
+.motion-sheet {
+  animation: sheetIn var(--dur-base) var(--ease-out-quart) both;
+}
+
+/* Hover movement — fine pointers only, so taps never leave a card "stuck" lifted */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card-surface:hover,
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Every forward arrow (lucide ArrowRight) leans toward where the link goes */
+  .lucide-arrow-right {
+    transition: transform var(--dur-base) var(--ease-out-quart);
+  }
+
+  a:hover .lucide-arrow-right,
+  button:hover .lucide-arrow-right,
+  .group:hover .lucide-arrow-right {
+    transform: translateX(3px);
+  }
+}
+
+/* Parallax — decorative layers only, driven by CSS scroll timelines (no JS) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @keyframes drift {
+      from { translate: 0 24px; }
+      to { translate: 0 -24px; }
+    }
+
+    .motion-drift {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@media print {
+  .motion-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .image-settle,
+  .page-enter,
+  .motion-menu,
+  .motion-sheet {
     animation: none;
     opacity: 1;
     transform: none;

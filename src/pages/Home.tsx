@@ -151,7 +151,7 @@ const Home = () => {
 
       {/* Pillars */}
       <section className="relative py-14 sm:py-24 bg-white overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-96 bg-dot-grid [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
+        <div className="motion-drift absolute inset-x-0 top-0 h-96 bg-dot-grid [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow={t.pillarsEyebrow}
@@ -159,14 +159,14 @@ const Home = () => {
             description={t.pillarsDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" data-reveal-group>
             {t.pillars.map((pillar, index) => {
               const Icon = PILLAR_ICONS[index];
               return (
                 <div
                   key={pillar.title}
-                  className="card-surface relative overflow-hidden p-6 sm:p-8 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="card-surface relative overflow-hidden p-6 sm:p-8"
+                  data-reveal
                 >
                   <span className="index-numeral absolute top-4 right-6 select-none" aria-hidden="true" data-index={String(index + 1).padStart(2, '0')} />
                   <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl mb-5 ${PILLAR_TONES[index]}`}>
@@ -186,7 +186,7 @@ const Home = () => {
           </div>
 
           {/* Cross-cutting: responsible use, ethics, RGPD */}
-          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-warm/25 bg-warm/5 p-6 sm:p-8 animate-fade-in-up animate-delay-300">
+          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-warm/25 bg-warm/5 p-6 sm:p-8" data-reveal>
             <div className="absolute inset-0 bg-dot-grid opacity-60" />
             <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-5">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-warm text-warm-foreground shadow-glow-warm">
@@ -225,8 +225,8 @@ const Home = () => {
             description={t.audienceDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="card-surface p-8 sm:p-10 animate-fade-in-up">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8" data-reveal-group>
+            <div className="card-surface p-8 sm:p-10" data-reveal>
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
                 <Building2 className="h-7 w-7" />
               </div>
@@ -237,7 +237,7 @@ const Home = () => {
               <p className="text-sm font-medium text-primary">{t.companyFoot}</p>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl bg-ia-navy p-8 sm:p-10 text-white shadow-card-hover animate-fade-in-up animate-delay-100">
+            <div className="relative overflow-hidden rounded-2xl bg-ia-navy p-8 sm:p-10 text-white shadow-card-hover" data-reveal>
               <div className="absolute inset-0 bg-dot-grid-dark" />
               <div className="relative">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 text-white mb-6">
@@ -257,8 +257,8 @@ const Home = () => {
       {/* Approach teaser */}
       <section className="py-14 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center" data-reveal-group>
+            <div className="lg:col-span-8" data-reveal>
               <div className="inline-flex items-center gap-2 mb-4 rounded-full bg-primary/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 {t.journeyBadge}
@@ -276,7 +276,7 @@ const Home = () => {
                 </Button>
               </Link>
             </div>
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-4" data-reveal>
               <div className="card-surface p-8 text-center">
                 <div className="font-display text-5xl font-bold text-gradient mb-2">2017</div>
                 <p className="text-sm text-muted-foreground">{t.year2017}</p>
@@ -298,15 +298,15 @@ const Home = () => {
             description={t.worksDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" data-reveal-group>
             {creations.map((c, index) => (
               <a
                 key={c.name}
                 href={c.url}
                 target="_blank"
                 rel="noopener"
-                className="card-surface group relative flex flex-col overflow-hidden animate-fade-in-up transition-shadow hover:shadow-card-hover"
-                style={{ animationDelay: `${index * 0.08}s` }}
+                className="card-surface group relative flex flex-col overflow-hidden transition-shadow hover:shadow-card-hover"
+                data-reveal
               >
                 <div className={`h-1.5 w-full bg-gradient-to-r ${c.accent}`} />
                 <div className="flex flex-1 flex-col p-6">
@@ -320,7 +320,7 @@ const Home = () => {
                   <p className="text-sm leading-relaxed text-muted-foreground flex-1">{c.description}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                     {t.discover}
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
                 </div>
               </a>
@@ -332,7 +332,7 @@ const Home = () => {
       {/* CTA */}
       <section className="relative py-14 sm:py-24 bg-ia-gradient text-white overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid-dark" />
-        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8" data-reveal="fade">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             {t.ctaTitle}
           </h2>

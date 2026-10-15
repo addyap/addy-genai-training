@@ -134,7 +134,7 @@ const APropos = () => {
       {/* Hero */}
       <section className="relative py-14 sm:py-24 bg-ia-navy text-white overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid-dark" />
-        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
+        <div className="motion-drift absolute -top-24 -left-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1.7fr_1fr] gap-10 lg:gap-16 items-start animate-fade-in-up">
             <div>
@@ -167,7 +167,7 @@ const APropos = () => {
                   width={960}
                   height={960}
                   loading="lazy"
-                  className="relative w-full aspect-square rounded-[1.5rem] object-cover ring-1 ring-white/15 shadow-2xl"
+                  className="image-settle relative w-full aspect-square rounded-[1.5rem] object-cover ring-1 ring-white/15 shadow-2xl"
                 />
               </div>
 
@@ -209,11 +209,11 @@ const APropos = () => {
             description={t.expertiseDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6" data-reveal-group>
             {t.expertise.map((item, index) => {
               const Icon = EXPERTISE_ICONS[index];
               return (
-                <div key={item.title} className="card-surface p-6 text-center animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div key={item.title} className="card-surface p-6 text-center" data-reveal>
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl mx-auto mb-4 ${EXPERTISE_TONES[index]}`}>
                     <Icon className="h-6 w-6" />
                   </div>

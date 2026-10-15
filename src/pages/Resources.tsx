@@ -252,9 +252,9 @@ const Resources = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" data-reveal-group>
             {t.promptLibrary.map((group) => (
-              <div key={group.tool} className="card-surface p-6">
+              <div key={group.tool} className="card-surface p-6" data-reveal>
                 <h3 className="font-display text-lg font-semibold text-foreground mb-4">{group.tool}</h3>
                 <div className="space-y-3">
                   {group.prompts.map((prompt) => (
@@ -276,8 +276,8 @@ const Resources = () => {
             description={t.toolsDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-            <Link to={lp('/generateur-programme')} className="card-surface p-6 sm:p-8 block hover:border-primary/30">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" data-reveal-group>
+            <Link to={lp('/generateur-programme')} className="card-surface p-6 sm:p-8 block hover:border-primary/30" data-reveal>
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
                 <Sparkles className="h-6 w-6" />
               </div>
@@ -287,7 +287,7 @@ const Resources = () => {
                 {t.tryIt} <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
-            <Link to={lp('/correction-email')} className="card-surface p-6 sm:p-8 block hover:border-primary/30">
+            <Link to={lp('/correction-email')} className="card-surface p-6 sm:p-8 block hover:border-primary/30" data-reveal>
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
                 <Wand2 className="h-6 w-6" />
               </div>
@@ -310,15 +310,15 @@ const Resources = () => {
             description={t.worksDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" data-reveal-group>
             {creations.map((c, index) => (
               <a
                 key={c.name}
                 href={c.url}
                 target="_blank"
                 rel="noopener"
-                className="card-surface group relative flex flex-col overflow-hidden animate-fade-in-up transition-shadow hover:shadow-card-hover"
-                style={{ animationDelay: `${index * 0.08}s` }}
+                className="card-surface group relative flex flex-col overflow-hidden transition-shadow hover:shadow-card-hover"
+                data-reveal
               >
                 <div className={`h-1.5 w-full bg-gradient-to-r ${c.accent}`} />
                 <div className="flex flex-1 flex-col p-6">
@@ -332,7 +332,7 @@ const Resources = () => {
                   <p className="text-sm leading-relaxed text-muted-foreground flex-1">{c.description}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                     {t.discover}
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
                 </div>
               </a>

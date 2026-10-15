@@ -128,11 +128,11 @@ const FAQ = () => {
 
       {/* FAQ */}
       <section className="py-14 sm:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6" data-reveal-group>
           {t.categories.map((cat, catIndex) => {
             const Icon = CATEGORY_ICONS[catIndex];
             return (
-              <div key={cat.title} className="card-surface p-6 sm:p-8 animate-fade-in-up" style={{ animationDelay: `${catIndex * 0.08}s` }}>
+              <div key={cat.title} className="card-surface p-6 sm:p-8" data-reveal>
                 <div className="flex items-center gap-4 mb-2">
                   <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${CATEGORY_TONES[catIndex]}`}>
                     <Icon className="h-5 w-5" />

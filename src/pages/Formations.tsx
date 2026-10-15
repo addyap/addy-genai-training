@@ -171,7 +171,7 @@ const Formations = () => {
       {/* Hero */}
       <section className="relative py-14 sm:py-24 bg-ia-navy text-white overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid-dark" />
-        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
+        <div className="motion-drift absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
         <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 mb-5 rounded-full bg-white/10 border border-white/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/80 animate-fade-in-up">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -200,14 +200,14 @@ const Formations = () => {
       {/* Services detail */}
       <section className="py-14 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" data-reveal-group>
             {t.services.map((service, index) => {
               const Icon = SERVICE_ICONS[index];
               return (
                 <div
                   key={service.title}
-                  className="card-surface relative overflow-hidden p-6 sm:p-8 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="card-surface relative overflow-hidden p-6 sm:p-8"
+                  data-reveal
                 >
                   <span className="index-numeral absolute top-4 right-6 select-none" aria-hidden="true" data-index={String(index + 1).padStart(2, '0')} />
                   <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl mb-5 ${SERVICE_TONES[index]}`}>
@@ -236,7 +236,7 @@ const Formations = () => {
           </div>
 
           {/* Cross-cutting: responsible use, ethics, RGPD */}
-          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-warm/25 bg-warm/5 p-6 sm:p-8">
+          <div className="mt-5 sm:mt-6 relative overflow-hidden rounded-2xl border border-warm/25 bg-warm/5 p-6 sm:p-8" data-reveal>
             <div className="absolute inset-0 bg-dot-grid opacity-60" />
             <div className="relative flex items-start gap-5">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-warm text-warm-foreground shadow-glow-warm">
@@ -273,14 +273,14 @@ const Formations = () => {
             description={t.formatsDesc}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6" data-reveal-group>
             {t.formats.map((format, index) => {
               const Icon = FORMAT_ICONS[index];
               return (
                 <div
                   key={format.title}
-                  className="card-surface p-6 sm:p-8 text-center animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="card-surface p-6 sm:p-8 text-center"
+                  data-reveal
                 >
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto mb-5">
                     <Icon className="h-7 w-7" />

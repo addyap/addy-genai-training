@@ -207,9 +207,9 @@ ${formData.message}`;
       {/* Contact Content */}
       <section className="py-14 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12" data-reveal-group>
             {/* Contact Form */}
-            <div className="animate-fade-in-up">
+            <div data-reveal>
               <div className="card-surface p-6 sm:p-8">
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-2">{t.formTitle}</h2>
                 <p className="text-muted-foreground mb-6">
@@ -255,7 +255,7 @@ ${formData.message}`;
             </div>
 
             {/* Contact Information */}
-            <div className="animate-fade-in-up animate-delay-200 space-y-6">
+            <div className="space-y-6" data-reveal>
               <div className="card-surface p-6 sm:p-8">
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-6">{t.infoTitle}</h2>
                 <div className="space-y-6">

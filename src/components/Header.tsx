@@ -35,6 +35,7 @@ const FORMATION_ICONS = { Globe, Sparkles, Settings } as const;
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFormationsOpen, setIsFormationsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const locale = useLocale();
   const t = strings[locale];
@@ -47,6 +48,14 @@ const Header = () => {
     setIsMenuOpen(false);
     setIsFormationsOpen(false);
   }, [location.pathname]);
+
+  // Header firms up once content scrolls under it — no shrink, no hide: the quote CTA stays put.
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -94,12 +103,18 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-white/85 backdrop-blur-xl">
+    <header
+      className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-base ease-out-quart ${
+        isScrolled
+          ? 'border-border bg-white/95 shadow-[0_8px_24px_-16px_rgba(20,11,46,0.18)]'
+          : 'border-border/70 bg-white/85'
+      }`}
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3.5">
           {/* Logo */}
           <Link to={lp('/')} className="flex items-center gap-3 group" onClick={handleNavClick} aria-label={t.homeAria}>
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow transition-transform duration-base ease-out-quart motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-3">
               <Sparkles className="h-5 w-5" />
             </span>
             <div className="hidden sm:block">
@@ -115,7 +130,7 @@ const Header = () => {
                 key={item.key}
                 to={lp(item.href)}
                 onClick={handleNavClick}
-                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                   isActive(item.href)
                     ? 'bg-primary/10 text-primary'
                     : 'text-foreground/70 hover:text-primary hover:bg-primary/5'
@@ -136,13 +151,13 @@ const Header = () => {
                 onClick={() => setIsFormationsOpen((o) => !o)}
                 aria-haspopup="true"
                 aria-expanded={isFormationsOpen}
-                className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors duration-200 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors duration-fast hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 {t.myTraining}
                 <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
               </button>
               {isFormationsOpen && (
-                <div className="absolute right-0 top-full mt-1 w-72 rounded-2xl border border-border/70 bg-white p-2 shadow-lg">
+                <div className="motion-menu absolute right-0 top-full mt-1 w-72 rounded-2xl border border-border/70 bg-white p-2 shadow-lg">
                   {FORMATIONS.map((f) => {
                     const Icon = FORMATION_ICONS[f.icon];
                     const content = (
@@ -222,7 +237,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div id="mobile-nav-menu" className="lg:hidden border-t border-border/70 bg-white">
+          <div id="mobile-nav-menu" className="motion-sheet lg:hidden border-t border-border/70 bg-white">
             <div className="px-2 pt-3 pb-4 space-y-1">
               {navigation.map((item) => (
                 <Link

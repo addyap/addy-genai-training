@@ -3,6 +3,26 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/ia/generateur-programme",
+      "destination": "https://www.antonyaddy.com/ia/ressources",
+      "permanent": true
+    },
+    {
+      "source": "/ia/correction-email",
+      "destination": "https://www.antonyaddy.com/ia/ressources",
+      "permanent": true
+    },
+    {
+      "source": "/ia/en/generateur-programme",
+      "destination": "https://www.antonyaddy.com/ia/en/ressources",
+      "permanent": true
+    },
+    {
+      "source": "/ia/en/correction-email",
+      "destination": "https://www.antonyaddy.com/ia/en/ressources",
+      "permanent": true
+    },
+    {
       "source": "/ia/contact",
       "destination": "https://www.antonyaddy.com/contact?sujet=ia",
       "permanent": true
@@ -28,16 +48,12 @@
       "permanent": true
     },
     {
-      "source": "/:path((?!ia(?:/|$)|api/|_vercel/).+)",
+      "source": "/:path((?!ia(?:/|$)|_vercel/).+)",
       "destination": "https://www.antonyaddy.com/ia/:path",
       "permanent": true
     }
   ],
   "rewrites": [
-    {
-      "source": "/ia/api/:path*",
-      "destination": "/api/:path*"
-    },
     {
       "source": "/ia",
       "destination": "/ia/index.html"

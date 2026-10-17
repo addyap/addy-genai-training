@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { ImageIcon, Workflow, FileSpreadsheet, Copy, Check, ArrowRight, ArrowUpRight, Sparkles, Wand2 } from 'lucide-react';
+import { ImageIcon, Workflow, FileSpreadsheet, Copy, Check, ArrowRight, ArrowUpRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
@@ -45,12 +45,6 @@ const CONTENT = {
       { tool: "Outlook / Gmail", prompts: ["Rédige une réponse professionnelle et cordiale à cet email, en refusant poliment la demande : [coller l'email]", "Résume les points d'action de ce fil de discussion en une liste à puces : [coller le fil]", "Rédige un email de relance poli pour une facture impayée depuis 15 jours"] },
       { tool: "PowerPoint / Slides", prompts: ["Propose un plan de présentation en 6 slides sur le sujet suivant : [sujet]", "Reformule ce texte de slide pour qu'il tienne en 3 puces courtes : [coller le texte]", "Suggère une accroche percutante pour ouvrir une présentation sur [sujet]"] },
     ],
-    toolsEyebrow: 'Outils en direct',
-    toolsTitle: 'Deux outils IA à tester tout de suite',
-    toolsDesc: "Des démonstrations interactives, pas seulement des guides — le texte que vous saisissez est envoyé à Claude (Anthropic) pour générer une réponse",
-    genTitle: 'Générateur de programme', genDesc: "Décrivez votre équipe et votre besoin, obtenez un aperçu de programme en quelques secondes.",
-    corrTitle: "Correcteur d'email anglais", corrDesc: "Collez un email professionnel, obtenez une version corrigée et une explication des améliorations.",
-    tryIt: 'Essayer',
     worksEyebrow: 'Réalisations',
     worksTitle: "Des plateformes que j'ai conçues avec l'IA",
     worksDesc: "Au-delà des démonstrations : ces plateformes d'apprentissage de l'anglais, je les ai imaginées, développées et mises en ligne moi-même, en m'appuyant sur l'IA générative.",
@@ -96,12 +90,6 @@ const CONTENT = {
       { tool: "Outlook / Gmail", prompts: ["Draft a professional, cordial reply to this email, politely declining the request: [paste the email]", "Summarise the action points from this thread as a bullet list: [paste the thread]", "Draft a polite follow-up email for an invoice unpaid for 15 days"] },
       { tool: "PowerPoint / Slides", prompts: ["Suggest a 6-slide presentation outline on the following topic: [topic]", "Rewrite this slide text so it fits into 3 short bullets: [paste the text]", "Suggest a punchy hook to open a presentation on [topic]"] },
     ],
-    toolsEyebrow: 'Live tools',
-    toolsTitle: 'Two AI tools to try right now',
-    toolsDesc: "Interactive demos, not just guides — the text you enter is sent to Claude (Anthropic) to generate a response",
-    genTitle: 'Programme generator', genDesc: "Describe your team and your need, and get a programme outline in seconds.",
-    corrTitle: 'English email corrector', corrDesc: "Paste a professional email and get a corrected version with an explanation of the improvements.",
-    tryIt: 'Try it',
     worksEyebrow: 'Work',
     worksTitle: "Platforms I built with AI",
     worksDesc: "Beyond the demos: these English-learning platforms — I imagined, built and shipped them myself, with the help of generative AI.",
@@ -267,39 +255,6 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Live tools */}
-      <section className="py-14 sm:py-24 bg-secondary/40">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow={t.toolsEyebrow}
-            title={t.toolsTitle}
-            description={t.toolsDesc}
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" data-reveal-group>
-            <Link to={lp('/generateur-programme')} className="card-surface p-6 sm:p-8 block hover:border-primary/30" data-reveal>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
-                <Sparkles className="h-6 w-6" />
-              </div>
-              <h3 className="font-display text-lg font-semibold text-foreground mb-2">{t.genTitle}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t.genDesc}</p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                {t.tryIt} <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
-            <Link to={lp('/correction-email')} className="card-surface p-6 sm:p-8 block hover:border-primary/30" data-reveal>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
-                <Wand2 className="h-6 w-6" />
-              </div>
-              <h3 className="font-display text-lg font-semibold text-foreground mb-2">{t.corrTitle}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">{t.corrDesc}</p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                {t.tryIt} <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Réalisations — plateformes construites avec l'IA */}
       <section className="py-14 sm:py-24 bg-white">

@@ -13,8 +13,6 @@ import Formations from "./pages/Formations";
 import FAQ from "./pages/FAQ";
 import Resources from "./pages/Resources";
 import Diagnostic from "./pages/Diagnostic";
-import GenerateurProgramme from "./pages/GenerateurProgramme";
-import CorrectionEmail from "./pages/CorrectionEmail";
 import APropos from "./pages/APropos";
 import MentionsLegales from "./pages/MentionsLegales";
 import NotFound from "./pages/NotFound";
@@ -71,8 +69,6 @@ const routeList = [
   { path: '/faq', element: <FAQ /> },
   { path: '/ressources', element: <Resources /> },
   { path: '/diagnostic', element: <Diagnostic /> },
-  { path: '/generateur-programme', element: <GenerateurProgramme /> },
-  { path: '/correction-email', element: <CorrectionEmail /> },
   { path: '/a-propos', element: <APropos /> },
   { path: '/mentions-legales', element: <MentionsLegales /> },
 ];

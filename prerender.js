@@ -16,8 +16,6 @@ const frRoutes = [
   '/faq',
   '/ressources',
   '/diagnostic',
-  '/generateur-programme',
-  '/correction-email',
   '/a-propos',
   '/mentions-legales',
 ];

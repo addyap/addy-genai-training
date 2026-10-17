@@ -8,7 +8,9 @@ const toAbsolute = (p) => path.resolve(__dirname, p);
 // Pages are rendered and written under the /ia base path (see vite.config.ts).
 const BASE_PATH = '/ia';
 const template = fs.readFileSync(toAbsolute(`dist${BASE_PATH}/index.html`), 'utf-8');
-const { render } = await import('./dist/server/entry-server.js');
+const { render, preloadAllPages } = await import('./dist/server/entry-server.js');
+// Lazy page chunks must be loaded before renderToString, which cannot wait for them.
+await preloadAllPages();
 
 const frRoutes = [
   '/',

@@ -78,7 +78,7 @@ const Footer = () => {
 
             {/* Mes formations — cross-domain links */}
             <div className="mt-6">
-              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">{t.myTraining}</h3>
+              <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">{t.myTraining}</h2>
               <ul className="space-y-2">
                 {FORMATIONS.map((f) => (
                   <li key={f.key}>
@@ -101,7 +101,7 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="md:col-span-3">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.navigation}</h3>
+            <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.navigation}</h2>
             <ul className="space-y-3">
               {t.links.map((link) => (
                 <li key={link.to}>
@@ -115,7 +115,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="md:col-span-4">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.contact}</h3>
+            <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.contact}</h2>
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/70">
                 <Mail className="h-4 w-4 text-[#f6a463] shrink-0" />

@@ -4,7 +4,7 @@ import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, PERSON_REF } from '@/lib/site';
 
 const SERVICE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const SERVICE_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -113,13 +113,7 @@ const CONTENT = {
   },
 } satisfies Record<Locale, unknown>;
 
-const courseProvider = {
-  "@type": "Person",
-  "name": "Antony Addy",
-  "jobTitle": "Formateur en IA Générative",
-  "url": "https://www.antonyaddy.com/ia",
-  "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
-};
+const courseProvider = PERSON_REF;
 
 const buildJsonLd = (locale: Locale, t: typeof CONTENT['fr']) => ({
   "@context": "https://schema.org",
@@ -214,9 +208,9 @@ const Formations = () => {
                   <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl mb-5 ${SERVICE_TONES[index]}`}>
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="relative font-display text-xl font-semibold text-foreground mb-2 pr-10">{service.title}</h3>
+                  <h2 className="relative font-display text-xl font-semibold text-foreground mb-2 pr-10">{service.title}</h2>
                   <p className="relative text-muted-foreground mb-6">{service.description}</p>
-                  <p className="relative text-xs font-semibold uppercase tracking-wide text-muted-foreground/70 mb-3">{t.ableTo}</p>
+                  <p className="relative text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">{t.ableTo}</p>
                   <ul className="relative space-y-2.5">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start text-sm text-muted-foreground">
@@ -244,9 +238,9 @@ const Formations = () => {
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">{t.responsible.title}</h3>
+                <h2 className="font-display text-xl font-semibold text-foreground mb-2">{t.responsible.title}</h2>
                 <p className="text-muted-foreground mb-6">{t.responsible.description}</p>
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground/70 mb-3">{t.ableTo}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">{t.ableTo}</p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5 mb-5">
                   {t.responsible.features.map((feature) => (
                     <li key={feature} className="flex items-start text-sm text-muted-foreground">
@@ -286,7 +280,7 @@ const Formations = () => {
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto mb-5">
                     <Icon className="h-7 w-7" />
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-foreground mb-3">{format.title}</h3>
+                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">{format.title}</h2>
                   <p className="text-muted-foreground text-sm leading-relaxed">{format.description}</p>
                 </div>
               );

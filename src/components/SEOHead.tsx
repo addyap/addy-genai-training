@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { getLocaleFromPath, canonicalPath, localizePath } from '../i18n';
-import { SITE_URL, siteUrl } from '@/lib/site';
+import { SITE_URL, siteUrl, PERSON_REF, BUSINESS_REF } from '@/lib/site';
 
 interface SEOHeadProps {
   title?: string;
@@ -38,16 +38,8 @@ const SEOHead = ({
     "name": "Antony Addy — Formation IA Générative",
     "url": SITE_URL,
     "inLanguage": "fr",
-    "author": {
-      "@type": "Person",
-      "name": "Antony Addy",
-      "jobTitle": "Formateur en IA Générative",
-      "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Antony Addy Formation"
-      }
-    }
+    "author": PERSON_REF,
+    "publisher": BUSINESS_REF
   };
 
   const structuredData = jsonLd || defaultJsonLd;

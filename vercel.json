@@ -65,6 +65,24 @@
   ],
   "headers": [
     {
+      "source": "/ia",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.antonyaddy.com; font-src 'self'; connect-src 'self' https://gateway.umami.is https://cloud.umami.is; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests"
+        }
+      ]
+    },
+    {
+      "source": "/ia/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.antonyaddy.com; font-src 'self'; connect-src 'self' https://gateway.umami.is https://cloud.umami.is; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests"
+        }
+      ]
+    },
+    {
       "source": "/ia/assets/(.*)",
       "headers": [
         {

@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import { BASE_PATH } from './lib/site';
+import { preloadPage } from './routes';
 import './index.css';
 
 const root = document.getElementById("root")!;
@@ -15,8 +16,9 @@ const app = (
   </HelmetProvider>
 );
 
-if (import.meta.env.PROD) {
-  hydrateRoot(root, app);
+if (import.meta.env.PROD && !root.hasAttribute('data-not-found')) {
+  // The prerendered page is only hydratable once its chunk is in (see lib/lazy-page.tsx).
+  preloadPage(window.location.pathname.slice(BASE_PATH.length) || '/').then(() => hydrateRoot(root, app));
 } else {
   createRoot(root).render(app);
 }

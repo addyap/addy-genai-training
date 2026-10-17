@@ -62,5 +62,16 @@
       "source": "/ia/(.*)",
       "destination": "/ia/index.html"
     }
+  ],
+  "headers": [
+    {
+      "source": "/ia/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
   ]
 }

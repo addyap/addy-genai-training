@@ -16,7 +16,7 @@ const app = (
   </HelmetProvider>
 );
 
-if (import.meta.env.PROD) {
+if (import.meta.env.PROD && !root.hasAttribute('data-not-found')) {
   // The prerendered page is only hydratable once its chunk is in (see lib/lazy-page.tsx).
   preloadPage(window.location.pathname.slice(BASE_PATH.length) || '/').then(() => hydrateRoot(root, app));
 } else {

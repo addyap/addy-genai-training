@@ -104,7 +104,7 @@ const Diagnostic = () => {
       <section className="relative py-14 sm:py-20 bg-warm/5 overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid" />
         <div className="relative max-w-3xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 mb-5 rounded-full bg-warm/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-warm animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 mb-5 rounded-full bg-warm/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-warm-deep animate-fade-in-up">
             <span className="h-1.5 w-1.5 rounded-full bg-warm" />
             {t.badge}
           </div>
@@ -117,14 +117,14 @@ const Diagnostic = () => {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 bg-white">
+      <section className="py-14 sm:py-20 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {!submitted ? (
             <div className="space-y-6">
               {t.questions.map((q, index) => (
                 <div key={q.id} className="card-surface p-6 sm:p-8">
                   <p id={`question-${q.id}`} className="font-display text-lg font-semibold text-foreground mb-4">
-                    <span className="text-warm mr-2">{index + 1}.</span>{q.question}
+                    <span className="text-warm-deep mr-2">{index + 1}.</span>{q.question}
                   </p>
                   <div role="group" aria-labelledby={`question-${q.id}`} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {q.options.map((opt) => (
@@ -161,7 +161,7 @@ const Diagnostic = () => {
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-warm text-warm-foreground shadow-glow-warm mx-auto mb-6">
                 <ShieldCheck className="h-8 w-8" />
               </div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-warm mb-2">{score} / 12</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-warm-deep mb-2">{score} / 12</p>
               <h2 className="font-display text-3xl font-bold text-foreground mb-4">{band.label}</h2>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-8">{band.message}</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">

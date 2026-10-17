@@ -24,12 +24,13 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+				display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+				mono: ['ui-monospace', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
 				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
 			boxShadow: {
-				card: '0 1px 2px rgba(20, 11, 46, 0.04), 0 1px 3px rgba(20, 11, 46, 0.06)',
-				'card-hover': '0 4px 12px rgba(20, 11, 46, 0.06), 0 12px 32px -8px rgba(124, 92, 240, 0.18)',
+				card: '0 1px 2px rgba(17, 23, 49, 0.04), 0 1px 3px rgba(17, 23, 49, 0.06)',
+				'card-hover': '0 4px 12px rgba(17, 23, 49, 0.06), 0 12px 32px -8px rgba(85, 59, 155, 0.18)',
 				glow: '0 8px 24px -8px hsl(var(--primary) / 0.55)',
 				'glow-lg': '0 12px 32px -6px hsl(var(--primary) / 0.65)',
 				'glow-warm': '0 8px 24px -8px hsl(var(--ia-amber) / 0.55)',

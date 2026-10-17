@@ -53,7 +53,7 @@ const SOURCE: CreationSource[] = [
     },
   },
   {
-    name: 'TOEIC Prep',
+    name: 'ToeicPath',
     url: 'https://www.antonyaddy.com/toeic',
     accent: 'from-amber-500 to-orange-600',
     tag: { fr: 'Préparation TOEIC', en: 'TOEIC preparation' },
@@ -73,7 +73,7 @@ const SOURCE: CreationSource[] = [
     },
   },
   {
-    name: "Entraîneur d'anglais oral IA",
+    name: 'SpeakUp AI',
     url: 'https://speak.antonyaddy.com',
     accent: 'from-cyan-500 to-sky-600',
     tag: { fr: 'Expression orale', en: 'Speaking practice' },

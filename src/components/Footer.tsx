@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Mail, MessageCircle, MapPin, Globe, Settings, ExternalLink } from 'lucide-react';
+import { Mail, MessageCircle, MapPin } from 'lucide-react';
 import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, type Locale } from '@/i18n';
 import SiteLink from './SiteLink';
-
-const FOOTER_FORMATION_ICONS = { Globe, Sparkles, Settings } as const;
+import { asset } from '@/lib/site';
 
 const strings: Record<Locale, {
   role: string; tagline: string; myTraining: string; navigation: string; contact: string;
@@ -14,7 +13,7 @@ const strings: Record<Locale, {
   fr: {
     role: 'Formateur en IA Générative',
     tagline: "Formations pratiques en intelligence artificielle générative pour entreprises et indépendants, animées par un formateur professionnel d'adultes certifié d'État — en français ou en anglais.",
-    myTraining: 'Mes formations',
+    myTraining: 'Mes activités',
     navigation: 'Navigation',
     contact: 'Contact',
     rights: 'Tous droits réservés.',
@@ -33,7 +32,7 @@ const strings: Record<Locale, {
   en: {
     role: 'Generative AI Trainer',
     tagline: 'Practical generative-AI training for companies and independent professionals, delivered by a state-certified adult-education trainer — in French or English.',
-    myTraining: 'My training',
+    myTraining: 'What I do',
     navigation: 'Navigation',
     contact: 'Contact',
     rights: 'All rights reserved.',
@@ -70,13 +69,8 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-5">
             <Link to={lp('/')} onClick={handleNavClick} className="flex items-center gap-3 mb-5 w-fit hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-lg">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow">
-                <Sparkles className="h-5 w-5" />
-              </span>
-              <div>
-                <div className="font-display text-xl font-semibold text-white">Antony Addy</div>
-                <div className="text-sm text-white/60">{t.role}</div>
-              </div>
+              <img src={asset('/brand/antony-addy-logo-white.svg')} alt="Antony Addy" width={125} height={64} loading="lazy" className="h-14 w-auto" />
+              <span className="border-l border-white/20 pl-3 text-sm text-white/60">{t.role}</span>
             </Link>
             <p className="text-white/65 max-w-sm leading-relaxed">
               {t.tagline}
@@ -85,31 +79,22 @@ const Footer = () => {
             {/* Mes formations — cross-domain links */}
             <div className="mt-6">
               <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-3">{t.myTraining}</h3>
-              <ul className="flex flex-wrap gap-x-5 gap-y-2">
-                {FORMATIONS.map((f) => {
-                  const Icon = FOOTER_FORMATION_ICONS[f.icon];
-                  return (
-                    <li key={f.key}>
-                      {f.external ? (
-                        <a
-                          href={f.href}
-                          target="_blank"
-                          rel="noopener"
-                          className="inline-flex items-center gap-1.5 text-white/70 hover:text-primary transition-colors"
-                        >
-                          <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          {f.navLabel}
-                          <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                        </a>
-                      ) : (
-                        <span className="inline-flex items-center gap-1.5 text-white font-medium">
-                          <Icon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                          {f.navLabel}
-                        </span>
-                      )}
-                    </li>
-                  );
-                })}
+              <ul className="space-y-2">
+                {FORMATIONS.map((f) => (
+                  <li key={f.key}>
+                    {f.current ? (
+                      <span className="inline-flex items-center gap-2.5 font-medium text-white" aria-current="page">
+                        <span className="text-xs font-semibold" style={{ color: '#a995e6' }}>{f.number}</span>
+                        {f.label[locale]}
+                      </span>
+                    ) : (
+                      <a href={f.href} className="inline-flex items-center gap-2.5 text-white/70 hover:text-white transition-colors">
+                        <span className="text-xs font-semibold text-white/45">{f.number}</span>
+                        {f.label[locale]}
+                      </a>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -120,7 +105,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {t.links.map((link) => (
                 <li key={link.to}>
-                  <SiteLink to={link.to} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
+                  <SiteLink to={link.to} onClick={handleNavClick} className="text-white/70 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
                     {link.label}
                   </SiteLink>
                 </li>
@@ -133,15 +118,15 @@ const Footer = () => {
             <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white/50 mb-5">{t.contact}</h3>
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/70">
-                <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:formations@antonyaddy.com" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">formations@antonyaddy.com</a>
+                <Mail className="h-4 w-4 text-[#f6a463] shrink-0" />
+                <a href="mailto:formations@antonyaddy.com" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">formations@antonyaddy.com</a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
-                <MessageCircle className="h-4 w-4 text-primary shrink-0" />
-                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only">{t.newTab}</span></a>
+                <MessageCircle className="h-4 w-4 text-[#f6a463] shrink-0" />
+                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only">{t.newTab}</span></a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
-                <MapPin className="h-4 w-4 text-primary shrink-0" />
+                <MapPin className="h-4 w-4 text-[#f6a463] shrink-0" />
                 <span>Fréjus, France</span>
               </li>
             </ul>

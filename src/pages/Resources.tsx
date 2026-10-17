@@ -119,7 +119,7 @@ const PromptCard = ({ prompt, copyToast, copyFail }: { prompt: string; copyToast
   return (
     <button
       onClick={handleCopy}
-      className="group w-full text-left flex items-start gap-3 rounded-xl border border-border bg-white p-4 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300"
+      className="group w-full text-left flex items-start gap-3 rounded-xl border border-border bg-card p-4 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300"
     >
       <span className="flex-1 text-sm text-foreground/80 leading-relaxed">{prompt}</span>
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
@@ -173,10 +173,10 @@ const Resources = () => {
       </section>
 
       {/* Guide: prompt visuel */}
-      <section id="prompt-visuel" className="py-14 sm:py-24 bg-white scroll-mt-20">
+      <section id="prompt-visuel" className="py-14 sm:py-24 bg-background scroll-mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-8">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-fuchsia-500/10 text-fuchsia-600">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <ImageIcon className="h-6 w-6" />
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground">{t.visualTitle}</h2>
@@ -205,7 +205,7 @@ const Resources = () => {
       <section id="automatisation" className="py-14 sm:py-24 bg-secondary/40 scroll-mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-8">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-warm/20 text-warm-deep">
               <Workflow className="h-6 w-6" />
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground">{t.autoTitle}</h2>
@@ -228,10 +228,10 @@ const Resources = () => {
       </section>
 
       {/* Prompt cheat-sheet */}
-      <section id="bureautique" className="py-14 sm:py-24 bg-white scroll-mt-20">
+      <section id="bureautique" className="py-14 sm:py-24 bg-background scroll-mt-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-8">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-500/10 text-sky-600">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-foreground/[0.07] text-foreground">
               <FileSpreadsheet className="h-6 w-6" />
             </div>
             <div>
@@ -257,7 +257,7 @@ const Resources = () => {
 
 
       {/* Réalisations — plateformes construites avec l'IA */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-14 sm:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow={t.worksEyebrow}

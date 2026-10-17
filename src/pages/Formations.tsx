@@ -7,7 +7,7 @@ import { useLocale, localizePath, useT, type Locale } from '@/i18n';
 import { CONTACT_URL } from '@/lib/site';
 
 const SERVICE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
-const SERVICE_TONES = ['bg-primary/10 text-primary', 'bg-fuchsia-500/10 text-fuchsia-600', 'bg-indigo-500/10 text-indigo-600', 'bg-sky-500/10 text-sky-600'];
+const SERVICE_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
 const FORMAT_ICONS = [Building2, Laptop, Target];
 
 const CONTENT = {
@@ -199,7 +199,7 @@ const Formations = () => {
       </section>
 
       {/* Services detail */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-14 sm:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" data-reveal-group>
             {t.services.map((service, index) => {
@@ -220,7 +220,7 @@ const Formations = () => {
                   <ul className="relative space-y-2.5">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start text-sm text-muted-foreground">
-                        <CheckCircle2 className="h-4 w-4 text-warm mr-2.5 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-warm-deep mr-2.5 mt-0.5 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -250,12 +250,12 @@ const Formations = () => {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5 mb-5">
                   {t.responsible.features.map((feature) => (
                     <li key={feature} className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-warm mr-2.5 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-warm-deep mr-2.5 mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
                 </ul>
-                <Link to={lp('/diagnostic')} className="inline-flex items-center gap-1.5 text-sm font-medium text-warm hover:underline">
+                <Link to={lp('/diagnostic')} className="inline-flex items-center gap-1.5 text-sm font-medium text-warm-deep hover:underline">
                   {t.responsible.cta}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
@@ -296,7 +296,7 @@ const Formations = () => {
       </section>
 
       {/* Institutional / funded-training format */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-14 sm:py-24 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow={t.fundingEyebrow}
@@ -308,7 +308,7 @@ const Formations = () => {
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
               {t.fundingChecklist.map((item) => (
                 <li key={item} className="flex items-start text-foreground/80">
-                  <CheckCircle2 className="h-5 w-5 text-warm mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 text-warm-deep mr-3 mt-0.5 flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

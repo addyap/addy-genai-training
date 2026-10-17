@@ -9,7 +9,7 @@ import { useLocale, localizePath, useT, type Locale } from '@/i18n';
 import { CONTACT_URL } from '@/lib/site';
 
 const PILLAR_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
-const PILLAR_TONES = ['bg-primary/10 text-primary', 'bg-fuchsia-500/10 text-fuchsia-600', 'bg-indigo-500/10 text-indigo-600', 'bg-sky-500/10 text-sky-600'];
+const PILLAR_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
 
 const CONTENT = {
   fr: {
@@ -104,7 +104,7 @@ const buildJsonLd = (locale: Locale) => ({
     ? "Generative-AI training for companies and independent professionals, delivered in French or English"
     : "Formations en intelligence artificielle générative pour entreprises et indépendants, animées en français ou en anglais",
   "url": "https://www.antonyaddy.com/ia",
-  "logo": "https://www.antonyaddy.com/ia/favicon.svg",
+  "logo": "https://www.antonyaddy.com/brand/antony-addy-logo.png",
   "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
   "email": "formations@antonyaddy.com",
   "telephone": "+33649829826",
@@ -151,7 +151,7 @@ const Home = () => {
       <HeroSection />
 
       {/* Pillars */}
-      <section className="relative py-14 sm:py-24 bg-white overflow-hidden">
+      <section className="relative py-14 sm:py-24 bg-background overflow-hidden">
         <div className="motion-drift absolute inset-x-0 top-0 h-96 bg-dot-grid [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -198,7 +198,7 @@ const Home = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                   {t.responsibleBody}
                 </p>
-                <Link to={lp('/diagnostic')} onClick={handleNavClick} className="inline-flex items-center gap-1.5 text-sm font-medium text-warm hover:underline">
+                <Link to={lp('/diagnostic')} onClick={handleNavClick} className="inline-flex items-center gap-1.5 text-sm font-medium text-warm-deep hover:underline">
                   {t.responsibleCta}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
@@ -256,7 +256,7 @@ const Home = () => {
       </section>
 
       {/* Approach teaser */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-14 sm:py-24 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center" data-reveal-group>
             <div className="lg:col-span-8" data-reveal>

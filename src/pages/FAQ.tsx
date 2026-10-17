@@ -7,7 +7,7 @@ import { useLocale, localizePath, useT, type Locale } from '@/i18n';
 import { CONTACT_URL } from '@/lib/site';
 
 const CATEGORY_ICONS = [Wallet, CalendarClock, Layers, Info];
-const CATEGORY_TONES = ['bg-warm/10 text-warm', 'bg-primary/10 text-primary', 'bg-indigo-500/10 text-indigo-600', 'bg-fuchsia-500/10 text-fuchsia-600'];
+const CATEGORY_TONES = ['bg-warm/20 text-warm-deep', 'bg-primary/10 text-primary', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
 
 const CONTENT = {
   fr: {
@@ -128,7 +128,7 @@ const FAQ = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-14 sm:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6" data-reveal-group>
           {t.categories.map((cat, catIndex) => {
             const Icon = CATEGORY_ICONS[catIndex];

@@ -4,7 +4,7 @@ import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL, asset } from '@/lib/site';
+import { CONTACT_URL, asset, PERSON_REF } from '@/lib/site';
 
 const EXPERTISE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const EXPERTISE_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -100,14 +100,12 @@ const buildJsonLd = (locale: Locale) => ({
     ? "State-certified adult-education trainer and daily generative-AI user, offering practical training in France, delivered in French or English"
     : "Formateur Professionnel d'Adultes certifié d'État, utilisateur quotidien de l'IA générative, proposant des formations pratiques en France, animées en français ou en anglais",
   "provider": {
-    "@type": "Person",
-    "name": "Antony Addy",
+    ...PERSON_REF,
     "jobTitle": locale === 'en' ? "Generative AI Trainer" : "Formateur en IA Générative",
     "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
     "email": "formations@antonyaddy.com",
     "knowsLanguage": ["fr", "en"],
     "knowsAbout": ["Generative AI", "ChatGPT", "Prompt engineering", "Microsoft Copilot", "AI automation", "Professional training"],
-    "sameAs": ["https://www.linkedin.com/in/antonyaddy/"]
   },
   "serviceType": "Formation IA Générative",
   "areaServed": ["France"],

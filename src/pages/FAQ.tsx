@@ -4,7 +4,7 @@ import SEOHead from '../components/SEOHead';
 import { Button } from '../components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, BUSINESS_REF } from '@/lib/site';
 
 const CATEGORY_ICONS = [Wallet, CalendarClock, Layers, Info];
 const CATEGORY_TONES = ['bg-warm/20 text-warm-deep', 'bg-primary/10 text-primary', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -91,6 +91,7 @@ const FAQ = () => {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "publisher": BUSINESS_REF,
     "inLanguage": locale,
     "mainEntity": t.categories.flatMap((cat) =>
       cat.items.map((item) => ({

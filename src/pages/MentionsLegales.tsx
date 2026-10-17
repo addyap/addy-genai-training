@@ -1,5 +1,6 @@
 import SEOHead from '../components/SEOHead';
 import { useLocale, useT, type Locale } from '@/i18n';
+import { BUSINESS_REF } from '@/lib/site';
 
 const CONTENT = {
   fr: {
@@ -63,6 +64,7 @@ const MentionsLegales = () => {
   const legalJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "publisher": BUSINESS_REF,
     "name": t.h1,
     "description": t.seoDesc,
     "inLanguage": locale,

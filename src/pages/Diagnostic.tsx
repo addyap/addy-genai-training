@@ -4,7 +4,7 @@ import { ShieldCheck, ArrowRight, RotateCcw } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, BUSINESS_REF } from '@/lib/site';
 
 interface Question {
   id: string;
@@ -87,6 +87,7 @@ const Diagnostic = () => {
   const diagnosticJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "publisher": BUSINESS_REF,
     "name": t.h1,
     "description": t.seoDesc,
     "inLanguage": locale,

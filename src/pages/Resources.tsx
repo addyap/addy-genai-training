@@ -7,6 +7,7 @@ import { Button } from '../components/ui/button';
 import { useToast } from '../hooks/use-toast';
 import { getCreations } from '../lib/creations';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { BUSINESS_REF } from '@/lib/site';
 
 const CONTENT = {
   fr: {
@@ -141,6 +142,7 @@ const Resources = () => {
   const resourcesJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    "publisher": BUSINESS_REF,
     "name": t.h1,
     "description": t.seoDesc,
     "inLanguage": locale,

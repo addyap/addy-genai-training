@@ -6,7 +6,7 @@ import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { getCreations } from '../lib/creations';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, PERSON_REF, BUSINESS_REF } from '@/lib/site';
 
 const PILLAR_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const PILLAR_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -109,14 +109,8 @@ const buildJsonLd = (locale: Locale) => ({
   "email": "formations@antonyaddy.com",
   "telephone": "+33649829826",
   "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
-  "founder": {
-    "@type": "Person",
-    "name": "Antony Addy",
-    "jobTitle": locale === 'en' ? "Generative AI Trainer" : "Formateur en IA Générative",
-    "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
-    "knowsLanguage": ["fr", "en"],
-    "sameAs": ["https://www.linkedin.com/in/antonyaddy/"]
-  },
+  "founder": PERSON_REF,
+  "parentOrganization": BUSINESS_REF,
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Fréjus",

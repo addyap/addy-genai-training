@@ -4,7 +4,7 @@ import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, PERSON_REF } from '@/lib/site';
 
 const SERVICE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const SERVICE_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -113,13 +113,7 @@ const CONTENT = {
   },
 } satisfies Record<Locale, unknown>;
 
-const courseProvider = {
-  "@type": "Person",
-  "name": "Antony Addy",
-  "jobTitle": "Formateur en IA Générative",
-  "url": "https://www.antonyaddy.com/ia",
-  "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
-};
+const courseProvider = PERSON_REF;
 
 const buildJsonLd = (locale: Locale, t: typeof CONTENT['fr']) => ({
   "@context": "https://schema.org",

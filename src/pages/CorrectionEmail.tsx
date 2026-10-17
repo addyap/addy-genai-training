@@ -7,6 +7,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { BASE_PATH, CONTACT_URL } from '@/lib/site';
 
 interface EmailResult {
   corrected_text: string;
@@ -80,7 +81,7 @@ const CorrectionEmail = () => {
     setResult(null);
 
     try {
-      const res = await fetch('/api/correct-email', {
+      const res = await fetch(`${BASE_PATH}/api/correct-email`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ text, locale }),
@@ -216,12 +217,12 @@ const CorrectionEmail = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   {t.disclaimer}
                 </p>
-                <Link to={lp('/contact')}>
+                <a href={CONTACT_URL}>
                   <Button size="lg">
                     {t.talkTraining}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           )}

@@ -3,7 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // https://vitejs.dev/config/
+// Served at www.antonyaddy.com/ia: the main site forwards /ia/* to this
+// project. The build lands in dist/ia so files sit at the same paths as the
+// URLs. Keep in sync with BASE_PATH in src/lib/site.ts.
 export default defineConfig(({ isSsrBuild }) => ({
+  base: "/ia/",
   server: {
     host: "::",
     port: 8095,
@@ -18,6 +22,7 @@ export default defineConfig(({ isSsrBuild }) => ({
     noExternal: ["react-helmet-async"],
   },
   build: {
+    outDir: "dist/ia",
     rollupOptions: isSsrBuild
       ? undefined
       : {

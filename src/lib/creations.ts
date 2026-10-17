@@ -34,7 +34,7 @@ const SOURCE: CreationSource[] = [
   },
   {
     name: 'Grammatica',
-    url: 'https://grammatica.antonyaddy.com',
+    url: 'https://www.antonyaddy.com/grammatica',
     accent: 'from-emerald-500 to-teal-600',
     tag: { fr: 'Guide multilingue', en: 'Multilingual guide' },
     description: {
@@ -44,7 +44,7 @@ const SOURCE: CreationSource[] = [
   },
   {
     name: 'ListenUp',
-    url: 'https://listening.antonyaddy.com',
+    url: 'https://www.antonyaddy.com/listening',
     accent: 'from-violet-500 to-purple-600',
     tag: { fr: 'Compréhension orale', en: 'Listening skills' },
     description: {
@@ -54,7 +54,7 @@ const SOURCE: CreationSource[] = [
   },
   {
     name: 'TOEIC Prep',
-    url: 'https://toeic.antonyaddy.com',
+    url: 'https://www.antonyaddy.com/toeic',
     accent: 'from-amber-500 to-orange-600',
     tag: { fr: 'Préparation TOEIC', en: 'TOEIC preparation' },
     description: {

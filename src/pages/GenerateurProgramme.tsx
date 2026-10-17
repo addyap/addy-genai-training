@@ -6,6 +6,7 @@ import { Button } from '../components/ui/button';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { BASE_PATH, CONTACT_URL } from '@/lib/site';
 
 interface ProgramResult {
   titre: string;
@@ -70,7 +71,7 @@ const GenerateurProgramme = () => {
     setResult(null);
 
     try {
-      const res = await fetch('/api/generate-program', {
+      const res = await fetch(`${BASE_PATH}/api/generate-program`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ context, locale }),
@@ -199,12 +200,12 @@ const GenerateurProgramme = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   {t.disclaimer}
                 </p>
-                <Link to={lp('/contact')}>
+                <a href={CONTACT_URL}>
                   <Button size="lg">
                     {t.refine}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           )}

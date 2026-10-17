@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useLocale, localizePath, type Locale } from '@/i18n';
+import { CONTACT_URL } from '@/lib/site';
 
 /**
  * Signature hero — « De l'intention à l'intelligence ».
@@ -380,12 +381,12 @@ const HeroSection = () => {
 
         {/* One primary action; training is the secondary path; WhatsApp a quiet direct line */}
         <div className="hero-cta hero-reveal mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-4 items-stretch sm:items-center">
-          <Link to={lp('/contact')} onClick={handleNavClick} onPointerEnter={warmOn} onPointerLeave={warmOff}>
+          <a href={CONTACT_URL} onClick={handleNavClick} onPointerEnter={warmOn} onPointerLeave={warmOff}>
             <Button size="lg" className="w-full sm:w-auto text-base">
               {t.quote}
               <ArrowRight className="h-4 w-4" />
             </Button>
-          </Link>
+          </a>
 
           <Link to={lp('/formations')} onClick={handleNavClick}>
             <Button

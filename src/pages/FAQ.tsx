@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead';
 import { Button } from '../components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { CONTACT_URL } from '@/lib/site';
 
 const CATEGORY_ICONS = [Wallet, CalendarClock, Layers, Info];
 const CATEGORY_TONES = ['bg-warm/10 text-warm', 'bg-primary/10 text-primary', 'bg-indigo-500/10 text-indigo-600', 'bg-fuchsia-500/10 text-fuchsia-600'];
@@ -166,11 +167,11 @@ const FAQ = () => {
             {t.ctaSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to={lp('/contact')} onClick={handleNavClick}>
+            <a href={CONTACT_URL} onClick={handleNavClick}>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-none">
                 {t.ctaQuote}
               </Button>
-            </Link>
+            </a>
             <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="inline-block">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 WhatsApp

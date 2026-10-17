@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { CONTACT_URL, asset } from '@/lib/site';
 
 const EXPERTISE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const EXPERTISE_TONES = ['bg-primary/10 text-primary', 'bg-fuchsia-500/10 text-fuchsia-600', 'bg-indigo-500/10 text-indigo-600', 'bg-sky-500/10 text-sky-600'];
@@ -102,7 +103,7 @@ const buildJsonLd = (locale: Locale) => ({
     "@type": "Person",
     "name": "Antony Addy",
     "jobTitle": locale === 'en' ? "Generative AI Trainer" : "Formateur en IA Générative",
-    "image": "https://ia.antonyaddy.com/antonyaddy1.jpg",
+    "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
     "email": "formations@antonyaddy.com",
     "knowsLanguage": ["fr", "en"],
     "knowsAbout": ["Generative AI", "ChatGPT", "Prompt engineering", "Microsoft Copilot", "AI automation", "Professional training"],
@@ -162,7 +163,7 @@ const APropos = () => {
               <div className="relative mx-auto lg:mx-0 w-48 sm:w-64 lg:w-full max-w-xs">
                 <div className="absolute -inset-3 rounded-[1.75rem] bg-primary/30 blur-2xl" aria-hidden="true" />
                 <img
-                  src="/antonyaddy1.jpg"
+                  src={asset('/antonyaddy1.jpg')}
                   alt={locale === 'en' ? 'Antony Addy, generative AI trainer' : 'Antony Addy, formateur en IA générative'}
                   width={960}
                   height={960}
@@ -267,11 +268,11 @@ const APropos = () => {
             {t.ctaSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to={lp('/contact')} onClick={handleNavClick}>
+            <a href={CONTACT_URL} onClick={handleNavClick}>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-none">
                 {t.ctaContact}
               </Button>
-            </Link>
+            </a>
             <Link to={lp('/formations')} onClick={handleNavClick}>
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 {t.ctaTraining}

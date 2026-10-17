@@ -6,6 +6,7 @@ import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { getCreations } from '../lib/creations';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { CONTACT_URL } from '@/lib/site';
 
 const PILLAR_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const PILLAR_TONES = ['bg-primary/10 text-primary', 'bg-fuchsia-500/10 text-fuchsia-600', 'bg-indigo-500/10 text-indigo-600', 'bg-sky-500/10 text-sky-600'];
@@ -102,9 +103,9 @@ const buildJsonLd = (locale: Locale) => ({
   "description": locale === 'en'
     ? "Generative-AI training for companies and independent professionals, delivered in French or English"
     : "Formations en intelligence artificielle générative pour entreprises et indépendants, animées en français ou en anglais",
-  "url": "https://ia.antonyaddy.com",
-  "logo": "https://ia.antonyaddy.com/favicon.svg",
-  "image": "https://ia.antonyaddy.com/antonyaddy1.jpg",
+  "url": "https://www.antonyaddy.com/ia",
+  "logo": "https://www.antonyaddy.com/ia/favicon.svg",
+  "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
   "email": "formations@antonyaddy.com",
   "telephone": "+33649829826",
   "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
@@ -112,7 +113,7 @@ const buildJsonLd = (locale: Locale) => ({
     "@type": "Person",
     "name": "Antony Addy",
     "jobTitle": locale === 'en' ? "Generative AI Trainer" : "Formateur en IA Générative",
-    "image": "https://ia.antonyaddy.com/antonyaddy1.jpg",
+    "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
     "knowsLanguage": ["fr", "en"],
     "sameAs": ["https://www.linkedin.com/in/antonyaddy/"]
   },
@@ -340,11 +341,11 @@ const Home = () => {
             {t.ctaSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to={lp('/contact')} onClick={handleNavClick}>
+            <a href={CONTACT_URL} onClick={handleNavClick}>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-none">
                 {t.ctaQuote}
               </Button>
-            </Link>
+            </a>
             <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="inline-block">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 {t.ctaWhatsApp}

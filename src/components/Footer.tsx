@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, Mail, MessageCircle, MapPin, Globe, Settings, ExternalLink } from 'lucide-react';
 import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, type Locale } from '@/i18n';
+import SiteLink from './SiteLink';
 
 const FOOTER_FORMATION_ICONS = { Globe, Sparkles, Settings } as const;
 
@@ -123,9 +124,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {t.links.map((link) => (
                 <li key={link.to}>
-                  <Link to={lp(link.to)} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
+                  <SiteLink to={link.to} onClick={handleNavClick} className="text-white/70 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">
                     {link.label}
-                  </Link>
+                  </SiteLink>
                 </li>
               ))}
             </ul>

@@ -17,7 +17,7 @@ export const FORMATIONS: Formation[] = [
   {
     key: 'anglais',
     navLabel: 'Anglais professionnel',
-    href: 'https://antonyaddy.com',
+    href: 'https://www.antonyaddy.com',
     external: true,
     icon: 'Globe',
     domain: 'antonyaddy.com',

@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { CONTACT_URL } from '@/lib/site';
 
 const SERVICE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const SERVICE_TONES = ['bg-primary/10 text-primary', 'bg-fuchsia-500/10 text-fuchsia-600', 'bg-indigo-500/10 text-indigo-600', 'bg-sky-500/10 text-sky-600'];
@@ -116,7 +117,7 @@ const courseProvider = {
   "@type": "Person",
   "name": "Antony Addy",
   "jobTitle": "Formateur en IA Générative",
-  "url": "https://ia.antonyaddy.com",
+  "url": "https://www.antonyaddy.com/ia",
   "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
 };
 
@@ -139,7 +140,7 @@ const buildJsonLd = (locale: Locale, t: typeof CONTENT['fr']) => ({
       "@type": "Course",
       "name": s.title,
       "description": s.description,
-      "url": "https://ia.antonyaddy.com/formations",
+      "url": "https://www.antonyaddy.com/ia/formations",
       "inLanguage": ["fr", "en"],
       "provider": courseProvider,
       "hasCourseInstance": {
@@ -187,12 +188,12 @@ const Formations = () => {
             {t.certified}
           </p>
           <div className="animate-fade-in-up animate-delay-300">
-            <Link to={lp('/contact')} onClick={handleNavClick}>
+            <a href={CONTACT_URL} onClick={handleNavClick}>
               <Button size="lg" className="whitespace-normal text-center h-auto py-3">
                 {t.heroCta}
                 <ArrowRight className="h-4 w-4 shrink-0" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -336,11 +337,11 @@ const Formations = () => {
             {t.ctaSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to={lp('/contact')} onClick={handleNavClick}>
+            <a href={CONTACT_URL} onClick={handleNavClick}>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-none">
                 {t.ctaQuote}
               </Button>
-            </Link>
+            </a>
             <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="inline-block">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 WhatsApp

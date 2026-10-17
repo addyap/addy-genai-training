@@ -4,6 +4,8 @@ import { Menu, X, Sparkles, MessageCircle, ChevronDown, Globe, Settings, Externa
 import { Button } from './ui/button';
 import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, canonicalPath, type Locale } from '@/i18n';
+import { CONTACT_URL } from '@/lib/site';
+import SiteLink from './SiteLink';
 
 const navigation = [
   { key: 'home', href: '/' },
@@ -126,9 +128,9 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navigation.map((item) => (
-              <Link
+              <SiteLink
                 key={item.key}
-                to={lp(item.href)}
+                to={item.href}
                 onClick={handleNavClick}
                 className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                   isActive(item.href)
@@ -137,7 +139,7 @@ const Header = () => {
                 }`}
               >
                 {t[item.key]}
-              </Link>
+              </SiteLink>
             ))}
 
             {/* Mes formations — cross-domain switcher (Anglais · IA · SAP) */}
@@ -211,11 +213,11 @@ const Header = () => {
                 <span className="sr-only">{t.newTab}</span>
               </Button>
             </a>
-            <Link to={lp('/contact')} onClick={handleNavClick}>
+            <a href={CONTACT_URL} onClick={handleNavClick}>
               <Button size="sm">
                 {t.quote}
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -240,9 +242,9 @@ const Header = () => {
           <div id="mobile-nav-menu" className="motion-sheet lg:hidden border-t border-border/70 bg-white">
             <div className="px-2 pt-3 pb-4 space-y-1">
               {navigation.map((item) => (
-                <Link
+                <SiteLink
                   key={item.key}
-                  to={lp(item.href)}
+                  to={item.href}
                   className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     isActive(item.href)
                       ? 'bg-primary/10 text-primary'
@@ -251,7 +253,7 @@ const Header = () => {
                   onClick={handleNavClick}
                 >
                   {t[item.key]}
-                </Link>
+                </SiteLink>
               ))}
 
               {/* Mes formations — mobile switcher */}
@@ -289,11 +291,11 @@ const Header = () => {
                     <span className="sr-only">{t.newTab}</span>
                   </Button>
                 </a>
-                <Link to={lp('/contact')} onClick={handleNavClick} className="block">
+                <a href={CONTACT_URL} onClick={handleNavClick} className="block">
                   <Button className="w-full">
                     {t.quote}
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

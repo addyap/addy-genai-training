@@ -16,7 +16,6 @@ import Diagnostic from "./pages/Diagnostic";
 import GenerateurProgramme from "./pages/GenerateurProgramme";
 import CorrectionEmail from "./pages/CorrectionEmail";
 import APropos from "./pages/APropos";
-import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
 import NotFound from "./pages/NotFound";
 
@@ -75,7 +74,6 @@ const routeList = [
   { path: '/generateur-programme', element: <GenerateurProgramme /> },
   { path: '/correction-email', element: <CorrectionEmail /> },
   { path: '/a-propos', element: <APropos /> },
-  { path: '/contact', element: <Contact /> },
   { path: '/mentions-legales', element: <MentionsLegales /> },
 ];
 

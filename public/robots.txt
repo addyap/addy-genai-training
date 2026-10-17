@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /api/
+Disallow: /ia/api/
 
-Sitemap: https://ia.antonyaddy.com/sitemap.xml
+Sitemap: https://www.antonyaddy.com/ia/sitemap.xml

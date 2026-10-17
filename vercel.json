@@ -1,14 +1,50 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/ia/contact",
+      "destination": "https://www.antonyaddy.com/contact?sujet=ia",
+      "permanent": true
+    },
+    {
+      "source": "/ia/en/contact",
+      "destination": "https://www.antonyaddy.com/contact?sujet=ia",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "https://www.antonyaddy.com/contact?sujet=ia",
+      "permanent": true
+    },
+    {
+      "source": "/en/contact",
+      "destination": "https://www.antonyaddy.com/contact?sujet=ia",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "destination": "https://www.antonyaddy.com/ia",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!ia(?:/|$)|api/|_vercel/).+)",
+      "destination": "https://www.antonyaddy.com/ia/:path",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/formations", "destination": "/formations.html" },
-    { "source": "/faq", "destination": "/faq.html" },
-    { "source": "/ressources", "destination": "/ressources.html" },
-    { "source": "/diagnostic", "destination": "/diagnostic.html" },
-    { "source": "/generateur-programme", "destination": "/generateur-programme.html" },
-    { "source": "/correction-email", "destination": "/correction-email.html" },
-    { "source": "/a-propos", "destination": "/a-propos.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/ia/api/:path*",
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/ia",
+      "destination": "/ia/index.html"
+    },
+    {
+      "source": "/ia/(.*)",
+      "destination": "/ia/index.html"
+    }
   ]
 }

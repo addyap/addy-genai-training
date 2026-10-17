@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
-import { getLocaleFromPath, canonicalPath } from '../i18n';
-
-const BASE_URL = 'https://ia.antonyaddy.com';
+import { getLocaleFromPath, canonicalPath, localizePath } from '../i18n';
+import { SITE_URL, siteUrl } from '@/lib/site';
 
 interface SEOHeadProps {
   title?: string;
@@ -25,19 +24,19 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const location = useLocation();
   const locale = getLocaleFromPath(location.pathname);
-  const currentUrl = canonicalUrl || `${BASE_URL}${location.pathname}`;
-  const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`;
+  const currentUrl = canonicalUrl || siteUrl(location.pathname);
+  const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
 
   // hreflang alternates: map the current route to both language URLs.
   const routeCanonical = canonicalPath(location.pathname); // '/', '/formations', …
-  const frUrl = `${BASE_URL}${routeCanonical}`;
-  const enUrl = routeCanonical === '/' ? `${BASE_URL}/en` : `${BASE_URL}/en${routeCanonical}`;
+  const frUrl = siteUrl(routeCanonical);
+  const enUrl = siteUrl(localizePath(routeCanonical, 'en'));
 
   const defaultJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Antony Addy — Formation IA Générative",
-    "url": BASE_URL,
+    "url": SITE_URL,
     "inLanguage": "fr",
     "author": {
       "@type": "Person",

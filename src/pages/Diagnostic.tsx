@@ -4,6 +4,7 @@ import { ShieldCheck, ArrowRight, RotateCcw } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
+import { CONTACT_URL } from '@/lib/site';
 
 interface Question {
   id: string;
@@ -164,12 +165,12 @@ const Diagnostic = () => {
               <h2 className="font-display text-3xl font-bold text-foreground mb-4">{band.label}</h2>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-8">{band.message}</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link to={lp('/contact')}>
+                <a href={CONTACT_URL}>
                   <Button size="lg">
                     {band.cta}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
-                </Link>
+                </a>
                 <Button variant="outline" size="lg" onClick={handleReset}>
                   <RotateCcw className="h-4 w-4" />
                   {t.restart}

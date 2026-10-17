@@ -7,7 +7,7 @@ import { useLocale, localizePath, useT, type Locale } from '@/i18n';
 import { CONTACT_URL, asset } from '@/lib/site';
 
 const EXPERTISE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
-const EXPERTISE_TONES = ['bg-primary/10 text-primary', 'bg-fuchsia-500/10 text-fuchsia-600', 'bg-indigo-500/10 text-indigo-600', 'bg-sky-500/10 text-sky-600'];
+const EXPERTISE_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
 
 const CONTENT = {
   fr: {
@@ -202,7 +202,7 @@ const APropos = () => {
       </section>
 
       {/* Expertise Grid */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-14 sm:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow={t.expertiseEyebrow}
@@ -239,7 +239,7 @@ const APropos = () => {
                 <ul className="space-y-3.5">
                   {t.qualifications.map((qualification) => (
                     <li key={qualification} className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 text-warm mr-3 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-5 w-5 text-warm-deep mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-muted-foreground">{qualification}</span>
                     </li>
                   ))}

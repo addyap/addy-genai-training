@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, MessageCircle, ChevronDown, Globe, Settings, ExternalLink } from 'lucide-react';
+import { Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, canonicalPath, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, asset } from '@/lib/site';
 import SiteLink from './SiteLink';
 
 const navigation = [
@@ -17,26 +17,24 @@ const navigation = [
 
 const strings: Record<Locale, {
   home: string; formations: string; faq: string; about: string; contact: string;
-  myTraining: string; quote: string; openMenu: string; closeMenu: string;
+  activities: string; quote: string; openMenu: string; closeMenu: string;
   newTab: string; homeAria: string;
 }> = {
   fr: {
     home: 'Accueil', formations: 'Formations', faq: 'FAQ', about: 'À propos', contact: 'Contact',
-    myTraining: 'Mes formations', quote: 'Demander un devis', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu',
+    activities: 'Mes activités', quote: 'Demander un devis', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu',
     newTab: " (s'ouvre dans un nouvel onglet)", homeAria: 'Antony Addy — Accueil',
   },
   en: {
     home: 'Home', formations: 'Training', faq: 'FAQ', about: 'About', contact: 'Contact',
-    myTraining: 'My training', quote: 'Get a quote', openMenu: 'Open menu', closeMenu: 'Close menu',
+    activities: 'What I do', quote: 'Get a quote', openMenu: 'Open menu', closeMenu: 'Close menu',
     newTab: ' (opens in a new tab)', homeAria: 'Antony Addy — Home',
   },
 };
 
-const FORMATION_ICONS = { Globe, Sparkles, Settings } as const;
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isFormationsOpen, setIsFormationsOpen] = useState(false);
+  const [isActivitiesOpen, setIsActivitiesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const locale = useLocale();
@@ -48,7 +46,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsFormationsOpen(false);
+    setIsActivitiesOpen(false);
   }, [location.pathname]);
 
   // Header firms up once content scrolls under it — no shrink, no hide: the quote CTA stays put.
@@ -108,21 +106,19 @@ const Header = () => {
     <header
       className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-base ease-out-quart ${
         isScrolled
-          ? 'border-border bg-white/95 shadow-[0_8px_24px_-16px_rgba(20,11,46,0.18)]'
-          : 'border-border/70 bg-white/85'
+          ? 'border-border bg-background/95 shadow-[0_8px_24px_-16px_rgba(17,23,49,0.18)]'
+          : 'border-border/70 bg-background/90'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3.5">
-          {/* Logo */}
-          <Link to={lp('/')} className="flex items-center gap-3 group" onClick={handleNavClick} aria-label={t.homeAria}>
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ia-gradient text-white shadow-glow transition-transform duration-base ease-out-quart motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-3">
-              <Sparkles className="h-5 w-5" />
+          {/* Logo: the brand wordmark, with this activity beside it (as on the hub) */}
+          <Link to={lp('/')} className="flex items-center gap-3" onClick={handleNavClick} aria-label={t.homeAria}>
+            <img src={asset('/brand/antony-addy-logo.svg')} alt="Antony Addy" width={86} height={44} className="h-10 w-auto" />
+            <span className="hidden sm:flex items-center gap-2 border-l border-border pl-3 text-xs font-medium text-muted-foreground">
+              <span className="font-semibold" style={{ color: '#553B9B' }}>02</span>
+              {locale === 'en' ? 'Generative AI' : 'IA générative'}
             </span>
-            <div className="hidden sm:block">
-              <div className="font-display text-lg font-semibold leading-tight text-foreground">Antony Addy</div>
-              <div className="text-xs text-muted-foreground">{locale === 'en' ? 'Generative AI Trainer' : 'Formateur en IA Générative'}</div>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -142,61 +138,42 @@ const Header = () => {
               </SiteLink>
             ))}
 
-            {/* Mes formations — cross-domain switcher (Anglais · IA · SAP) */}
+            {/* Mes activités — the hub's three lines, this one current */}
             <div
               className="relative"
-              onMouseEnter={() => setIsFormationsOpen(true)}
-              onMouseLeave={() => setIsFormationsOpen(false)}
+              onMouseEnter={() => setIsActivitiesOpen(true)}
+              onMouseLeave={() => setIsActivitiesOpen(false)}
             >
               <button
                 type="button"
-                onClick={() => setIsFormationsOpen((o) => !o)}
+                onClick={() => setIsActivitiesOpen((o) => !o)}
                 aria-haspopup="true"
-                aria-expanded={isFormationsOpen}
+                aria-expanded={isActivitiesOpen}
                 className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors duration-fast hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
-                {t.myTraining}
+                {t.activities}
                 <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
               </button>
-              {isFormationsOpen && (
-                <div className="motion-menu absolute right-0 top-full mt-1 w-72 rounded-2xl border border-border/70 bg-white p-2 shadow-lg">
+              {isActivitiesOpen && (
+                <div className="motion-menu absolute right-0 top-full mt-1 w-80 rounded-2xl border border-border bg-card p-2 shadow-lg">
                   {FORMATIONS.map((f) => {
-                    const Icon = FORMATION_ICONS[f.icon];
                     const content = (
                       <>
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <Icon className="h-4 w-4" aria-hidden="true" />
-                        </span>
+                        <span className="w-6 shrink-0 pt-0.5 text-xs font-semibold" style={{ color: f.color }}>{f.number}</span>
                         <span className="flex flex-col">
-                          <span className="inline-flex items-center gap-1 text-sm font-medium text-foreground">
-                            {f.navLabel}
-                            {f.external && <ExternalLink className="h-3 w-3 text-muted-foreground" aria-hidden="true" />}
-                          </span>
-                          <span className="text-xs text-muted-foreground">{f.domain}</span>
+                          <span className="text-sm font-semibold text-foreground">{f.label[locale]}</span>
+                          <span className="text-xs text-muted-foreground">{f.detail[locale]}</span>
                         </span>
                       </>
                     );
-                    return f.external ? (
-                      <a
-                        key={f.key}
-                        href={f.href}
-                        target="_blank"
-                        rel="noopener"
-                        onClick={() => setIsFormationsOpen(false)}
-                        className="flex items-center gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-primary/5"
-                      >
-                        {content}
-                      </a>
-                    ) : (
-                      <Link
-                        key={f.key}
-                        to={lp('/')}
-                        onClick={handleNavClick}
-                        className="flex items-center gap-3 rounded-xl bg-primary/5 px-3 py-2"
-                        aria-current="page"
-                      >
+                    return f.current ? (
+                      <Link key={f.key} to={lp('/')} onClick={handleNavClick} aria-current="page" className="flex items-start gap-2 rounded-xl bg-primary/5 px-3 py-2.5">
                         {content}
                       </Link>
+                    ) : (
+                      <a key={f.key} href={f.href} onClick={() => setIsActivitiesOpen(false)} className="flex items-start gap-2 rounded-xl px-3 py-2.5 transition-colors hover:bg-muted">
+                        {content}
+                      </a>
                     );
                   })}
                 </div>
@@ -239,7 +216,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div id="mobile-nav-menu" className="motion-sheet lg:hidden border-t border-border/70 bg-white">
+          <div id="mobile-nav-menu" className="motion-sheet lg:hidden border-t border-border/70 bg-background">
             <div className="px-2 pt-3 pb-4 space-y-1">
               {navigation.map((item) => (
                 <SiteLink
@@ -256,29 +233,21 @@ const Header = () => {
                 </SiteLink>
               ))}
 
-              {/* Mes formations — mobile switcher */}
+              {/* Mes activités — mobile */}
               <div className="pt-3 mt-2 border-t border-border/70">
-                <p className="px-4 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.myTraining}</p>
+                <p className="px-4 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.activities}</p>
                 {FORMATIONS.map((f) => {
-                  const Icon = FORMATION_ICONS[f.icon];
                   const cls = 'flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary';
                   const content = (
                     <>
-                      <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                      <span className="inline-flex items-center gap-1">
-                        {f.navLabel}
-                        {f.external && <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />}
-                      </span>
+                      <span className="w-6 shrink-0 text-xs font-semibold" style={{ color: f.color }}>{f.number}</span>
+                      {f.label[locale]}
                     </>
                   );
-                  return f.external ? (
-                    <a key={f.key} href={f.href} target="_blank" rel="noopener" onClick={handleNavClick} className={cls}>
-                      {content}
-                    </a>
+                  return f.current ? (
+                    <Link key={f.key} to={lp('/')} onClick={handleNavClick} className={cls} aria-current="page">{content}</Link>
                   ) : (
-                    <Link key={f.key} to={lp('/')} onClick={handleNavClick} className={cls} aria-current="page">
-                      {content}
-                    </Link>
+                    <a key={f.key} href={f.href} onClick={handleNavClick} className={cls}>{content}</a>
                   );
                 })}
               </div>

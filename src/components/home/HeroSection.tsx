@@ -15,7 +15,7 @@ import { CONTACT_URL } from '@/lib/site';
 
 const HERO = {
   fr: {
-    kicker: 'Formation IA générative · Antony Addy',
+    kicker: '02 · IA générative · Antony Addy',
     prompt: 'Résume ce rapport de 40 pages en 5 points pour mon équipe.',
     head1: "De l'intention",
     head2a: 'à ',
@@ -32,7 +32,7 @@ const HERO = {
     newTab: " (s'ouvre dans un nouvel onglet)",
   },
   en: {
-    kicker: 'Generative AI training · Antony Addy',
+    kicker: '02 · Generative AI · Antony Addy',
     prompt: 'Summarise this 40-page report into 5 points for my team.',
     head1: 'From intention',
     head2a: 'to ',
@@ -163,15 +163,15 @@ const HeroSection = () => {
 
       // core glow + luminous heart
       const coreR = R * 1.6 * (1 + wv * 0.05);
-      const coreCol = wv > 0.02 ? '245,158,11' : '124,92,240';
+      const coreCol = wv > 0.02 ? '246,164,99' : '139,111,214';
       const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
       g.addColorStop(0, `rgba(${coreCol},${(0.20 * (0.5 + conv * 0.5) + pulse * 0.14) * globalFade})`);
-      g.addColorStop(0.5, `rgba(124,92,240,${0.06 * globalFade})`);
-      g.addColorStop(1, 'rgba(124,92,240,0)');
+      g.addColorStop(0.5, `rgba(139,111,214,${0.06 * globalFade})`);
+      g.addColorStop(1, 'rgba(139,111,214,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
       const hg = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.5);
       hg.addColorStop(0, `rgba(${wv > 0.02 ? '255,210,140' : '200,185,255'},${(0.22 * conv + pulse * 0.2) * globalFade})`);
-      hg.addColorStop(1, 'rgba(124,92,240,0)');
+      hg.addColorStop(1, 'rgba(139,111,214,0)');
       ctx.fillStyle = hg; ctx.fillRect(0, 0, W, H);
 
       ctx.globalCompositeOperation = 'lighter';
@@ -196,9 +196,9 @@ const HeroSection = () => {
       }
       pts.sort((a, b) => a.z - b.z);
 
-      const wr = Math.round(124 + (245 - 124) * wv);
-      const wg = Math.round(92 + (158 - 92) * wv);
-      const wb = Math.round(240 + (11 - 240) * wv);
+      const wr = Math.round(139 + (246 - 139) * wv);
+      const wg = Math.round(111 + (164 - 111) * wv);
+      const wb = Math.round(214 + (99 - 214) * wv);
       const violet = `${wr},${wg},${wb}`;
 
       for (const d of pts) {
@@ -208,7 +208,7 @@ const HeroSection = () => {
         const size = (d.amber ? 1.9 : 1.4) * d.s * tw;
         const alpha = (0.18 + depth * 0.72) * (0.4 + d.lit * 0.6) * globalFade * (0.25 + conv * 0.75) * tw;
         if (alpha <= 0.01) continue;
-        const col = d.amber ? '245,158,11' : violet;
+        const col = d.amber ? '246,164,99' : violet;
         ctx.beginPath();
         ctx.fillStyle = `rgba(${col},${alpha * 0.5})`;
         ctx.arc(d.sx, d.sy, size * 2.6, 0, 6.283);
@@ -223,7 +223,7 @@ const HeroSection = () => {
       if (filament > 0.01) {
         const front = pts.slice(Math.max(0, pts.length - 70));
         const thr = R * 0.34, thr2 = thr * thr;
-        const lw = wv > 0.02 ? '245,190,90' : '150,130,255';
+        const lw = wv > 0.02 ? '245,190,90' : '165,145,230';
         ctx.lineWidth = 1;
         for (let a = 0; a < front.length; a++) {
           const A = front[a];
@@ -373,8 +373,7 @@ const HeroSection = () => {
         </p>
 
         <p
-          className="hero-meta hero-reveal mt-4 text-sm text-white/55 tracking-wide"
-          style={{ fontFamily: '"IBM Plex Mono", monospace' }}
+          className="hero-meta hero-reveal mt-4 text-sm text-white/60"
         >
           {t.meta}
         </p>

@@ -4,35 +4,37 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 245 35% 10%;
+    --background: 40 33% 97%;
+    --foreground: 230 48% 13%;
     --card: 0 0% 100%;
-    --card-foreground: 245 35% 10%;
+    --card-foreground: 230 48% 13%;
     --popover: 0 0% 100%;
-    --popover-foreground: 245 35% 10%;
-    --primary: 255 78% 60%;
+    --popover-foreground: 230 48% 13%;
+    --primary: 256 45% 42%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 250 45% 96%;
-    --secondary-foreground: 245 35% 10%;
-    --muted: 250 45% 96%;
-    --muted-foreground: 245 12% 42%;
-    --accent: 250 45% 96%;
-    --accent-foreground: 245 35% 10%;
+    --secondary: 256 30% 94%;
+    --secondary-foreground: 230 48% 13%;
+    --muted: 256 30% 94%;
+    --muted-foreground: 232 14% 40%;
+    --accent: 256 30% 94%;
+    --accent-foreground: 230 48% 13%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 250 25% 90%;
-    --input: 250 25% 90%;
-    --ring: 255 78% 60%;
+    --border: 233 15% 87%;
+    --input: 233 15% 87%;
+    --ring: 256 45% 42%;
     --radius: 1rem;
 
     /* Brand colors */
-    --ia-violet: 255 78% 60%;
-    --ia-violet-deep: 262 68% 46%;
-    --ia-navy: 245 48% 10%;
-    --ia-navy-soft: 245 38% 16%;
-    --ia-light-grey: 250 45% 97%;
-    --ia-amber: 38 92% 50%;
-    --ia-amber-deep: 32 90% 44%;
+    /* Hub palette (www.antonyaddy.com): navy ink, cream paper, the IA line's
+       violet, and the brand arrow's warm orange. */
+    --ia-violet: 256 45% 42%;
+    --ia-violet-deep: 258 50% 30%;
+    --ia-navy: 230 48% 13%;
+    --ia-navy-soft: 230 40% 19%;
+    --ia-light-grey: 40 33% 97%;
+    --ia-amber: 26 89% 68%;
+    --ia-amber-deep: 26 67% 34%;
 
     /* Motion tokens — see docs/MOTION.md */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -345,8 +347,8 @@
    A live prompt blooms into a cursor-reactive constellation.
    ============================================================ */
 .hero-stage {
-  --hero-navy: 245 48% 7%;
-  --hero-navy-2: 245 45% 9%;
+  --hero-navy: 230 48% 10%;
+  --hero-navy-2: 230 48% 13%;
   position: relative;
   min-height: clamp(420px, 56svh, 600px);
   display: flex;
@@ -354,7 +356,7 @@
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(120% 90% at 78% 42%, hsl(var(--primary) / 0.20), transparent 60%),
+    radial-gradient(120% 90% at 78% 42%, hsl(256 60% 60% / 0.22), transparent 60%),
     radial-gradient(90% 70% at 8% 8%, hsl(var(--ia-violet-deep) / 0.16), transparent 55%),
     linear-gradient(180deg, hsl(var(--hero-navy-2)), hsl(var(--hero-navy)) 70%);
 }
@@ -366,7 +368,7 @@
   translate: -50% 0;
   width: 120%;
   height: 60%;
-  background: radial-gradient(50% 50% at 50% 50%, hsl(var(--primary) / 0.14), transparent 70%);
+  background: radial-gradient(50% 50% at 50% 50%, hsl(256 60% 60% / 0.14), transparent 70%);
   filter: blur(20px);
   z-index: 0;
   pointer-events: none;
@@ -383,27 +385,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: hsl(210 40% 90%);
-  border: 1px solid hsl(255 78% 80% / 0.16);
-  border-radius: 100px;
-  padding: 0.5rem 0.9rem;
-  background: hsl(var(--hero-navy) / 0.4);
-  backdrop-filter: blur(8px);
+  color: hsl(40 33% 90%);
 }
 .hero-kicker .dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: hsl(var(--ia-amber));
-  box-shadow: 0 0 10px hsl(var(--ia-amber));
 }
 .hero-head {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 800;
   font-size: clamp(2.7rem, 7vw, 5.4rem);
   line-height: 0.98;
   letter-spacing: -0.03em;
@@ -418,14 +414,14 @@
   display: block;
 }
 .hero-grad {
-  background: linear-gradient(100deg, hsl(255 78% 78%), hsl(var(--primary)) 40%, hsl(var(--ia-amber)));
+  background: linear-gradient(100deg, hsl(256 70% 80%), hsl(256 55% 70%) 35%, hsl(var(--ia-amber)));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   padding-right: 0.06em;
 }
 .hero-prompt {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: clamp(0.8rem, 1.35vw, 0.98rem);
   color: hsl(210 40% 88%);
   min-height: 1.5em;
@@ -435,7 +431,7 @@
   .hero-prompt { min-height: 3.1em; }
 }
 /* Inline flow: on narrow screens the prompt wraps under itself and the caret follows the text */
-.hero-prompt .chev { color: hsl(255 78% 82%); margin-right: 0.6rem; }
+.hero-prompt .chev { color: hsl(256 70% 80%); margin-right: 0.6rem; }
 .hero-prompt .typed { color: #fff; }
 /* Caret: solid while typing, blinks a few times when idle, then rests solid */
 .hero-caret {
@@ -445,7 +441,6 @@
   margin-left: 0.4rem;
   translate: 0 0.16em;
   background: hsl(var(--ia-amber));
-  box-shadow: 0 0 8px hsl(var(--ia-amber));
   animation: heroBlink 1.05s steps(1) 4;
 }
 .hero-stage.is-typing .hero-caret { animation: none; }
@@ -504,3 +499,17 @@
   .hero-stage.is-live .hero-meta,
   .hero-stage.is-live .hero-cta { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+/* Shared bar back to www.antonyaddy.com — identical in every section and app
+   served under the main domain (see AntonyAddyBar.tsx). */
+.aa-bar{position:relative;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;height:36px;padding:0 16px;background:#111731;color:#e9e9f2;font:500 12.5px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:0;text-transform:none}
+.aa-bar a{color:inherit;text-decoration:none}
+.aa-bar-mark{display:block;flex:none;width:18px;height:14px}
+.aa-bar-home{display:inline-flex;min-width:0;align-items:center;gap:10px}
+.aa-bar-home strong{flex:none;color:#fff;font-weight:650}
+.aa-bar-sub{overflow:hidden;color:#9aa2c0;white-space:nowrap;text-overflow:ellipsis}
+.aa-bar-contact{flex:none;padding:5px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px}
+.aa-bar-contact:hover{background:rgba(255,255,255,.1)}
+.aa-bar a:focus-visible{outline:2px solid #f6a463;outline-offset:2px;border-radius:4px}
+@media (max-width:560px){.aa-bar-sub{display:none}}
+@media print{.aa-bar{display:none}}

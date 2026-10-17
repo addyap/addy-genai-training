@@ -1,41 +1,47 @@
-// Cross-site links to Antony Addy's three training domains. antonyaddy.com is
-// the hub; this site (IA) is one of the three. The entry with external:false is
-// the current site. Mirror of the same file on the English (antonyaddy.com) and
-// SAP sites — keep the three in sync when wording or URLs change.
+// The three activities of www.antonyaddy.com, in the hub's order, numbering and
+// line colours ("01 · Anglais", "02 · IA générative", "03 · Sites web & outils").
+// This site is 02. The other two are plain <a> links: they live outside /ia.
+
+import type { Locale } from '@/i18n';
 
 export interface Formation {
-  key: 'anglais' | 'ia' | 'sap';
-  navLabel: string;
+  key: 'anglais' | 'ia' | 'sites';
+  number: '01' | '02' | '03';
+  label: Record<Locale, string>;
+  detail: Record<Locale, string>;
+  /** Absolute path on www.antonyaddy.com; '/' for this site's own home. */
   href: string;
-  external: boolean;
-  icon: 'Globe' | 'Sparkles' | 'Settings';
-  /** Short domain shown as a subtitle in the switcher. */
-  domain: string;
+  current: boolean;
+  /** The activity's line colour on the hub. */
+  color: string;
 }
 
 export const FORMATIONS: Formation[] = [
   {
     key: 'anglais',
-    navLabel: 'Anglais professionnel',
-    href: 'https://www.antonyaddy.com',
-    external: true,
-    icon: 'Globe',
-    domain: 'antonyaddy.com',
+    number: '01',
+    label: { fr: 'Anglais professionnel', en: 'Business English' },
+    detail: { fr: 'Prenez la parole avec confiance', en: 'Speak up with confidence' },
+    href: 'https://www.antonyaddy.com/',
+    current: false,
+    color: '#BB3C30',
   },
   {
     key: 'ia',
-    navLabel: 'Intelligence Artificielle',
+    number: '02',
+    label: { fr: 'IA générative', en: 'Generative AI' },
+    detail: { fr: 'Faites travailler les outils pour vous', en: 'Make the tools work for you' },
     href: '/',
-    external: false,
-    icon: 'Sparkles',
-    domain: 'Ce site',
+    current: true,
+    color: '#553B9B',
   },
   {
-    key: 'sap',
-    navLabel: 'SAP',
-    href: 'https://sap.antonyaddy.com',
-    external: true,
-    icon: 'Settings',
-    domain: 'sap.antonyaddy.com',
+    key: 'sites',
+    number: '03',
+    label: { fr: 'Sites web & outils', en: 'Websites & tools' },
+    detail: { fr: 'Pour votre activité ou pour apprendre', en: 'For your business or for learning' },
+    href: 'https://www.antonyaddy.com/sites-web',
+    current: false,
+    color: '#914F1D',
   },
 ];

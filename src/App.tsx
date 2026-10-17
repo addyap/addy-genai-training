@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useRef, type ReactNode } from "react";
 import { useReveal } from "./hooks/use-reveal";
+import AntonyAddyBar from "./components/AntonyAddyBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Analytics from "./components/Analytics";
@@ -85,6 +86,7 @@ const App = () => {
         <SkipToContent />
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
+          <AntonyAddyBar />
           <Header />
           <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
             <PageTransition>

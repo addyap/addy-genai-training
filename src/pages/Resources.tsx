@@ -188,7 +188,7 @@ const Resources = () => {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="rounded-xl border border-border bg-secondary/30 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground/70 mb-2">{t.weakLabel}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t.weakLabel}</p>
                 <p className="text-sm italic">{t.weakExample}</p>
               </div>
               <div className="rounded-xl border border-primary/25 bg-primary/5 p-4">

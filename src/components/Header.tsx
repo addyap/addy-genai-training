@@ -84,18 +84,18 @@ const Header = () => {
       <Link
         to={localizePath(route, 'fr')}
         hrefLang="fr"
-        aria-label="Français"
+        aria-label="FR (Français)"
         aria-current={locale === 'fr' ? 'true' : undefined}
-        className={`rounded-full px-2.5 py-1 transition-colors ${locale === 'fr' ? 'bg-primary text-primary-foreground' : 'text-foreground/60 hover:text-primary'}`}
+        className={`rounded-full px-2.5 py-1 transition-colors ${locale === 'fr' ? 'bg-primary text-primary-foreground' : 'text-foreground/70 hover:text-primary'}`}
       >
         FR
       </Link>
       <Link
         to={localizePath(route, 'en')}
         hrefLang="en"
-        aria-label="English"
+        aria-label="EN (English)"
         aria-current={locale === 'en' ? 'true' : undefined}
-        className={`rounded-full px-2.5 py-1 transition-colors ${locale === 'en' ? 'bg-primary text-primary-foreground' : 'text-foreground/60 hover:text-primary'}`}
+        className={`rounded-full px-2.5 py-1 transition-colors ${locale === 'en' ? 'bg-primary text-primary-foreground' : 'text-foreground/70 hover:text-primary'}`}
       >
         EN
       </Link>

@@ -3,20 +3,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useRef, type ReactNode } from "react";
+import { Suspense, useEffect, useRef, type ReactNode } from "react";
 import { useReveal } from "./hooks/use-reveal";
 import AntonyAddyBar from "./components/AntonyAddyBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Analytics from "./components/Analytics";
-import Home from "./pages/Home";
-import Formations from "./pages/Formations";
-import FAQ from "./pages/FAQ";
-import Resources from "./pages/Resources";
-import Diagnostic from "./pages/Diagnostic";
-import APropos from "./pages/APropos";
-import MentionsLegales from "./pages/MentionsLegales";
 import NotFound from "./pages/NotFound";
+import { routeList } from "./routes";
 
 const queryClient = new QueryClient();
 
@@ -64,16 +58,6 @@ const SkipToContent = () => (
   </a>
 );
 
-const routeList = [
-  { path: '/', element: <Home /> },
-  { path: '/formations', element: <Formations /> },
-  { path: '/faq', element: <FAQ /> },
-  { path: '/ressources', element: <Resources /> },
-  { path: '/diagnostic', element: <Diagnostic /> },
-  { path: '/a-propos', element: <APropos /> },
-  { path: '/mentions-legales', element: <MentionsLegales /> },
-];
-
 const App = () => {
   useReveal();
 
@@ -90,22 +74,24 @@ const App = () => {
           <Header />
           <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
             <PageTransition>
-              <Routes>
-                {routeList.map(({ path, element }) => (
-                  <Route key={path} path={path} element={element} />
-                ))}
-                {/* English mirror — same components, locale derived from the /en prefix */}
-                {routeList
-                  .filter((r) => r.path !== '*')
-                  .map(({ path, element }) => (
-                    <Route
-                      key={`en${path}`}
-                      path={path === '/' ? '/en' : `/en${path}`}
-                      element={element}
-                    />
+              <Suspense fallback={null}>
+                <Routes>
+                  {routeList.map(({ path, Page }) => (
+                    <Route key={path} path={path} element={<Page />} />
                   ))}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+                  {/* English mirror — same components, locale derived from the /en prefix */}
+                  {routeList
+                    .filter((r) => r.path !== '*')
+                    .map(({ path, Page }) => (
+                      <Route
+                        key={`en${path}`}
+                        path={path === '/' ? '/en' : `/en${path}`}
+                        element={<Page />}
+                      />
+                    ))}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </PageTransition>
           </main>
           <Footer />

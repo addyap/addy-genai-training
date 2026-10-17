@@ -5,6 +5,8 @@ import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import App from './App';
 import { BASE_PATH } from './lib/site';
 
+export { preloadAllPages } from './routes';
+
 export function render(url: string) {
   const helmetContext: { helmet?: HelmetServerState } = {};
   

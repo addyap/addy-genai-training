@@ -91,42 +91,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.antonyaddy.com/ia/diagnostic"/>
   </url>
   <url>
-    <loc>https://www.antonyaddy.com/ia/generateur-programme</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.antonyaddy.com/ia/generateur-programme"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.antonyaddy.com/ia/en/generateur-programme"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.antonyaddy.com/ia/generateur-programme"/>
-  </url>
-  <url>
-    <loc>https://www.antonyaddy.com/ia/en/generateur-programme</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.antonyaddy.com/ia/generateur-programme"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.antonyaddy.com/ia/en/generateur-programme"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.antonyaddy.com/ia/generateur-programme"/>
-  </url>
-  <url>
-    <loc>https://www.antonyaddy.com/ia/correction-email</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.antonyaddy.com/ia/correction-email"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.antonyaddy.com/ia/en/correction-email"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.antonyaddy.com/ia/correction-email"/>
-  </url>
-  <url>
-    <loc>https://www.antonyaddy.com/ia/en/correction-email</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.antonyaddy.com/ia/correction-email"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.antonyaddy.com/ia/en/correction-email"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.antonyaddy.com/ia/correction-email"/>
-  </url>
-  <url>
     <loc>https://www.antonyaddy.com/ia/a-propos</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>

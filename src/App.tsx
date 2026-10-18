@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Analytics from "./components/Analytics";
 import NotFound from "./pages/NotFound";
 import { routeList } from "./routes";
+import { getLocaleFromPath } from "./i18n";
 
 const queryClient = new QueryClient();
 
@@ -49,14 +50,17 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const SkipToContent = () => (
-  <a
-    href="#main-content"
-    className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-primary px-4 py-2 rounded-md z-50 font-medium"
-  >
-    Aller au contenu principal
-  </a>
-);
+const SkipToContent = () => {
+  const en = getLocaleFromPath(useLocation().pathname) === "en";
+  return (
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-primary px-4 py-2 rounded-md z-50 font-medium"
+    >
+      {en ? "Skip to main content" : "Aller au contenu principal"}
+    </a>
+  );
+};
 
 const App = () => {
   useReveal();

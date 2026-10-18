@@ -24,7 +24,7 @@ interface CreationSource {
 const SOURCE: CreationSource[] = [
   {
     name: 'Anglais à distance',
-    url: 'https://anglaisadistance.fr',
+    url: 'https://www.anglaisadistance.fr',
     accent: 'from-blue-500 to-indigo-600',
     tag: { fr: 'Pour les francophones', en: 'For French speakers' },
     description: {

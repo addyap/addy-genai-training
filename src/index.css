@@ -449,10 +449,11 @@
 /* Entrance orchestration (docs/MOTION.md §2). Hidden states need html.js (set inline in
    index.html), so the prerendered hero is readable without JavaScript. */
 .js .hero-reveal { opacity: 0; transform: translateY(12px); }
-.js .hero-head .line > span { transform: translateY(110%); }
 .hero-stage.is-live .hero-kicker { animation: heroRise 700ms 50ms var(--ease-out-expo) both; }
-.hero-stage.is-live .hero-head .line:nth-child(1) > span { animation: heroUp var(--dur-hero) 150ms var(--ease-out-expo) forwards; }
-.hero-stage.is-live .hero-head .line:nth-child(2) > span { animation: heroUp var(--dur-hero) 250ms var(--ease-out-expo) forwards; }
+/* The headline is the largest contentful paint, so it is never hidden or
+   waiting for JS: it rises a short way from first paint, in CSS alone. */
+.hero-head .line > span { animation: heroUp var(--dur-hero) var(--ease-out-expo) both; }
+.hero-head .line:nth-child(2) > span { animation-delay: 100ms; }
 .hero-stage.is-live .hero-prompt { animation: heroFade 500ms 550ms var(--ease-out-quart) both; }
 .hero-stage.is-live .hero-sub { animation: heroRise 700ms 700ms var(--ease-out-expo) both; }
 .hero-stage.is-live .hero-meta { animation: heroFade 700ms 850ms var(--ease-out-quart) both; }
@@ -460,7 +461,6 @@
 
 /* Return visit in the same session: one short settle instead of the full sequence */
 .hero-stage.is-live.is-quick .hero-kicker,
-.hero-stage.is-live.is-quick .hero-head .line > span,
 .hero-stage.is-live.is-quick .hero-prompt,
 .hero-stage.is-live.is-quick .hero-sub,
 .hero-stage.is-live.is-quick .hero-meta,
@@ -469,7 +469,7 @@
   animation-delay: 0ms;
 }
 
-@keyframes heroUp { to { transform: translateY(0); } }
+@keyframes heroUp { from { transform: translateY(0.35em); } to { transform: translateY(0); } }
 @keyframes heroRise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
 
@@ -490,9 +490,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-reveal { opacity: 1 !important; transform: none !important; }
-  .hero-head .line > span { transform: none !important; }
+  .hero-head .line > span { animation: none !important; transform: none !important; }
   .hero-caret { animation: none; }
-  .hero-stage.is-live .hero-head .line > span,
   .hero-stage.is-live .hero-kicker,
   .hero-stage.is-live .hero-prompt,
   .hero-stage.is-live .hero-sub,

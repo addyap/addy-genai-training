@@ -4,7 +4,7 @@ import SEOHead from '../components/SEOHead';
 import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL, asset, PERSON_REF } from '@/lib/site';
+import { CONTACT_URL, asset, PERSON_REF, whatsappUrl } from '@/lib/site';
 
 const EXPERTISE_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const EXPERTISE_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -178,13 +178,13 @@ const APropos = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
+                  <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
                     <MessageCircle className="h-4 w-4 text-primary shrink-0" />
-                    <span>WhatsApp · +33 6 49 82 98 26<span className="sr-only">{locale === 'en' ? ' (opens in a new tab)' : " (s'ouvre dans un nouvel onglet)"}</span></span>
+                    <span>WhatsApp<span className="sr-only">{locale === 'en' ? ' (opens in a new tab)' : " (s'ouvre dans un nouvel onglet)"}</span></span>
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/in/antonyaddy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
+                  <a href="https://www.linkedin.com/in/antonyaddy/" target="_blank" rel="noopener noreferrer nofollow" className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy">
                     <Linkedin className="h-4 w-4 text-primary shrink-0" />
                     <span>LinkedIn<span className="sr-only">{locale === 'en' ? ' (opens in a new tab)' : " (s'ouvre dans un nouvel onglet)"}</span></span>
                   </a>

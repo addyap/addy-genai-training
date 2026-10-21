@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useLocale, localizePath, type Locale } from '@/i18n';
-import { CONTACT_URL } from '@/lib/site';
+import { CONTACT_URL, whatsappUrl } from '@/lib/site';
 
 /**
  * Signature hero — « De l'intention à l'intelligence ».
@@ -398,9 +398,9 @@ const HeroSection = () => {
           </Link>
 
           <a
-            href="https://wa.me/33649829826"
+            href={whatsappUrl(locale)}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer nofollow"
             className="inline-flex items-center justify-center gap-2 rounded-full py-2 text-sm font-medium text-white/75 transition-colors duration-fast hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           >
             <MessageCircle className="h-4 w-4 text-green-400" aria-hidden="true" />

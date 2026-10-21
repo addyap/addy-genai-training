@@ -6,7 +6,7 @@ import SectionHeading from '../components/SectionHeading';
 import { Button } from '../components/ui/button';
 import { getCreations } from '../lib/creations';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL, PERSON_REF, BUSINESS_REF } from '@/lib/site';
+import { CONTACT_URL, PERSON_REF, BUSINESS_REF, whatsappUrl } from '@/lib/site';
 
 const PILLAR_ICONS = [MessageSquare, ImageIcon, Workflow, FileSpreadsheet];
 const PILLAR_TONES = ['bg-primary/10 text-primary', 'bg-warm/20 text-warm-deep', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -107,7 +107,6 @@ const buildJsonLd = (locale: Locale) => ({
   "logo": "https://www.antonyaddy.com/brand/antony-addy-logo.png",
   "image": "https://www.antonyaddy.com/ia/antonyaddy1.jpg",
   "email": "formations@antonyaddy.com",
-  "telephone": "+33649829826",
   "sameAs": ["https://www.linkedin.com/in/antonyaddy/"],
   "founder": PERSON_REF,
   "parentOrganization": BUSINESS_REF,
@@ -340,7 +339,7 @@ const Home = () => {
                 {t.ctaQuote}
               </Button>
             </a>
-            <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="inline-block">
+            <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow" className="inline-block">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 {t.ctaWhatsApp}
               </Button>

@@ -4,7 +4,7 @@ import SEOHead from '../components/SEOHead';
 import { Button } from '../components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { useLocale, localizePath, useT, type Locale } from '@/i18n';
-import { CONTACT_URL, BUSINESS_REF } from '@/lib/site';
+import { CONTACT_URL, BUSINESS_REF, whatsappUrl } from '@/lib/site';
 
 const CATEGORY_ICONS = [Wallet, CalendarClock, Layers, Info];
 const CATEGORY_TONES = ['bg-warm/20 text-warm-deep', 'bg-primary/10 text-primary', 'bg-foreground/[0.07] text-foreground', 'bg-primary/10 text-primary'];
@@ -173,7 +173,7 @@ const FAQ = () => {
                 {t.ctaQuote}
               </Button>
             </a>
-            <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="inline-block">
+            <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow" className="inline-block">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white hover:text-primary backdrop-blur-sm">
                 WhatsApp
               </Button>

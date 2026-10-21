@@ -4,7 +4,7 @@ import { Mail, MessageCircle, MapPin } from 'lucide-react';
 import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, type Locale } from '@/i18n';
 import SiteLink from './SiteLink';
-import { asset } from '@/lib/site';
+import { asset, whatsappUrl } from '@/lib/site';
 
 const strings: Record<Locale, {
   role: string; tagline: string; myTraining: string; navigation: string; contact: string;
@@ -123,7 +123,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MessageCircle className="h-4 w-4 text-[#f6a463] shrink-0" />
-                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only">{t.newTab}</span></a>
+                <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ia-navy rounded-sm">WhatsApp<span className="sr-only">{t.newTab}</span></a>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <MapPin className="h-4 w-4 text-[#f6a463] shrink-0" />

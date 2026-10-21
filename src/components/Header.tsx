@@ -4,7 +4,7 @@ import { Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, canonicalPath, type Locale } from '@/i18n';
-import { CONTACT_URL, asset } from '@/lib/site';
+import { CONTACT_URL, asset, whatsappUrl } from '@/lib/site';
 import SiteLink from './SiteLink';
 
 const navigation = [
@@ -183,7 +183,7 @@ const Header = () => {
 
           <div className="hidden lg:flex items-center gap-2.5 pl-3">
             <LangSwitcher />
-            <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer">
+            <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow">
               <Button size="sm" variant="outline" className="border-green-600/40 text-green-700 hover:border-green-600 hover:bg-green-600 hover:text-white">
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp
@@ -253,7 +253,7 @@ const Header = () => {
               </div>
 
               <div className="px-2 pt-3 space-y-2">
-                <a href="https://wa.me/33649829826" target="_blank" rel="noopener noreferrer" onClick={handleNavClick} className="block">
+                <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow" onClick={handleNavClick} className="block">
                   <Button variant="outline" className="w-full border-green-600/40 text-green-700 hover:border-green-600 hover:bg-green-600 hover:text-white">
                     <MessageCircle className="h-4 w-4" />
                     WhatsApp

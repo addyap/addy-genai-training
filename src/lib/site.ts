@@ -28,3 +28,8 @@ export const BUSINESS_REF = {
   "name": "Antony Addy",
   "url": "https://www.antonyaddy.com",
 };
+
+// WhatsApp goes through the main site's protected hand-off (api/whatsapp.ts in
+// addys-english-pro, served at www.antonyaddy.com/whatsapp): it opens WhatsApp
+// for a person who clicks and never shows the number to scrapers. Plain <a>.
+export const whatsappUrl = (locale: string) => (locale === 'en' ? '/whatsapp?c=ia-en' : '/whatsapp?c=ia');

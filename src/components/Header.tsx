@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { Button } from './ui/button';
-import { FORMATIONS } from '@/lib/formations';
 import { useLocale, localizePath, canonicalPath, type Locale } from '@/i18n';
-import { CONTACT_URL, asset, whatsappUrl } from '@/lib/site';
+import { CONTACT_URL, whatsappUrl } from '@/lib/site';
 import SiteLink from './SiteLink';
 
 const navigation = [
@@ -17,24 +16,23 @@ const navigation = [
 
 const strings: Record<Locale, {
   home: string; formations: string; faq: string; about: string; contact: string;
-  activities: string; quote: string; openMenu: string; closeMenu: string;
+  quote: string; openMenu: string; closeMenu: string;
   newTab: string; homeAria: string;
 }> = {
   fr: {
     home: 'Accueil', formations: 'Formations', faq: 'FAQ', about: 'À propos', contact: 'Contact',
-    activities: 'Mes activités', quote: 'Demander un devis', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu',
-    newTab: " (s'ouvre dans un nouvel onglet)", homeAria: 'Antony Addy — Accueil',
+    quote: 'Demander un devis', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu',
+    newTab: " (s'ouvre dans un nouvel onglet)", homeAria: 'IA générative — Accueil',
   },
   en: {
     home: 'Home', formations: 'Training', faq: 'FAQ', about: 'About', contact: 'Contact',
-    activities: 'What I do', quote: 'Get a quote', openMenu: 'Open menu', closeMenu: 'Close menu',
-    newTab: ' (opens in a new tab)', homeAria: 'Antony Addy — Home',
+    quote: 'Get a quote', openMenu: 'Open menu', closeMenu: 'Close menu',
+    newTab: ' (opens in a new tab)', homeAria: 'Generative AI — Home',
   },
 };
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isActivitiesOpen, setIsActivitiesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const locale = useLocale();
@@ -46,7 +44,6 @@ const Header = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsActivitiesOpen(false);
   }, [location.pathname]);
 
   // Header firms up once content scrolls under it — no shrink, no hide: the quote CTA stays put.
@@ -112,11 +109,11 @@ const Header = () => {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3.5">
-          {/* Logo: the brand wordmark, with this activity beside it (as on the hub) */}
-          <Link to={lp('/')} className="flex items-center gap-3" onClick={handleNavClick} aria-label={t.homeAria}>
-            <img src={asset('/brand/antony-addy-logo.svg')} alt="Antony Addy" width={86} height={44} className="h-10 w-auto" />
-            <span className="hidden sm:flex items-center gap-2 border-l border-border pl-3 text-xs font-medium text-muted-foreground">
-              <span className="font-semibold" style={{ color: '#553B9B' }}>02</span>
+          {/* Section name, not a second logo: the shared bar above carries the
+              brand and goes to the hub; this goes to the AI section's home. */}
+          <Link to={lp('/')} className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" onClick={handleNavClick} aria-label={t.homeAria}>
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: '#553B9B' }} aria-hidden="true" />
+            <span className="font-display text-lg font-bold tracking-tight text-foreground">
               {locale === 'en' ? 'Generative AI' : 'IA générative'}
             </span>
           </Link>
@@ -138,47 +135,6 @@ const Header = () => {
               </SiteLink>
             ))}
 
-            {/* Mes activités — the hub's three lines, this one current */}
-            <div
-              className="relative"
-              onMouseEnter={() => setIsActivitiesOpen(true)}
-              onMouseLeave={() => setIsActivitiesOpen(false)}
-            >
-              <button
-                type="button"
-                onClick={() => setIsActivitiesOpen((o) => !o)}
-                aria-haspopup="true"
-                aria-expanded={isActivitiesOpen}
-                className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors duration-fast hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              >
-                {t.activities}
-                <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
-              </button>
-              {isActivitiesOpen && (
-                <div className="motion-menu absolute right-0 top-full mt-1 w-80 rounded-2xl border border-border bg-card p-2 shadow-lg">
-                  {FORMATIONS.map((f) => {
-                    const content = (
-                      <>
-                        <span className="w-6 shrink-0 pt-0.5 text-xs font-semibold" style={{ color: f.color }}>{f.number}</span>
-                        <span className="flex flex-col">
-                          <span className="text-sm font-semibold text-foreground">{f.label[locale]}</span>
-                          <span className="text-xs text-muted-foreground">{f.detail[locale]}</span>
-                        </span>
-                      </>
-                    );
-                    return f.current ? (
-                      <Link key={f.key} to={lp('/')} onClick={handleNavClick} aria-current="page" className="flex items-start gap-2 rounded-xl bg-primary/5 px-3 py-2.5">
-                        {content}
-                      </Link>
-                    ) : (
-                      <a key={f.key} href={f.href} onClick={() => setIsActivitiesOpen(false)} className="flex items-start gap-2 rounded-xl px-3 py-2.5 transition-colors hover:bg-muted">
-                        {content}
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
           </div>
 
           <div className="hidden lg:flex items-center gap-2.5 pl-3">
@@ -233,24 +189,6 @@ const Header = () => {
                 </SiteLink>
               ))}
 
-              {/* Mes activités — mobile */}
-              <div className="pt-3 mt-2 border-t border-border/70">
-                <p className="px-4 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.activities}</p>
-                {FORMATIONS.map((f) => {
-                  const cls = 'flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary';
-                  const content = (
-                    <>
-                      <span className="w-6 shrink-0 text-xs font-semibold" style={{ color: f.color }}>{f.number}</span>
-                      {f.label[locale]}
-                    </>
-                  );
-                  return f.current ? (
-                    <Link key={f.key} to={lp('/')} onClick={handleNavClick} className={cls} aria-current="page">{content}</Link>
-                  ) : (
-                    <a key={f.key} href={f.href} onClick={handleNavClick} className={cls}>{content}</a>
-                  );
-                })}
-              </div>
 
               <div className="px-2 pt-3 space-y-2">
                 <a href={whatsappUrl(locale)} target="_blank" rel="noopener noreferrer nofollow" onClick={handleNavClick} className="block">

@@ -15,7 +15,7 @@ import { CONTACT_URL, whatsappUrl } from '@/lib/site';
 
 const HERO = {
   fr: {
-    kicker: '02 · IA générative · Antony Addy',
+    kicker: '03 · IA générative · Antony Addy',
     prompt: 'Résume ce rapport de 40 pages en 5 points pour mon équipe.',
     head1: "De l'intention",
     head2a: 'à ',
@@ -32,7 +32,7 @@ const HERO = {
     newTab: " (s'ouvre dans un nouvel onglet)",
   },
   en: {
-    kicker: '02 · Generative AI · Antony Addy',
+    kicker: '03 · Generative AI · Antony Addy',
     prompt: 'Summarise this 40-page report into 5 points for my team.',
     head1: 'From intention',
     head2a: 'to ',

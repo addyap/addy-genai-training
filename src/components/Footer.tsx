@@ -137,6 +137,7 @@ const Footer = () => {
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/50">
           <p>© {new Date().getFullYear()} Antony Addy. {t.rights}</p>
           <p>SIRET : 483 178 893 00028</p>
+          <p>{locale === 'fr' ? 'Site réalisé par ' : 'Website by '}<a href={locale === 'fr' ? 'https://thevitrine.fr/' : 'https://thevitrine.fr/en/'} target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-white transition-colors">The Vitrine</a></p>
         </div>
       </div>
     </footer>

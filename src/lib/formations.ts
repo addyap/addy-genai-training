@@ -31,7 +31,7 @@ export const FORMATIONS: Formation[] = [
     number: '02',
     label: { fr: 'Sites web multilingues', en: 'Multilingual websites' },
     detail: { fr: 'Pour une clientèle internationale', en: 'For an international clientele' },
-    href: 'https://www.antonyaddy.com/sites-web',
+    href: 'https://thevitrine.fr/#work',
     current: false,
     color: '#914F1D',
   },

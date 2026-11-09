@@ -11,8 +11,8 @@ import { getLocaleFromPath } from "../i18n";
  * Labels follow the page's locale (/en pages get English).
  */
 const LABELS = {
-  fr: { english: "Anglais", ai: "IA", sites: "Sites web", ia: "/ia", web: "/sites-web" },
-  en: { english: "English", ai: "AI", sites: "Websites", ia: "/ia/en", web: "/sites-web/en" },
+  fr: { english: "Anglais", ai: "IA", sites: "Sites web", ia: "/ia", web: "https://thevitrine.fr/#work" },
+  en: { english: "English", ai: "AI", sites: "Websites", ia: "/ia/en", web: "https://thevitrine.fr/en/#work" },
 };
 
 const AntonyAddyBar = () => {
@@ -25,7 +25,7 @@ const AntonyAddyBar = () => {
       </a>
       <ul className="aa-bar-services" lang={locale}>
         <li><a href="https://www.antonyaddy.com/offres-de-formation">{t.english}</a></li>
-        <li><a href={`https://www.antonyaddy.com${t.web}`}>{t.sites}</a></li>
+        <li><a href={t.web}>{t.sites}</a></li>
         <li><a href={`https://www.antonyaddy.com${t.ia}`} aria-current="true">{t.ai}</a></li>
       </ul>
     </nav>
